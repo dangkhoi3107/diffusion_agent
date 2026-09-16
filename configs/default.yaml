@@ -1,0 +1,98 @@
+# =====================================================================
+# Camouflage latent blending — config mặc định (= cấu hình cuối trong luận văn)
+# Override nhanh không cần sửa file:  --set blend.alpha_end=0.6
+# [khoảng gợi ý] là vùng nên quét khi tuning; (!) = tham số nhạy nhất
+# =====================================================================
+
+paths:
+  subjects: /kaggle/input/datasets/dangkhoi3107/thesis/animals   # 1 ảnh hoặc thư mục
+  backgrounds: /kaggle/input/datasets/dangkhoi3107/thesis/bg
+  out_dir: /kaggle/working/outputs
+
+models:
+  base: stable-diffusion-v1-5/stable-diffusion-v1-5
+  controlnet_canny: lllyasviel/sd-controlnet-canny
+  controlnet_softedge: lllyasviel/control_v11p_sd15_softedge
+  hed_repo: lllyasviel/Annotators
+  clip: openai/clip-vit-base-patch32
+  device: auto              # auto | cuda | cpu
+  dtype: auto               # auto (fp16 trên GPU) | float16 | float32
+  attention_slicing: false  # chỉ bật khi thiếu VRAM (chậm hơn)
+  batch_branches: true      # gộp 2 nhánh vào 1 lần gọi UNet (nhanh hơn); false nếu OOM
+
+prompt:
+  subject_name: ""          # rỗng = lấy từ tên file (lizard_000d3a.jpg -> "lizard")
+  subject_template: "a hidden {animal} silhouette seamlessly integrated into the background, subtle facial cues, optical illusion, camouflage"
+  background: ""            # để trống: nền do ảnh background quyết định
+  negative: "sticker, pasted object, sharp outline, cartoon, text, watermark, logo, extra limbs, deformed, low quality, high contrast foreground object"
+
+sampling:
+  width: 512
+  height: 512
+  steps: 57                 # số bước thực chạy = steps * bg_strength (57*0.52 = 29)
+  seed: 1234
+  seed_mode: fixed          # fixed | increment | random
+  scheduler: unipc          # unipc | dpmpp_2m | ddim
+  legacy_unipc_corrector: false  # true = tái tạo bug blend của notebook cũ (chỉ để so sánh)
+  bg_strength: 0.52         # (!) [0.40–0.65] thấp: subject khó hiện; cao: nền bị vẽ lại
+  sub_init_noise: 0.0       # [0–0.3]
+  guidance_bg: 1.2          # [1.0–1.5] 1.0 = tắt CFG nhánh nền (nhanh hơn ~25%)
+  guidance_sub: 2.3         # [1.5–5.0] cao: subject rõ/đúng loài hơn, dễ bị "sticker"
+  couple_mode: bg_only      # none | bg_only | both
+
+hints:
+  canny_low: 60
+  canny_high: 160
+  canny_blur: 5
+  broken_edges: true
+  broken_drop_prob: 0.30    # [0.2–0.5]
+  softedge_fallback_to_canny: false  # false = báo lỗi nếu HED hỏng (thay vì âm thầm dùng canny)
+
+control:
+  canny_scale: 0.02         # [0–0.4] 0.02 gần như tắt canny; thử 0.2 cho ablation
+  softedge_scale: 1.5       # (!) [0.8–1.6]
+  start_frac: 0.0
+  end_frac: 0.84            # [0.6–0.9] tắt control sớm hơn -> hòa vào nền tốt hơn
+  gate: cosine              # cosine | linear | constant
+  layer_weights: A          # A (bỏ 4 block độ phân giải cao) | B | uniform
+  guess_mode: true
+
+mask:
+  blur: 11                  # [7–21] px, số lẻ
+  gamma: 0.5                # (!) [0.4–0.9] nhỏ: mask rộng/mạnh hơn
+  invert: false
+  floor: 0.05               # [0.0–0.15]
+  ceiling: 0.90             # [0.7–1.0]
+
+blend:
+  profile: decay            # decay | ramp | constant
+  start_frac: 0.05
+  end_frac: 0.56            # [0.4–0.8]
+  alpha_end: 0.54           # (!) [0.35–0.70] tham số nhạy nhất: độ hiện của subject
+
+layout:
+  scale: 1.0                # [0.5–1.0] <1 = subject nhỏ lại (đã sửa bug đảo ngược)
+  offset_x: 0.0             # [-0.5–0.5] + = sang phải
+  offset_y: 0.0             # [-0.5–0.5] + = xuống dưới
+  rotation_deg: 0.0         # + = xoay theo chiều kim đồng hồ
+
+output:
+  save_debug: true          # lưu canny/softedge/mask/overlay/panel cho từng cặp
+  skip_existing: false      # true + --run-name cũ = chạy tiếp khi Kaggle bị ngắt
+  make_zip: true
+  grid_columns: 4
+  max_grid_items: 64
+
+metrics:
+  enabled: true
+  clip: true                # CLIP recognizability (tải thêm ~600MB lần đầu)
+
+ui:
+  share: true
+  port: 7860
+
+# Lưới tham số cho lệnh `sweep` (tích Descartes). Bắt đầu với 3 tham số nhạy nhất:
+sweep:
+  blend.alpha_end: [0.40, 0.55, 0.70]
+  mask.gamma: [0.40, 0.60]
+  sampling.bg_strength: [0.45, 0.60]

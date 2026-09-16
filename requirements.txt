@@ -1,0 +1,10 @@
+# Kaggle images already ship torch, torchvision, numpy, pillow and opencv: do not reinstall them.
+# Local machine: install a CUDA build of torch first (https://pytorch.org) and `pip install opencv-python-headless`.
+diffusers>=0.30.0
+transformers>=4.44.0
+accelerate>=0.33.0
+safetensors>=0.4.0
+huggingface_hub>=0.24.0
+gradio>=4.44.0
+PyYAML>=6.0
+packaging
