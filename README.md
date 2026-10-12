@@ -23,10 +23,62 @@ camo/
 configs/default.yaml   cấu hình cuối trong luận văn + ghi chú khoảng tham số nên chỉnh
 run.sh                 entry point duy nhất (tự cài dependency)
 kaggle/camo_kaggle.ipynb   notebook 1 cell cho Kaggle
+kaggle/camo_pilot.ipynb    notebook pilot M0/M1 (21 audit + 15 default renders)
+camo/pilot.py              chuẩn hoá input, QA preview, audit C00–C06, manifest từng trial
+pilot/inputs.yaml          khai báo O01–O06 / B01–B06 (label, category, nguồn, tags)
+tools/annotate.html        tool chấm ảnh offline: lượt A mù, lượt B rubric, tổng hợp, xuất JSONL
+tools/label.html + scripts/label_server.py   gán nhãn nhanh 1 phím/ảnh, tự lưu outputs/labels.jsonl
+scripts/kaggle_run.py      1 lệnh: upload code, chạy notebook trên GPU Kaggle, tải kết quả về outputs/
+camo/agent.py              tìm config: action space, policy random/rule/LLM, controller có event log + resume
+camo/llm.py                adapter OpenAI (Proposer text, Observer ảnh 2 lượt) + bản giả để test
+camo/demo.py               UI demo 2 agent (Proposer + Observer), --simulate khi không có GPU
 scripts/pack_kaggle.sh     đóng gói code thành dataset Kaggle
 tests/                 test CPU (hình học, mask, config, metrics) + smoke test sampler
-docs/ROADMAP.md        gợi ý cải tiến và cách áp dụng agent
+docs/PRD_CAMOUBLEND.md          đặc tả hiện hành, kiến trúc và protocol nghiên cứu
+docs/MILESTONES_CAMOUBLEND.md   milestones, tasks và điều kiện nghiệm thu
+docs/INPUT_SELECTION_PLAN.md   chọn input động vật/chân dung và background
+docs/GOLDEN_SET_GUIDE.md        audit configs, golden set và annotation
 ```
+
+## Tài liệu nghiên cứu hiện hành
+
+1. [PRD CamouBlend](docs/PRD_CAMOUBLEND.md): phạm vi, kiến trúc, yêu cầu và thiết kế đánh giá.
+2. [Milestones và sprint](docs/MILESTONES_CAMOUBLEND.md): công việc, đầu ra và điều kiện nghiệm thu từng mốc.
+3. [Chọn input](docs/INPUT_SELECTION_PLAN.md): động vật/chân dung, background và ma trận pilot.
+4. [Golden set và annotation](docs/GOLDEN_SET_GUIDE.md): cấu hình audit, cách chấm và lưu dữ liệu.
+
+Phạm vi phần mở rộng: subject hòa nền nhưng nhận ra ngay; chân dung giữ cấu trúc mặt, không yêu cầu giữ danh tính. PRD mô tả tính năng cần xây, không có nghĩa agent đã được triển khai.
+
+## Pilot M0/M1: audit 21 ảnh + 15 default rồi chấm
+
+1. Input lấy từ dataset công khai bằng `python -m camo.pilot fetch-inputs` (notebook tự chạy): cat/lizard/fish từ Open Images V7 (mask, CC BY 2.0), butterfly từ Leeds Butterfly (mask, CC BY 4.0), chân dung random từ AISegment Matting Human (Kaggle, alpha matte, chỉ dùng thử), nền từ DTD (B01 marbled, B02 porous, B03 fibrous, B04 stratified, B05 cracked, B06 zigzagged; đổi bằng `--dtd-map`). Mỗi subject 4 ứng viên, mỗi nền 8 + `candidates.png` + json nguồn/tác giả/license. Có ảnh riêng: đặt `O01_*.png …` cạnh một bản copy của `pilot/inputs.yaml`.
+2. Đóng gói code (`bash scripts/pack_kaggle.sh`); mở `kaggle/camo_pilot.ipynb` (Add Input `camo-code` + `aisegmentcom-matting-human-datasets`), chạy `STEP="fetch-inputs"`, xem ứng viên, rồi `STEP="all"`.
+3. Tải `pilot.zip`, giải nén, mở `tools/annotate.html` bằng trình duyệt, chọn thư mục `pilot`. Tác giả chấm lượt B; người chưa biết subject làm lượt A. Bấm *Xuất annotations.jsonl* để lưu.
+
+Mỗi trial có `runs/<pair>/<config>/trial.json`: label, prompt đã resolve, seed, `steps_run` thực, thời gian từng stage, params, hash input gốc/đã chuẩn hoá, `code_hash`. `environment.json` ghi package/GPU/model revision. Chạy lại cùng lệnh sẽ bỏ qua trial đã `ok`.
+
+## Gán nhãn nhanh và chạy trên Kaggle bằng 1 lệnh
+
+```bash
+python3 scripts/label_server.py          # mở http://localhost:8765, bấm 1-5/0, nhãn tự lưu outputs/labels.jsonl
+                                         # /backgrounds: báo cáo theo loại nền; /compare: trước/sau agent
+python3 scripts/kaggle_run.py --user <kaggle-user> --run pilot_v4 --configs pilot/audit_v4.yaml --step audit
+```
+
+`kaggle_run.py` cần Kaggle CLI và token (`~/.kaggle/access_token`). Ảnh input đã chọn được đóng gói kèm code
+(`pilot/frozen_inputs`, `pilot/bgmap_inputs`; không commit vì license ảnh) nên Kaggle không phải tải dataset.
+
+## Demo 2 agent
+
+```bash
+python -m camo.demo --simulate           # không GPU: render mô phỏng, để thử luồng
+bash run.sh demo --share                 # trên Kaggle GPU: render thật, link Gradio công khai
+```
+
+Proposer (`rule` | `random` | `llm`) đề xuất `blend.alpha_end` (profile constant) và `sampling.bg_strength`;
+Observer (`human` | `llm`) gán nhãn too_visible/good/subtle/missing/broken/unsure; dừng khi Đạt hoặc hết ngân sách.
+Vai trò `llm` cần `OPENAI_API_KEY` (model mặc định theo PRD §17, đổi bằng `CAMO_LLM_MODEL`). Mỗi lần tìm ghi
+`events.jsonl` (đề xuất, render, nhãn, lời gọi LLM) nên dừng giữa chừng rồi chạy tiếp được.
 
 ## Chạy trên Kaggle
 
@@ -114,8 +166,9 @@ Thứ tự ưu tiên khi tuning (từ nhạy nhất đến ít nhạy):
 | `sampling.guidance_bg` | 1.2 | 1.0 – 1.5 | Đặt 1.0 để tắt CFG nhánh nền, chạy nhanh hơn |
 
 Preset "Tuning grid" (tab Compare, hoặc `bash run.sh sweep`) quét 3 tham số đầu (12 tổ hợp).
-Cách chọn: sắp xếp `summary.csv` (hoặc bảng trong tab Compare) theo `clip_text_gain` (subject nhận ra được),
-giữ các tổ hợp có `SSIM_bg` cao (nền được giữ), rồi xem `comparison.png` để chọn bằng mắt.
+Cách sàng lọc sơ bộ: xem `clip_text_gain` và `SSIM_bg` trong `summary.csv` (hoặc tab Compare),
+rồi xem `comparison.png` để đánh giá nhận ra subject và hòa nền. Các proxy này chưa được calibration
+để tự quyết định ảnh đạt; metrics hiện tại phụ thuộc generation mask.
 
 ## Output của mỗi cặp
 
@@ -130,8 +183,8 @@ trong luận văn), `result.json` (prompt, seed, thời gian, metrics), `config.
 | `SSIM_bg`, `PSNR_bg` | Mức giữ nền, tính có trọng số `1 − M` (ngoài subject). Cao là tốt |
 | `SSIM_subject` | Mức giống nền trong vùng mask. Thấp nghĩa là subject đã thay đổi vùng đó |
 | `S_edge` | Độ trùng cạnh subject với cạnh output trong mask |
-| `hidden_score` | `−|mật độ cạnh trong mask − ngoài mask|`. Càng gần 0 thì vùng subject càng lẫn vào nền |
-| `clip_text_gain` | `cos(output, "a photo of a {animal}") − cos(background, cùng text)`. Dương nghĩa là nhận ra được subject |
+| `hidden_score` | `−|mật độ cạnh trong mask − ngoài mask|`. Gần 0 nghĩa là hai mật độ cạnh gần nhau; chưa chứng minh hòa nền đẹp |
+| `clip_text_gain` | `cos(output, "a photo of a {animal}") − cos(background, cùng text)`. Dương nghĩa là similarity với text tăng; chưa chứng minh người xem nhận ra subject |
 | `clip_image_gain` | Như trên nhưng so với chính ảnh subject |
 
 ## Bug đã sửa so với notebook
@@ -155,9 +208,20 @@ layout sang đúng hình học mà notebook cũ đã render. Sau đó chạy v�
 
 ## Hạn chế đã biết
 
-Soft mask lấy từ HED của **toàn bộ ảnh subject**. Nếu ảnh subject có nền nhiều texture, mask rò ra khắp
-khung hình (đo trên ảnh thử: 95% pixel có mask > 0.05), làm nhánh subject vẽ đè lên nền. Tạm thời có thể
-tăng `mask.floor` hoặc dùng ảnh subject nền trơn. Cách sửa gốc xem trong `docs/ROADMAP.md`.
+`camo/imageio.py` hiện gọi `convert("RGB")`: alpha bị bỏ, RGB ẩn dưới vùng trong suốt được giữ,
+không tự composite lên nền trắng/xám. Ảnh cũng được resize trực tiếp, có thể méo tỷ lệ. Vì vậy không
+đưa PNG tách nền thẳng vào loader rồi coi alpha là generation mask.
+
+Soft mask lấy từ HED của **toàn bộ ảnh subject**, chưa có foreground constraint. README trước đây
+ghi nhận 95% pixel có mask > 0.05 trên một ảnh thử; đây là quan sát lịch sử, chưa được tái đo trong
+đợt review tài liệu này và không phải tỷ lệ leakage chung. Phải so mask với foreground support đã
+review để phân biệt subject lớn với mask thực sự lan ra nền.
+
+Kế hoạch xử lý: giữ alpha gốc → composite rõ ràng lên RGB(128,128,128) và chuẩn hóa giữ tỷ lệ → QA
+hints/mask. Ảnh opaque có nền rối cần cutout/mask trước khi thay nền. Nếu còn rò, dùng source support;
+khi thiếu support tốt mới dùng BiRefNet offline và QA. Các bước này là **kế hoạch cần triển khai**,
+không phải hành vi hiện tại của loader. Xem [PRD §6.1](docs/PRD_CAMOUBLEND.md#61-quy-trình-bắt-buộc-cho-alpha-và-mask-leakage)
+và [milestones M0–M1](docs/MILESTONES_CAMOUBLEND.md); mọi method phải dùng cùng preprocessing version.
 
 ## Test
 

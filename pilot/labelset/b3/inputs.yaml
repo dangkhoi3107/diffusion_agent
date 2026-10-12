@@ -1,0 +1,815 @@
+version: label_b3
+note: 'Label set batch 3/9 (subjects v2, shape groups): 50 pairs x grid.yaml (scripts/labelset.py,
+  seed 20261012).'
+subjects:
+  S10:
+    label: butterfly
+    category: animal
+    origin: O03_2
+    representation: photograph
+    shape_tags:
+    - symmetric
+    - wings
+    source_and_license: Leeds Butterfly Dataset, CC BY 4.0
+    path: candidates/S10.png
+    shape: wings_spread
+    species: Butterfly
+  S16:
+    label: human face, portrait
+    category: human_portrait
+    origin: O05_3
+    representation: photograph
+    shape_tags: []
+    source_and_license: AISegment Matting Human; license unclear, pilot only
+    path: candidates/S16.png
+    shape: human
+    species: Human
+  S17:
+    label: human face, portrait
+    category: human_portrait
+    origin: O06_0
+    representation: photograph
+    shape_tags: []
+    source_and_license: AISegment Matting Human; license unclear, pilot only
+    path: candidates/S17.png
+    shape: human
+    species: Human
+  T015:
+    label: coyote
+    category: animal
+    origin: A03_0
+    shape: quadruped_compact
+    species: Coyote
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T015.png
+  T020:
+    label: fox
+    category: animal
+    origin: A03_5
+    shape: quadruped_compact
+    species: Fox
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T020.png
+  T021:
+    label: gray fox
+    category: animal
+    origin: A03_6
+    shape: quadruped_compact
+    species: Gray fox
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T021.png
+  T024:
+    label: rabbit
+    category: animal
+    origin: A04_2
+    shape: quadruped_compact
+    species: Rabbit
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T024.png
+  T031:
+    label: ground squirrel
+    category: animal
+    origin: A05_2
+    shape: quadruped_compact
+    species: Ground squirrel
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T031.png
+  T037:
+    label: horse
+    category: animal
+    origin: A06_1
+    shape: quadruped_tall
+    species: Horse
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T037.png
+  T039:
+    label: horse
+    category: animal
+    origin: A06_3
+    shape: quadruped_tall
+    species: Horse
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T039.png
+  T047:
+    label: goat
+    category: animal
+    origin: A08_6
+    shape: quadruped_tall
+    species: Goat
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T047.png
+  T054:
+    label: giraffe
+    category: animal
+    origin: A09_5
+    shape: quadruped_tall
+    species: Giraffe
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T054.png
+  T055:
+    label: giraffe
+    category: animal
+    origin: A09_6
+    shape: quadruped_tall
+    species: Giraffe
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T055.png
+  T058:
+    label: elephant
+    category: animal
+    origin: A10_1
+    shape: quadruped_heavy
+    species: Elephant
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T058.png
+  T059:
+    label: elephant
+    category: animal
+    origin: A10_2
+    shape: quadruped_heavy
+    species: Elephant
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T059.png
+  T065:
+    label: sheep
+    category: animal
+    origin: A12_1
+    shape: quadruped_heavy
+    species: Sheep
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T065.png
+  T072:
+    label: cattle
+    category: animal
+    origin: A13_4
+    shape: quadruped_heavy
+    species: Cattle
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T072.png
+  T076:
+    label: lizard
+    category: animal
+    origin: A14_0
+    shape: low_elongated_legged
+    species: Lizard
+    representation: photograph
+    shape_tags:
+    - low_elongated_legged
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T076.png
+  T077:
+    label: salamander
+    category: animal
+    origin: A14_1
+    shape: low_elongated_legged
+    species: Salamander
+    representation: photograph
+    shape_tags:
+    - low_elongated_legged
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T077.png
+  T085:
+    label: crocodile
+    category: animal
+    origin: A15_2
+    shape: low_elongated_legged
+    species: Crocodile
+    representation: photograph
+    shape_tags:
+    - low_elongated_legged
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T085.png
+  T089:
+    label: otter
+    category: animal
+    origin: A16_3
+    shape: low_elongated_legged
+    species: Otter
+    representation: photograph
+    shape_tags:
+    - low_elongated_legged
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T089.png
+  T091:
+    label: otter
+    category: animal
+    origin: A16_5
+    shape: low_elongated_legged
+    species: Otter
+    representation: photograph
+    shape_tags:
+    - low_elongated_legged
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T091.png
+  T095:
+    label: eel
+    category: animal
+    origin: A17_3
+    shape: legless_elongated
+    species: Eel
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T095.png
+  T099:
+    label: millipede
+    category: animal
+    origin: A39_0
+    shape: legless_elongated
+    species: Millipede
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T099.png
+  T100:
+    label: millipede
+    category: animal
+    origin: A39_5
+    shape: legless_elongated
+    species: Millipede
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T100.png
+  T101:
+    label: millipede
+    category: animal
+    origin: A39_10
+    shape: legless_elongated
+    species: Millipede
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T101.png
+  T111:
+    label: shark
+    category: animal
+    origin: A20_3
+    shape: streamlined_fins
+    species: Shark
+    representation: photograph
+    shape_tags:
+    - streamlined_fins
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T111.png
+  T116:
+    label: dolphin
+    category: animal
+    origin: A21_5
+    shape: streamlined_fins
+    species: Dolphin
+    representation: photograph
+    shape_tags:
+    - streamlined_fins
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T116.png
+  T117:
+    label: dolphin
+    category: animal
+    origin: A21_6
+    shape: streamlined_fins
+    species: Dolphin
+    representation: photograph
+    shape_tags:
+    - streamlined_fins
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T117.png
+  T119:
+    label: fish
+    category: animal
+    origin: A22_0
+    shape: streamlined_fins
+    species: Fish
+    representation: photograph
+    shape_tags:
+    - streamlined_fins
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T119.png
+  T121:
+    label: fish
+    category: animal
+    origin: A22_3
+    shape: streamlined_fins
+    species: Fish
+    representation: photograph
+    shape_tags:
+    - streamlined_fins
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T121.png
+  T126:
+    label: bat
+    category: animal
+    origin: A25_2
+    shape: wings_spread
+    species: Bat
+    representation: photograph
+    shape_tags:
+    - wings_spread
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T126.png
+  T127:
+    label: bat
+    category: animal
+    origin: A25_3
+    shape: wings_spread
+    species: Bat
+    representation: photograph
+    shape_tags:
+    - wings_spread
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T127.png
+  T132:
+    label: butterfly
+    category: animal
+    origin: A23_0
+    shape: wings_spread
+    species: Butterfly
+    representation: photograph
+    shape_tags:
+    - wings_spread
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T132.png
+  T139:
+    label: butterfly
+    category: animal
+    origin: A23_7
+    shape: wings_spread
+    species: Butterfly
+    representation: photograph
+    shape_tags:
+    - wings_spread
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T139.png
+  T143:
+    label: owl
+    category: animal
+    origin: A26_0
+    shape: bird_upright
+    species: Owl
+    representation: photograph
+    shape_tags:
+    - bird_upright
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T143.png
+  T148:
+    label: parrot
+    category: animal
+    origin: A27_1
+    shape: bird_upright
+    species: Parrot
+    representation: photograph
+    shape_tags:
+    - bird_upright
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T148.png
+  T150:
+    label: parrot
+    category: animal
+    origin: A27_3
+    shape: bird_upright
+    species: Parrot
+    representation: photograph
+    shape_tags:
+    - bird_upright
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T150.png
+  T158:
+    label: penguin
+    category: animal
+    origin: A28_3
+    shape: bird_upright
+    species: Penguin
+    representation: photograph
+    shape_tags:
+    - bird_upright
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T158.png
+  T165:
+    label: duck
+    category: animal
+    origin: A29_3
+    shape: bird_upright
+    species: Duck
+    representation: photograph
+    shape_tags:
+    - bird_upright
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T165.png
+  T170:
+    label: frog
+    category: animal
+    origin: A32_1
+    shape: round_shelled
+    species: Frog
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T170.png
+  T174:
+    label: frog
+    category: animal
+    origin: A32_5
+    shape: round_shelled
+    species: Frog
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T174.png
+  T177:
+    label: turtle
+    category: animal
+    origin: A33_0
+    shape: round_shelled
+    species: Turtle
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T177.png
+  T182:
+    label: turtle
+    category: animal
+    origin: A33_5
+    shape: round_shelled
+    species: Turtle
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T182.png
+  T191:
+    label: ladybug
+    category: animal
+    origin: A40_11
+    shape: round_shelled
+    species: Ladybug
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T191.png
+  T215:
+    label: mosquito
+    category: animal
+    origin: A36_1
+    shape: many_legs
+    species: Mosquito
+    representation: photograph
+    shape_tags:
+    - many_legs
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T215.png
+  T216:
+    label: grasshopper
+    category: animal
+    origin: A36_2
+    shape: many_legs
+    species: Grasshopper
+    representation: photograph
+    shape_tags:
+    - many_legs
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T216.png
+  T219:
+    label: insect
+    category: animal
+    origin: A36_11
+    shape: many_legs
+    species: Insect
+    representation: photograph
+    shape_tags:
+    - many_legs
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T219.png
+  T224:
+    label: stag beetle
+    category: animal
+    origin: A37_6
+    shape: many_legs
+    species: Stag beetle
+    representation: photograph
+    shape_tags:
+    - many_legs
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T224.png
+backgrounds:
+  D21:
+    material: dtd:potholed
+    group: relief_shading
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/potholed/potholed_0167.jpg (DTD: research use)'
+    path: candidates/D21.jpg
+  D22:
+    material: dtd:frilly
+    group: fibrous_overlapping
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/frilly/frilly_0113.jpg (DTD: research use)'
+    path: candidates/D22.jpg
+  D23:
+    material: dtd:swirly
+    group: directional_flow
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/swirly/swirly_0144.jpg (DTD: research use)'
+    path: candidates/D23.jpg
+  D24:
+    material: dtd:marbled
+    group: low_detail_blotchy
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/marbled/marbled_0135.jpg (DTD: research use)'
+    path: candidates/D24.jpg
+  D25:
+    material: dtd:chequered
+    group: regular_pattern_2d
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/chequered/chequered_0195.jpg (DTD: research use)'
+    path: candidates/D25.jpg
+  D26:
+    material: dtd:pitted
+    group: granular
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/pitted/pitted_0114.jpg (DTD: research use)'
+    path: candidates/D26.jpg
+  D27:
+    material: dtd:bumpy
+    group: relief_shading
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/bumpy/bumpy_0184.jpg (DTD: research use)'
+    path: candidates/D27.jpg
+  D28:
+    material: dtd:gauzy
+    group: fibrous_overlapping
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/gauzy/gauzy_0123.jpg (DTD: research use)'
+    path: candidates/D28.jpg
+  D29:
+    material: dtd:wrinkled
+    group: directional_flow
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/wrinkled/wrinkled_0017.jpg (DTD: research use)'
+    path: candidates/D29.jpg
+  D30:
+    material: dtd:blotchy
+    group: low_detail_blotchy
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/blotchy/blotchy_0036.jpg (DTD: research use)'
+    path: candidates/D30.jpg
+pairs:
+  D21T085:
+  - T085
+  - D21
+  D21T117:
+  - T117
+  - D21
+  D21S10:
+  - S10
+  - D21
+  D21T158:
+  - T158
+  - D21
+  D21T182:
+  - T182
+  - D21
+  D22T037:
+  - T037
+  - D22
+  D22T020:
+  - T020
+  - D22
+  D22T174:
+  - T174
+  - D22
+  D22T095:
+  - T095
+  - D22
+  D22S17:
+  - S17
+  - D22
+  D23T058:
+  - T058
+  - D23
+  D23T143:
+  - T143
+  - D23
+  D23T089:
+  - T089
+  - D23
+  D23T055:
+  - T055
+  - D23
+  D23T111:
+  - T111
+  - D23
+  D24T219:
+  - T219
+  - D24
+  D24T031:
+  - T031
+  - D24
+  D24T126:
+  - T126
+  - D24
+  D24T101:
+  - T101
+  - D24
+  D24T191:
+  - T191
+  - D24
+  D25T072:
+  - T072
+  - D25
+  D25T132:
+  - T132
+  - D25
+  D25T121:
+  - T121
+  - D25
+  D25T021:
+  - T021
+  - D25
+  D25S16:
+  - S16
+  - D25
+  D26T077:
+  - T077
+  - D26
+  D26T039:
+  - T039
+  - D26
+  D26T224:
+  - T224
+  - D26
+  D26T165:
+  - T165
+  - D26
+  D26T065:
+  - T065
+  - D26
+  D27T047:
+  - T047
+  - D27
+  D27T116:
+  - T116
+  - D27
+  D27T215:
+  - T215
+  - D27
+  D27T148:
+  - T148
+  - D27
+  D27T099:
+  - T099
+  - D27
+  D28T177:
+  - T177
+  - D28
+  D28T015:
+  - T015
+  - D28
+  D28T127:
+  - T127
+  - D28
+  D28T076:
+  - T076
+  - D28
+  D28S17:
+  - S17
+  - D28
+  D29T054:
+  - T054
+  - D29
+  D29T216:
+  - T216
+  - D29
+  D29T150:
+  - T150
+  - D29
+  D29T139:
+  - T139
+  - D29
+  D29T059:
+  - T059
+  - D29
+  D30T091:
+  - T091
+  - D30
+  D30T024:
+  - T024
+  - D30
+  D30T119:
+  - T119
+  - D30
+  D30T170:
+  - T170
+  - D30
+  D30T100:
+  - T100
+  - D30
+audit_pairs:
+- D21T085
+- D21T117
+- D21S10
+- D21T158
+- D21T182
+- D22T037
+- D22T020
+- D22T174
+- D22T095
+- D22S17
+- D23T058
+- D23T143
+- D23T089
+- D23T055
+- D23T111
+- D24T219
+- D24T031
+- D24T126
+- D24T101
+- D24T191
+- D25T072
+- D25T132
+- D25T121
+- D25T021
+- D25S16
+- D26T077
+- D26T039
+- D26T224
+- D26T165
+- D26T065
+- D27T047
+- D27T116
+- D27T215
+- D27T148
+- D27T099
+- D28T177
+- D28T015
+- D28T127
+- D28T076
+- D28S17
+- D29T054
+- D29T216
+- D29T150
+- D29T139
+- D29T059
+- D30T091
+- D30T024
+- D30T119
+- D30T170
+- D30T100

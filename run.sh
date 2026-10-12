@@ -10,6 +10,8 @@
 #    preview      hints + mask + layout only, no diffusion (fast tuning)
 #    show-config  print the resolved config
 #    import-legacy --legacy-json ui_config_xxx.json   (old notebook config -> YAML)
+#    pilot <step>  M0/M1 pilot: normalize | preview | audit | default | all  (python -m camo.pilot -h)
+#    demo          2-agent search UI (Proposer + Observer), --simulate without GPU, --share for a public link
 #
 #  Quick settings via environment variables (all optional):
 #    CONFIG=configs/default.yaml     SUBJECTS=<img|folder>   BACKGROUNDS=<img|folder>
@@ -33,6 +35,8 @@ CONFIG="${CONFIG:-$ROOT/configs/default.yaml}"
 INSTALL_DEPS="${INSTALL_DEPS:-auto}"
 
 export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
+# Kaggle mounts the code dataset read-only; Gradio share links (ui/demo/render_server) need a writable cwd.
+if [[ -d /kaggle/working && ! -w "$PWD" ]]; then cd /kaggle/working; fi
 export PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 TOKENIZERS_PARALLELISM=false HF_HUB_DISABLE_TELEMETRY=1
 
 deps_ok() {
@@ -48,6 +52,11 @@ PY
 if [[ "$INSTALL_DEPS" == "1" ]] || { [[ "$INSTALL_DEPS" == "auto" ]] && ! deps_ok; }; then
   echo "[run.sh] Installing requirements ..."
   "$PYTHON" -m pip install -q -r "$ROOT/requirements.txt"
+fi
+
+if [[ "$COMMAND" == "pilot" || "$COMMAND" == "demo" || "$COMMAND" == "render_server" ]]; then
+  echo "[run.sh] $PYTHON -m camo.$COMMAND $*"
+  exec "$PYTHON" -m "camo.$COMMAND" "$@"
 fi
 
 ARGS=()

@@ -1,0 +1,30 @@
+# =====================================================================
+# CamouBlend pilot inputs (INPUT_SELECTION_PLAN.md §4, §3.1, §11)
+# Đặt ảnh CÙNG THƯ MỤC với file này, tên bắt đầu bằng ID:
+#   O01_cat.png  O02_lizard.jpg ... O06_portrait34.jpg  B01_wall.jpg ... B06_pattern.png
+# `path` để trống = tự tìm file "<ID>*". PNG trong suốt được giữ alpha và composite lên xám 128.
+# Thiếu ảnh nào thì cặp tương ứng bị bỏ qua và ghi coverage gap, không lỗi.
+# B06 có thể tự tạo: python -m camo.pilot make-pattern --save pilot/B06_pattern.png
+# =====================================================================
+version: inputs_v1
+
+subjects:
+  O01: {label: cat, category: animal, representation: photograph, shape_tags: [compact, tail], source_group: s01, source_and_license: "", path: ""}
+  O02: {label: lizard, category: animal, representation: photograph, shape_tags: [elongated, fine_parts], source_group: s02, source_and_license: "", path: ""}
+  O03: {label: butterfly, category: animal, representation: photograph, shape_tags: [symmetric, wings], source_group: s03, source_and_license: "", path: ""}
+  O04: {label: fish, category: animal, representation: photograph, shape_tags: [elongated, fins], source_group: s04, source_and_license: "", path: ""}
+  O05: {label: "human face, frontal portrait", category: human_portrait, representation: photograph, identity_group: person_001, source_group: s05, source_and_license: "", path: ""}
+  O06: {label: "human face, three-quarter portrait", category: human_portrait, representation: photograph, identity_group: person_002, source_group: s06, source_and_license: "", path: ""}
+
+backgrounds:
+  B01: {material: wall, representation: photograph, texture_density: low, repetition: none, depth_cues: flat, source_group: b01, source_and_license: "", path: ""}
+  B02: {material: sand, representation: photograph, texture_density: medium, repetition: irregular, depth_cues: shallow, source_group: b02, source_and_license: "", path: ""}
+  B03: {material: foliage, representation: photograph, texture_density: high, repetition: irregular, depth_cues: shallow, source_group: b03, source_and_license: "", path: ""}
+  B04: {material: wood, representation: photograph, texture_density: medium, repetition: irregular, depth_cues: flat, source_group: b04, source_and_license: "", path: ""}
+  # Không có render 3D có nguồn rõ -> dùng ảnh chụp đá và ghi representation: photograph (coverage gap rendered_3d).
+  B05: {material: stone, representation: rendered_3d, texture_density: high, repetition: irregular, depth_cues: strong, source_group: b05, source_and_license: "", path: ""}
+  B06: {material: geometric_pattern, representation: procedural_pattern_2d, texture_density: medium, repetition: regular, depth_cues: flat, source_group: b06, source_and_license: "self-generated (camo.pilot make-pattern)", path: ""}
+
+# Bỏ trống = ma trận 18 cặp P01-P18 và audit P02/P13/P16 trong camo/pilot.py.
+# pairs: {P02: [O01, B02]}
+# audit_pairs: [P02, P13, P16]

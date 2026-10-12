@@ -1,0 +1,45 @@
+{
+ "note": "Natural backgrounds picked by eye from random contact sheets (2026-10-12): full-frame texture only, no faces, statues or objects. Types missing here are sampled at random. GTOS-mobile images are 256 px and get upscaled to 512 by normalize.",
+ "picks": {
+  "bark": [
+   "bg_nature_raw/barkvn50/BarkVN-50/BarkVN-50_mendeley/Hevea brasiliensis/IMG_2095.JPG",
+   "bg_nature_raw/barkvn50/BarkVN-50/BarkVN-50_mendeley/Khaya senegalensis A.Juss/IMG_5329.JPG"
+  ],
+  "foliage": [
+   "bg_nature_raw/fmd/image/foliage/foliage_final_091_new.jpg",
+   "bg_nature_raw/fmd/image/foliage/foliage_final_070_new.jpg"
+  ],
+  "wood": [
+   "bg_nature_raw/fmd/image/wood/wood_moderate_027_new.jpg",
+   "bg_nature_raw/fmd/image/wood/wood_moderate_015_new.jpg"
+  ],
+  "stone": [
+   "bg_nature_raw/fmd/image/stone/stone_moderate_040_new.jpg",
+   "bg_nature_raw/fmd/image/stone/stone_moderate_039_new.jpg"
+  ],
+  "water": [
+   "bg_nature_raw/fmd/image/water/water_object_014_new.jpg",
+   "bg_nature_raw/fmd/image/water/water_moderate_011_new.jpg"
+  ],
+  "grass": [
+   "bg_nature_raw/gtos/gtos-mobile/train/grass/384_sample057_02_i09l.jpg",
+   "bg_nature_raw/gtos/gtos-mobile/test/grass/IMG_0162_frame53.jpg"
+  ],
+  "moss": [
+   "bg_nature_raw/gtos/gtos-mobile/test/moss/IMG_0199_frame42.jpg",
+   "bg_nature_raw/gtos/gtos-mobile/train/moss/384_sample114_03_i00h.jpg"
+  ],
+  "sand": [
+   "bg_nature_raw/gtos/gtos-mobile/test/sand/IMG_0175_frame50.jpg",
+   "bg_nature_raw/gtos/gtos-mobile/train/sand/384_sample079_03_i00h.jpg"
+  ],
+  "soil": [
+   "bg_nature_raw/gtos/gtos-mobile/test/soil/IMG_0208_frame29.jpg",
+   "bg_nature_raw/gtos/gtos-mobile/train/soil/384_sample046_02_i00h.jpg"
+  ],
+  "gravel": [
+   "bg_nature_raw/gtos/gtos-mobile/train/pebble/384_sample109_03_i00h.jpg",
+   "bg_nature_raw/gtos/gtos-mobile/test/pebble/IMG_0201_frame45.jpg"
+  ]
+ }
+}

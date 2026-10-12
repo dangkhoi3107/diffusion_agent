@@ -1,0 +1,63 @@
+# Label set grid v2 (2026-10-12): C00 + every ACTION_SPACE config (alpha 0-0.2 x bg 0.40/0.48/0.55).
+configs:
+  C00: {}
+  a000_b40:
+    blend.profile: constant
+    blend.alpha_end: 0.0
+    sampling.bg_strength: 0.4
+  a000_b48:
+    blend.profile: constant
+    blend.alpha_end: 0.0
+    sampling.bg_strength: 0.48
+  a000_b55:
+    blend.profile: constant
+    blend.alpha_end: 0.0
+    sampling.bg_strength: 0.55
+  a004_b40:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.4
+  a004_b48:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.48
+  a004_b55:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.55
+  a008_b40:
+    blend.profile: constant
+    blend.alpha_end: 0.08
+    sampling.bg_strength: 0.4
+  a008_b48:
+    blend.profile: constant
+    blend.alpha_end: 0.08
+    sampling.bg_strength: 0.48
+  a008_b55:
+    blend.profile: constant
+    blend.alpha_end: 0.08
+    sampling.bg_strength: 0.55
+  a012_b40:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.4
+  a012_b48:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.48
+  a012_b55:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.55
+  a020_b40:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.bg_strength: 0.4
+  a020_b48:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.bg_strength: 0.48
+  a020_b55:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.bg_strength: 0.55

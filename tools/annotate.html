@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CamouBlend Annotate</title>
+<style>
+:root {
+  --bg: #f6f6f4; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6b66; --line: #deded8;
+  --accent: #2f6f5e; --accent-ink: #ffffff; --warn: #a15c00; --bad: #b3261e; --good: #2f6f5e; --mid: #8a6d00;
+  --chip: #eeeee9;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161615; --panel: #1f1f1d; --ink: #ecece6; --muted: #a2a29a; --line: #34342f;
+    --accent: #6fbfa6; --accent-ink: #0c1a16; --warn: #e0a24a; --bad: #f08a80; --good: #6fbfa6; --mid: #d8c25a; --chip: #2a2a27;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 2; }
+header h1 { font-size: 15px; margin: 0 8px 0 0; }
+.tabs button { border: 1px solid var(--line); background: var(--chip); color: var(--ink); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.tabs button.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+input[type=text], textarea, select { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: inherit; }
+textarea { width: 100%; min-height: 54px; }
+button.primary { background: var(--accent); color: var(--accent-ink); border: 0; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 7px 12px; border-radius: 6px; cursor: pointer; }
+.muted { color: var(--muted); }
+main { padding: 16px; max-width: 1400px; margin: 0 auto; }
+.empty { max-width: 640px; margin: 48px auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+.empty ol { padding-left: 20px; }
+.grid { display: grid; grid-template-columns: 220px 1fr 360px; gap: 16px; align-items: start; }
+@media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.list { max-height: calc(100vh - 120px); overflow: auto; }
+.list .pair { font-weight: 600; margin: 10px 0 4px; }
+.list a { display: flex; justify-content: space-between; padding: 3px 6px; border-radius: 5px; color: var(--ink); text-decoration: none; cursor: pointer; }
+.list a.on { background: var(--chip); }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-top: 6px; background: var(--line); }
+.dot.accept { background: var(--good); } .dot.reject { background: var(--bad); } .dot.uncertain { background: var(--mid); }
+.view img { max-width: 100%; display: block; border-radius: 6px; }
+.refs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.refs figure { margin: 0; } .refs figcaption { font-size: 12px; color: var(--muted); }
+.meta { font-size: 12px; color: var(--muted); word-break: break-word; margin-top: 8px; }
+.field { margin: 0 0 12px; } .field > label { display: block; font-weight: 600; margin-bottom: 4px; }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; }
+.seg label { border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px; cursor: pointer; user-select: none; }
+.seg input { display: none; }
+.seg input:checked + span { font-weight: 700; color: var(--accent); }
+.seg label:has(input:checked) { border-color: var(--accent); background: var(--chip); }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.blind { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.blind img { max-height: 62vh; max-width: 100%; border-radius: 8px; }
+.blind .ask { width: min(560px, 100%); }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border-bottom: 1px solid var(--line); padding: 6px; text-align: left; vertical-align: top; }
+td.c { text-align: center; }
+.note { background: var(--chip); border-radius: 8px; padding: 8px 10px; font-size: 13px; }
+.toast { position: fixed; bottom: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 8px 12px; border-radius: 6px; opacity: 0; transition: opacity .2s; }
+.toast.on { opacity: .92; }
+kbd { border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CamouBlend Annotate</h1>
+  <label class="ghost" style="padding:6px 10px;border:1px solid var(--line);border-radius:6px;cursor:pointer">Chọn thư mục pilot
+    <input id="folder" type="file" webkitdirectory directory multiple hidden></label>
+  <span class="tabs" id="tabs">
+    <button data-tab="A">Lượt A · nhận dạng mù</button>
+    <button data-tab="B" class="on">Lượt B · chấm chi tiết</button>
+    <button data-tab="S">Tổng hợp</button>
+  </span>
+  <span class="row">Rater <input id="rater" type="text" size="10" placeholder="rater_01"></span>
+  <span class="row"><button class="ghost" id="export">Xuất annotations.jsonl</button>
+    <label class="ghost" style="padding:6px 10px;border:1px solid var(--line);border-radius:6px;cursor:pointer">Nhập jsonl<input id="import" type="file" accept=".jsonl,.json" hidden></label></span>
+  <span class="muted" id="status"></span>
+</header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+
+<script>
+const RUBRIC = "rubric_v1", TOOL = "annotate_html_v1";
+const TAGS = {
+  common: ["subject_missing", "subject_too_hidden", "subject_too_visible", "wrong_structure", "background_damaged", "artifact"],
+  animal: ["wrong_category"],
+  human_portrait: ["face_structure_error"],
+};
+const RATINGS = [["integration", "Hòa nền"], ["structure", "Cấu trúc"], ["background_preservation", "Giữ nền"], ["overall_quality", "Tổng thể"]];
+const ROLES = ["none", "R01 đạt rõ", "R02 đạt khác", "R03 sticker", "R04 quá chìm", "R05 lỗi cấu trúc/nền", "R06 phân vân", "best_available_not_accepted"];
+
+const S = { files: new Map(), trials: [], runId: "", ann: [], tab: "B", cur: 0, blindQueue: [], blindIdx: 0, shownAt: 0, firstKeyAt: null, onePerPair: true };
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const toast = (t) => { const el = $("#toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 1400); };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+const rater = () => ($("#rater").value.trim() || "rater_01");
+const url = (rel) => { const f = S.files.get(rel); return f ? (f._url ||= URL.createObjectURL(f)) : ""; };
+
+function latest(trialId, pass) {
+  for (let i = S.ann.length - 1; i >= 0; i--) {
+    const a = S.ann[i];
+    if (a.trial_id === trialId && a.pass === pass && a.rater_id === rater()) return a;
+  }
+  return null;
+}
+function save(rec) {
+  rec = { annotation_id: `a_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`, created_utc: new Date().toISOString(),
+          rater_id: rater(), rubric_version: RUBRIC, tool_version: TOOL, run_id: S.runId, ...rec };
+  S.ann.push(rec); store.set(`ann:${S.runId}`, S.ann); updateStatus(); return rec;
+}
+function updateStatus() {
+  const ok = S.trials.length, b = new Set(S.ann.filter((a) => a.pass === "B" && a.rater_id === rater()).map((a) => a.trial_id)).size;
+  $("#status").textContent = ok ? `${ok} ảnh · đã chấm B: ${b} · records: ${S.ann.length}` : "";
+}
+
+// ---------- loading ----------
+$("#folder").addEventListener("change", (e) => loadFiles([...e.target.files]));
+async function loadFiles(list) {
+  S.files.clear();
+  if (!list.length) return;
+  const top = list[0].webkitRelativePath.split("/")[0];
+  for (const f of list) S.files.set(f.webkitRelativePath.split("/").slice(1).join("/"), f);
+  let trials = [];
+  if (S.files.has("trials_latest.json")) trials = JSON.parse(await S.files.get("trials_latest.json").text());
+  else for (const [k, f] of S.files) if (/^runs\/[^/]+\/[^/]+\/trial\.json$/.test(k)) trials.push(JSON.parse(await f.text()));
+  S.trials = trials.filter((t) => t.status === "ok" && S.files.has(`runs/${t.pair_id}/${t.config_id}/output.png`))
+    .sort((a, b) => (a.pair_id + a.config_id).localeCompare(b.pair_id + b.config_id));
+  S.runId = top;
+  S.ann = store.get(`ann:${S.runId}`, []);
+  S.cur = 0;
+  buildBlindQueue();
+  toast(`Đã tải ${S.trials.length} ảnh từ ${top}`);
+  render();
+}
+$("#import").addEventListener("change", async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const text = await f.text();
+  const recs = text.trim().startsWith("[") ? JSON.parse(text) : text.split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  const have = new Set(S.ann.map((a) => a.annotation_id));
+  for (const r of recs) if (!have.has(r.annotation_id)) S.ann.push(r);
+  S.ann.sort((a, b) => a.created_utc.localeCompare(b.created_utc));
+  store.set(`ann:${S.runId}`, S.ann); toast(`Nhập ${recs.length} records`); render();
+});
+$("#export").addEventListener("click", () => {
+  const blob = new Blob([S.ann.map((a) => JSON.stringify(a)).join("\n") + "\n"], { type: "application/jsonl" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = `annotations_${S.runId || "pilot"}_${rater()}.jsonl`; a.click();
+});
+$("#rater").value = store.get("rater", "");
+$("#rater").addEventListener("change", () => { store.set("rater", $("#rater").value.trim()); buildBlindQueue(); render(); });
+$("#tabs").addEventListener("click", (e) => {
+  const t = e.target.dataset.tab; if (!t) return;
+  S.tab = t; [...$("#tabs").children].forEach((b) => b.classList.toggle("on", b.dataset.tab === t)); render();
+});
+
+// ---------- pass A: first-view, output only ----------
+function hash(s) { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; }
+function buildBlindQueue() {
+  const r = rater();
+  let items = S.trials.slice();
+  if (S.onePerPair) { // a rater who saw one variant is primed for the others of that pair
+    const byPair = {};
+    for (const t of items) (byPair[t.pair_id] ||= []).push(t);
+    items = Object.values(byPair).map((g) => g[hash(r + g[0].pair_id) % g.length]);
+  }
+  S.blindQueue = items.sort((a, b) => hash(r + a.trial_id) - hash(r + b.trial_id));
+  S.blindIdx = S.blindQueue.findIndex((t) => !latest(t.trial_id, "A"));
+  if (S.blindIdx < 0) S.blindIdx = S.blindQueue.length;
+}
+function renderA() {
+  const q = S.blindQueue, i = S.blindIdx;
+  if (i >= q.length) return `<div class="empty"><h3>Xong lượt A cho ${esc(rater())}</h3><p class="muted">${q.length} ảnh đã trả lời. Lượt A chỉ có giá trị "nhận ra không gợi ý" khi người chấm chưa biết subject/pair. Tác giả nên dùng lượt B.</p>
+    <button class="ghost" onclick="S.blindIdx=0;render()">Xem lại từ đầu</button></div>`;
+  const t = q[i];
+  return `<div class="blind">
+    <div class="note">Ảnh ${i + 1}/${q.length}. Nhìn ảnh và gõ ngay đối tượng bạn thấy. Không có gợi ý. ${S.onePerPair ? "Mỗi cặp chỉ hiện 1 biến thể." : ""}</div>
+    <img id="blindImg" src="${url(`runs/${t.pair_id}/${t.config_id}/output.png`)}" alt="output">
+    <div class="ask card">
+      <div class="field"><label>Bạn thấy đối tượng gì?</label><input id="ans" type="text" style="width:100%" autocomplete="off" placeholder="vd: con mèo, mặt người..."></div>
+      <div class="field"><label><input type="checkbox" id="knew" ${store.get("knew", false) ? "checked" : ""}> Tôi đã biết trước subject/pair này (vd. tác giả)</label></div>
+      <div class="row"><button class="primary" id="saveA">Lưu &amp; tiếp <kbd>Enter</kbd></button>
+        <button class="ghost" id="none">Không thấy đối tượng nào</button>
+        <label class="row muted"><input type="checkbox" id="opp" ${S.onePerPair ? "checked" : ""}> 1 biến thể/cặp</label></div>
+    </div></div>`;
+}
+function bindA() {
+  const img = $("#blindImg"); if (!img) { return; }
+  const t = S.blindQueue[S.blindIdx];
+  S.firstKeyAt = null;
+  img.onload = () => { S.shownAt = performance.now(); $("#ans").focus(); };
+  $("#ans").addEventListener("keydown", (e) => { if (S.firstKeyAt === null) S.firstKeyAt = performance.now(); if (e.key === "Enter") submitA(t, $("#ans").value); });
+  $("#saveA").onclick = () => submitA(t, $("#ans").value);
+  $("#none").onclick = () => submitA(t, "");
+  $("#knew").onchange = (e) => store.set("knew", e.target.checked);
+  $("#opp").onchange = (e) => { S.onePerPair = e.target.checked; buildBlindQueue(); render(); };
+}
+function submitA(t, answer) {
+  const now = performance.now();
+  save({ pass: "A", trial_id: t.trial_id, output_id: t.trial_id, pair_id: t.pair_id, config_id: t.config_id,
+         reference_seen_before_first_view: $("#knew").checked,
+         recognition: { raw_answer: answer.trim() || null, no_object_seen: !answer.trim(), mapped_result: null,
+                        first_key_ms: S.firstKeyAt ? Math.round(S.firstKeyAt - S.shownAt) : null, response_time_ms: Math.round(now - S.shownAt) } });
+  S.blindIdx++; render();
+}
+
+// ---------- pass B: diagnosis with references ----------
+function seg(name, options, value) {
+  return `<div class="seg">${options.map(([v, l]) => `<label><input type="radio" name="${name}" value="${esc(v)}" ${String(value) === String(v) ? "checked" : ""}><span>${esc(l)}</span></label>`).join("")}</div>`;
+}
+function renderB() {
+  if (!S.trials.length) return "";
+  const t = S.trials[S.cur], prev = latest(t.trial_id, "B") || {}, a = latest(t.trial_id, "A");
+  const tags = [...TAGS.common, ...(TAGS[t.category] || [])];
+  const r = prev.ratings || {};
+  const items = [];
+  let lastPair = "";
+  S.trials.forEach((x, i) => {
+    if (x.pair_id !== lastPair) { items.push(`<div class="pair">${esc(x.pair_id)} <span class="muted">${esc(x.subject_label)} · ${esc(x.background_id)}</span></div>`); lastPair = x.pair_id; }
+    const d = latest(x.trial_id, "B");
+    items.push(`<a class="${i === S.cur ? "on" : ""}" data-i="${i}">${esc(x.config_id)} <span class="dot ${d ? d.acceptance || "" : ""}"></span></a>`);
+  });
+  const p = t.params || {}, m = t.metrics || {};
+  const fmt = (v) => (typeof v === "number" ? v.toFixed(3) : v ?? "—");
+  return `<div class="grid">
+    <div class="card list" id="list">${items.join("")}</div>
+    <div class="card view">
+      <div class="row" style="justify-content:space-between"><b>${esc(t.trial_id)}</b>
+        <span class="row"><button class="ghost" id="prev">← <kbd>[</kbd></button><button class="ghost" id="next"><kbd>]</kbd> →</button></span></div>
+      <img src="${url(`runs/${t.pair_id}/${t.config_id}/output.png`)}" alt="output" style="margin-top:8px">
+      <div class="refs">
+        <figure><img src="${url(`inputs_normalized/${t.subject_id}.png`)}" alt=""><figcaption>Subject ${esc(t.subject_id)} · ${esc(t.subject_label)}</figcaption></figure>
+        <figure><img src="${url(`inputs_normalized/${t.background_id}.png`)}" alt=""><figcaption>Background ${esc(t.background_id)}</figcaption></figure>
+      </div>
+      ${S.files.has(`runs/${t.pair_id}/${t.config_id}/panel.png`) ? `<details style="margin-top:8px"><summary>Debug panel (canny / softedge / mask)</summary><img src="${url(`runs/${t.pair_id}/${t.config_id}/panel.png`)}" alt=""></details>` : ""}
+      ${S.files.has(`runs/${t.pair_id}/contact_sheet.png`) ? `<details><summary>Contact sheet 7 configs</summary><img src="${url(`runs/${t.pair_id}/contact_sheet.png`)}" alt=""></details>` : ""}
+      <div class="meta">${esc(t.category)} · seed ${esc(t.seed)} · steps_run ${esc(t.steps_run)} · ${Object.entries(p).map(([k, v]) => `${esc(k.split(".").pop())} ${fmt(v)}`).join(" · ")}<br>
+        thay đổi so với C00: ${esc(Object.entries(t.overrides || {}).map(([k, v]) => `${k}=${v}`).join(", ") || "—")}<br>
+        SSIM_bg ${fmt(m.SSIM_bg)} · S_edge ${fmt(m.S_edge)} · clip_text_gain ${fmt(m.clip_text_gain)} (chỉ chẩn đoán, chưa calibrate)<br>
+        prompt: ${esc(t.prompt)}</div>
+    </div>
+    <form class="card" id="formB">
+      ${a ? `<div class="note field">Lượt A: "${esc(a.recognition.raw_answer ?? "không thấy")}" · ${a.recognition.response_time_ms} ms${a.reference_seen_before_first_view ? " · đã biết trước" : ""}</div>` : ""}
+      <div class="field"><label>Nhận dạng ${t.category === "human_portrait" ? "(ra mặt người)" : `(${esc(t.subject_label)})`}</label>${seg("recog", [["correct", "Đúng"], ["incorrect", "Sai"], ["uncertain", "Phân vân"]], prev.recognition?.mapped_result)}</div>
+      ${RATINGS.map(([k, l]) => `<div class="field"><label>${l}</label>${seg(`r_${k}`, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["na", "N/A"]], r[k] === null ? "" : r[k] === "not_assessable" ? "na" : r[k])}</div>`).join("")}
+      <div class="field"><label>Quyết định</label>${seg("acc", [["accept", "Accept"], ["reject", "Reject"], ["uncertain", "Uncertain"]], prev.acceptance)}</div>
+      <div class="field"><label>Failure tags</label><div class="seg">${tags.map((g) => `<label><input type="checkbox" name="tag" value="${g}" ${(prev.failure_tags || []).includes(g) ? "checked" : ""}><span>${g}</span></label>`).join("")}</div></div>
+      <div class="field"><label>Lỗi chính</label><select name="primary"><option value="">—</option>${tags.map((g) => `<option ${prev.primary_failure === g ? "selected" : ""}>${g}</option>`).join("")}</select></div>
+      <div class="field"><label>Vai trò ảnh neo</label><select name="role">${ROLES.map((x) => `<option ${prev.reference_role === x ? "selected" : ""}>${x}</option>`).join("")}</select></div>
+      <div class="field"><label>Ghi chú (nhận ra vì đâu, vùng nào lỗi, muốn đổi gì)</label><textarea name="notes">${esc(prev.notes || "")}</textarea></div>
+      <div class="row"><button class="primary" type="submit">Lưu &amp; tiếp <kbd>Ctrl+Enter</kbd></button><span class="muted">${prev.created_utc ? "đã lưu " + new Date(prev.created_utc).toLocaleString() : "chưa chấm"}</span></div>
+    </form></div>`;
+}
+function bindB() {
+  const form = $("#formB"); if (!form) return;
+  $("#list").onclick = (e) => { const a = e.target.closest("a"); if (a) { S.cur = +a.dataset.i; render(); } };
+  $("#prev").onclick = () => { S.cur = Math.max(0, S.cur - 1); render(); };
+  $("#next").onclick = () => { S.cur = Math.min(S.trials.length - 1, S.cur + 1); render(); };
+  form.onsubmit = (e) => { e.preventDefault(); submitB(new FormData(form)); };
+  form.onkeydown = (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submitB(new FormData(form)); } };
+  $("#list .on")?.scrollIntoView({ block: "nearest" });
+}
+function submitB(fd) {
+  const t = S.trials[S.cur];
+  const rating = (k) => { const v = fd.get(`r_${k}`); return v === "na" ? "not_assessable" : v ? +v : null; };
+  save({ pass: "B", trial_id: t.trial_id, output_id: t.trial_id, pair_id: t.pair_id, config_id: t.config_id, category: t.category,
+         reference_seen_before_first_view: true,
+         recognition: { raw_answer: latest(t.trial_id, "A")?.recognition.raw_answer ?? null, mapped_result: fd.get("recog") || null },
+         acceptance: fd.get("acc") || null, failure_tags: fd.getAll("tag"), primary_failure: fd.get("primary") || null,
+         ratings: Object.fromEntries(RATINGS.map(([k]) => [k, rating(k)])),
+         reference_role: fd.get("role") === "none" ? null : fd.get("role"), notes: fd.get("notes").trim() || null });
+  toast("Đã lưu"); S.cur = Math.min(S.trials.length - 1, S.cur + 1); render();
+}
+
+// ---------- summary ----------
+function renderS() {
+  const configs = [...new Set(S.trials.map((t) => t.config_id))].sort();
+  const pairs = [...new Set(S.trials.map((t) => t.pair_id))];
+  const cell = (pid, cid) => {
+    const t = S.trials.find((x) => x.pair_id === pid && x.config_id === cid); if (!t) return `<td class="c muted">·</td>`;
+    const d = latest(t.trial_id, "B");
+    return `<td class="c"><span class="dot ${d?.acceptance || ""}" title="${esc(d ? d.acceptance + " " + (d.failure_tags || []).join(", ") : "chưa chấm")}"></span>${d?.reference_role ? `<br><small>${esc(d.reference_role.split(" ")[0])}</small>` : ""}</td>`;
+  };
+  const tagCount = {};
+  for (const t of S.trials) { const d = latest(t.trial_id, "B"); for (const g of d?.failure_tags || []) tagCount[g] = (tagCount[g] || 0) + 1; }
+  const dom = (c) => { const ts = S.trials.filter((t) => t.category === c), ds = ts.map((t) => latest(t.trial_id, "B")).filter(Boolean);
+    return `${c}: ${ds.filter((d) => d.acceptance === "accept").length} accept / ${ds.filter((d) => d.acceptance === "reject").length} reject / ${ds.filter((d) => d.acceptance === "uncertain").length} uncertain · ${ds.length}/${ts.length} đã chấm`; };
+  return `<div class="card"><p class="muted">Rater ${esc(rater())}. Xanh = accept, đỏ = reject, vàng = uncertain, xám = chưa chấm. Không có số nào ở đây là metric đã calibrate.</p>
+    <p>${dom("animal")}<br>${dom("human_portrait")}</p>
+    <table><tr><th>Pair</th><th>Subject</th><th>BG</th>${configs.map((c) => `<th class="c">${c}</th>`).join("")}</tr>
+    ${pairs.map((p) => { const t = S.trials.find((x) => x.pair_id === p); return `<tr><td>${p}</td><td>${esc(t.subject_label)}</td><td>${esc(t.background_id)}</td>${configs.map((c) => cell(p, c)).join("")}</tr>`; }).join("")}</table>
+    <h4>Failure tags</h4><p>${Object.entries(tagCount).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}: ${v}`).join(" · ") || "—"}</p></div>`;
+}
+
+function render() {
+  updateStatus();
+  const app = $("#app");
+  if (!S.trials.length) {
+    app.innerHTML = `<div class="empty"><h3>Mở thư mục kết quả pilot</h3><ol>
+      <li>Tải <code>pilot.zip</code> từ tab Output của Kaggle và giải nén.</li>
+      <li>Bấm <b>Chọn thư mục pilot</b> và chọn thư mục <code>pilot</code> (có <code>runs/</code>, <code>inputs_normalized/</code>).</li>
+      <li>Nhập Rater ID. Tác giả chấm <b>lượt B</b>; người chưa biết subject làm <b>lượt A</b> trước.</li>
+      <li>Bấm <b>Xuất annotations.jsonl</b> thường xuyên. Dữ liệu cũng được giữ trong trình duyệt này.</li></ol>
+      <p class="muted">Ảnh chỉ đọc tại máy, không upload đi đâu.</p></div>`;
+    return;
+  }
+  if (S.tab === "A") { app.innerHTML = renderA(); bindA(); }
+  else if (S.tab === "B") { app.innerHTML = renderB(); bindB(); }
+  else app.innerHTML = renderS();
+}
+document.addEventListener("keydown", (e) => {
+  if (S.tab !== "B" || ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) return;
+  if (e.key === "]") { S.cur = Math.min(S.trials.length - 1, S.cur + 1); render(); }
+  if (e.key === "[") { S.cur = Math.max(0, S.cur - 1); render(); }
+});
+render();
+</script>
+</body>
+</html>

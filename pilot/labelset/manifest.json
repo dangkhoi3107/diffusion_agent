@@ -1,0 +1,7928 @@
+{
+ "seed": 20261012,
+ "created_utc": "2026-10-12T04:22:30+00:00",
+ "configs": [
+  "C00",
+  "a000_b40",
+  "a000_b48",
+  "a000_b55",
+  "a004_b40",
+  "a004_b48",
+  "a004_b55",
+  "a008_b40",
+  "a008_b48",
+  "a008_b55",
+  "a012_b40",
+  "a012_b48",
+  "a012_b55",
+  "a020_b40",
+  "a020_b48",
+  "a020_b55"
+ ],
+ "subjects": {
+  "S01": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "O01_0",
+   "representation": "photograph",
+   "shape_tags": [
+    "compact",
+    "tail"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S01.png",
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train"
+  },
+  "S02": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "O01_1",
+   "representation": "photograph",
+   "shape_tags": [
+    "compact",
+    "tail"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S02.png",
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train"
+  },
+  "S03": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "O01_2",
+   "representation": "photograph",
+   "shape_tags": [
+    "compact",
+    "tail"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S03.png",
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train"
+  },
+  "S04": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "O01_3",
+   "representation": "photograph",
+   "shape_tags": [
+    "compact",
+    "tail"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S04.png",
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train"
+  },
+  "S05": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "O02_0",
+   "representation": "photograph",
+   "shape_tags": [
+    "elongated",
+    "fine_parts"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S05.png",
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train"
+  },
+  "S06": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "O02_1",
+   "representation": "photograph",
+   "shape_tags": [
+    "elongated",
+    "fine_parts"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S06.png",
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train"
+  },
+  "S07": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "O02_2",
+   "representation": "photograph",
+   "shape_tags": [
+    "elongated",
+    "fine_parts"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S07.png",
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train"
+  },
+  "S08": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "O03_0",
+   "representation": "photograph",
+   "shape_tags": [
+    "symmetric",
+    "wings"
+   ],
+   "source_and_license": "Leeds Butterfly Dataset, CC BY 4.0",
+   "path": "candidates/S08.png",
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train"
+  },
+  "S09": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "O03_1",
+   "representation": "photograph",
+   "shape_tags": [
+    "symmetric",
+    "wings"
+   ],
+   "source_and_license": "Leeds Butterfly Dataset, CC BY 4.0",
+   "path": "candidates/S09.png",
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train"
+  },
+  "S10": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "O03_2",
+   "representation": "photograph",
+   "shape_tags": [
+    "symmetric",
+    "wings"
+   ],
+   "source_and_license": "Leeds Butterfly Dataset, CC BY 4.0",
+   "path": "candidates/S10.png",
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train"
+  },
+  "S11": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "O03_3",
+   "representation": "photograph",
+   "shape_tags": [
+    "symmetric",
+    "wings"
+   ],
+   "source_and_license": "Leeds Butterfly Dataset, CC BY 4.0",
+   "path": "candidates/S11.png",
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train"
+  },
+  "S12": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "O04_0",
+   "representation": "photograph",
+   "shape_tags": [
+    "elongated",
+    "fins"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S12.png",
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train"
+  },
+  "S13": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "O04_1",
+   "representation": "photograph",
+   "shape_tags": [
+    "elongated",
+    "fins"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S13.png",
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train"
+  },
+  "S14": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "O04_2",
+   "representation": "photograph",
+   "shape_tags": [
+    "elongated",
+    "fins"
+   ],
+   "source_and_license": "Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json",
+   "path": "candidates/S14.png",
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train"
+  },
+  "S15": {
+   "label": "human face, portrait",
+   "category": "human_portrait",
+   "class": "human",
+   "origin": "O05_0",
+   "representation": "photograph",
+   "shape_tags": [],
+   "source_and_license": "AISegment Matting Human; license unclear, pilot only",
+   "path": "candidates/S15.png",
+   "shape": "human",
+   "species": "Human",
+   "split": "train"
+  },
+  "S16": {
+   "label": "human face, portrait",
+   "category": "human_portrait",
+   "class": "human",
+   "origin": "O05_3",
+   "representation": "photograph",
+   "shape_tags": [],
+   "source_and_license": "AISegment Matting Human; license unclear, pilot only",
+   "path": "candidates/S16.png",
+   "shape": "human",
+   "species": "Human",
+   "split": "train"
+  },
+  "S17": {
+   "label": "human face, portrait",
+   "category": "human_portrait",
+   "class": "human",
+   "origin": "O06_0",
+   "representation": "photograph",
+   "shape_tags": [],
+   "source_and_license": "AISegment Matting Human; license unclear, pilot only",
+   "path": "candidates/S17.png",
+   "shape": "human",
+   "species": "Human",
+   "split": "train"
+  },
+  "S18": {
+   "label": "human face, portrait",
+   "category": "human_portrait",
+   "class": "human",
+   "origin": "O06_2",
+   "representation": "photograph",
+   "shape_tags": [],
+   "source_and_license": "AISegment Matting Human; license unclear, pilot only",
+   "path": "candidates/S18.png",
+   "shape": "human",
+   "species": "Human",
+   "split": "train"
+  },
+  "T001": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_0",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_0.png",
+   "path": "candidates/T001.png"
+  },
+  "T002": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_1",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_1.png",
+   "path": "candidates/T002.png"
+  },
+  "T003": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_2",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_2.png",
+   "path": "candidates/T003.png"
+  },
+  "T004": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_3",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_3.png",
+   "path": "candidates/T004.png"
+  },
+  "T005": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_4",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_4.png",
+   "path": "candidates/T005.png"
+  },
+  "T006": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_5",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_5.png",
+   "path": "candidates/T006.png"
+  },
+  "T007": {
+   "label": "cat",
+   "category": "animal",
+   "class": "cat",
+   "origin": "A01_7",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Cat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A01_7.png",
+   "path": "candidates/T007.png"
+  },
+  "T008": {
+   "label": "dog",
+   "category": "animal",
+   "class": "dog",
+   "origin": "A02_1",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_1.png",
+   "path": "candidates/T008.png"
+  },
+  "T009": {
+   "label": "dog",
+   "category": "animal",
+   "class": "dog",
+   "origin": "A02_2",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_2.png",
+   "path": "candidates/T009.png"
+  },
+  "T010": {
+   "label": "dog",
+   "category": "animal",
+   "class": "dog",
+   "origin": "A02_3",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_3.png",
+   "path": "candidates/T010.png"
+  },
+  "T011": {
+   "label": "dog",
+   "category": "animal",
+   "class": "dog",
+   "origin": "A02_4",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_4.png",
+   "path": "candidates/T011.png"
+  },
+  "T012": {
+   "label": "dog",
+   "category": "animal",
+   "class": "dog",
+   "origin": "A02_5",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_5.png",
+   "path": "candidates/T012.png"
+  },
+  "T013": {
+   "label": "dog",
+   "category": "animal",
+   "class": "dog",
+   "origin": "A02_6",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_6.png",
+   "path": "candidates/T013.png"
+  },
+  "T014": {
+   "label": "african wild dog",
+   "category": "animal",
+   "class": "african wild dog",
+   "origin": "A02_7",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "African wild dog",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A02_7.png",
+   "path": "candidates/T014.png"
+  },
+  "T015": {
+   "label": "coyote",
+   "category": "animal",
+   "class": "coyote",
+   "origin": "A03_0",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Coyote",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_0.png",
+   "path": "candidates/T015.png"
+  },
+  "T016": {
+   "label": "jackal",
+   "category": "animal",
+   "class": "jackal",
+   "origin": "A03_1",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Jackal",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_1.png",
+   "path": "candidates/T016.png"
+  },
+  "T017": {
+   "label": "fox",
+   "category": "animal",
+   "class": "fox",
+   "origin": "A03_2",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Fox",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_2.png",
+   "path": "candidates/T017.png"
+  },
+  "T018": {
+   "label": "arctic fox",
+   "category": "animal",
+   "class": "arctic fox",
+   "origin": "A03_3",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Arctic fox",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_3.png",
+   "path": "candidates/T018.png"
+  },
+  "T019": {
+   "label": "jackal",
+   "category": "animal",
+   "class": "jackal",
+   "origin": "A03_4",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Jackal",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_4.png",
+   "path": "candidates/T019.png"
+  },
+  "T020": {
+   "label": "fox",
+   "category": "animal",
+   "class": "fox",
+   "origin": "A03_5",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Fox",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_5.png",
+   "path": "candidates/T020.png"
+  },
+  "T021": {
+   "label": "gray fox",
+   "category": "animal",
+   "class": "gray fox",
+   "origin": "A03_6",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Gray fox",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_6.png",
+   "path": "candidates/T021.png"
+  },
+  "T022": {
+   "label": "jackal",
+   "category": "animal",
+   "class": "jackal",
+   "origin": "A03_7",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Jackal",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A03_7.png",
+   "path": "candidates/T022.png"
+  },
+  "T023": {
+   "label": "rabbit",
+   "category": "animal",
+   "class": "rabbit",
+   "origin": "A04_1",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Rabbit",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A04_1.png",
+   "path": "candidates/T023.png"
+  },
+  "T024": {
+   "label": "rabbit",
+   "category": "animal",
+   "class": "rabbit",
+   "origin": "A04_2",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Rabbit",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A04_2.png",
+   "path": "candidates/T024.png"
+  },
+  "T025": {
+   "label": "rabbit",
+   "category": "animal",
+   "class": "rabbit",
+   "origin": "A04_3",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Rabbit",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A04_3.png",
+   "path": "candidates/T025.png"
+  },
+  "T026": {
+   "label": "rabbit",
+   "category": "animal",
+   "class": "rabbit",
+   "origin": "A04_5",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Rabbit",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A04_5.png",
+   "path": "candidates/T026.png"
+  },
+  "T027": {
+   "label": "rabbit",
+   "category": "animal",
+   "class": "rabbit",
+   "origin": "A04_6",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Rabbit",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A04_6.png",
+   "path": "candidates/T027.png"
+  },
+  "T028": {
+   "label": "rabbit",
+   "category": "animal",
+   "class": "rabbit",
+   "origin": "A04_7",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Rabbit",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A04_7.png",
+   "path": "candidates/T028.png"
+  },
+  "T029": {
+   "label": "squirrel",
+   "category": "animal",
+   "class": "squirrel",
+   "origin": "A05_0",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Squirrel",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A05_0.png",
+   "path": "candidates/T029.png"
+  },
+  "T030": {
+   "label": "chipmunk",
+   "category": "animal",
+   "class": "chipmunk",
+   "origin": "A05_1",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Chipmunk",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A05_1.png",
+   "path": "candidates/T030.png"
+  },
+  "T031": {
+   "label": "ground squirrel",
+   "category": "animal",
+   "class": "ground squirrel",
+   "origin": "A05_2",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Ground squirrel",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A05_2.png",
+   "path": "candidates/T031.png"
+  },
+  "T032": {
+   "label": "chipmunk",
+   "category": "animal",
+   "class": "chipmunk",
+   "origin": "A05_4",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Chipmunk",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A05_4.png",
+   "path": "candidates/T032.png"
+  },
+  "T033": {
+   "label": "ground squirrel",
+   "category": "animal",
+   "class": "ground squirrel",
+   "origin": "A05_5",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Ground squirrel",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A05_5.png",
+   "path": "candidates/T033.png"
+  },
+  "T034": {
+   "label": "squirrel",
+   "category": "animal",
+   "class": "squirrel",
+   "origin": "A05_6",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Squirrel",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A05_6.png",
+   "path": "candidates/T034.png"
+  },
+  "T035": {
+   "label": "red panda",
+   "category": "animal",
+   "class": "red panda",
+   "origin": "A11_4",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Red panda",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A11_4.png",
+   "path": "candidates/T035.png"
+  },
+  "T036": {
+   "label": "red panda",
+   "category": "animal",
+   "class": "red panda",
+   "origin": "A11_5",
+   "version": 2,
+   "shape": "quadruped_compact",
+   "species": "Red panda",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_compact"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A11_5.png",
+   "path": "candidates/T036.png"
+  },
+  "T037": {
+   "label": "horse",
+   "category": "animal",
+   "class": "horse",
+   "origin": "A06_1",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Horse",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A06_1.png",
+   "path": "candidates/T037.png"
+  },
+  "T038": {
+   "label": "horse",
+   "category": "animal",
+   "class": "horse",
+   "origin": "A06_2",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Horse",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A06_2.png",
+   "path": "candidates/T038.png"
+  },
+  "T039": {
+   "label": "horse",
+   "category": "animal",
+   "class": "horse",
+   "origin": "A06_3",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Horse",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A06_3.png",
+   "path": "candidates/T039.png"
+  },
+  "T040": {
+   "label": "horse",
+   "category": "animal",
+   "class": "horse",
+   "origin": "A06_4",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Horse",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A06_4.png",
+   "path": "candidates/T040.png"
+  },
+  "T041": {
+   "label": "horse",
+   "category": "animal",
+   "class": "horse",
+   "origin": "A06_6",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Horse",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A06_6.png",
+   "path": "candidates/T041.png"
+  },
+  "T042": {
+   "label": "goat",
+   "category": "animal",
+   "class": "goat",
+   "origin": "A08_0",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Goat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_0.png",
+   "path": "candidates/T042.png"
+  },
+  "T043": {
+   "label": "goat",
+   "category": "animal",
+   "class": "goat",
+   "origin": "A08_1",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Goat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_1.png",
+   "path": "candidates/T043.png"
+  },
+  "T044": {
+   "label": "mountain goat",
+   "category": "animal",
+   "class": "mountain goat",
+   "origin": "A08_3",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Mountain goat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_3.png",
+   "path": "candidates/T044.png"
+  },
+  "T045": {
+   "label": "deer",
+   "category": "animal",
+   "class": "deer",
+   "origin": "A08_4",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Deer",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_4.png",
+   "path": "candidates/T045.png"
+  },
+  "T046": {
+   "label": "goat",
+   "category": "animal",
+   "class": "goat",
+   "origin": "A08_5",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Goat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_5.png",
+   "path": "candidates/T046.png"
+  },
+  "T047": {
+   "label": "goat",
+   "category": "animal",
+   "class": "goat",
+   "origin": "A08_6",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Goat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_6.png",
+   "path": "candidates/T047.png"
+  },
+  "T048": {
+   "label": "ibex",
+   "category": "animal",
+   "class": "ibex",
+   "origin": "A08_7",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Ibex",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_7.png",
+   "path": "candidates/T048.png"
+  },
+  "T049": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_0",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_0.png",
+   "path": "candidates/T049.png"
+  },
+  "T050": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_1",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_1.png",
+   "path": "candidates/T050.png"
+  },
+  "T051": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_2",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_2.png",
+   "path": "candidates/T051.png"
+  },
+  "T052": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_3",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_3.png",
+   "path": "candidates/T052.png"
+  },
+  "T053": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_4",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_4.png",
+   "path": "candidates/T053.png"
+  },
+  "T054": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_5",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_5.png",
+   "path": "candidates/T054.png"
+  },
+  "T055": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_6",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_6.png",
+   "path": "candidates/T055.png"
+  },
+  "T056": {
+   "label": "giraffe",
+   "category": "animal",
+   "class": "giraffe",
+   "origin": "A09_7",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Giraffe",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A09_7.png",
+   "path": "candidates/T056.png"
+  },
+  "T057": {
+   "label": "alpaca",
+   "category": "animal",
+   "class": "alpaca",
+   "origin": "A12_2",
+   "version": 2,
+   "shape": "quadruped_tall",
+   "species": "Alpaca",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_tall"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A12_2.png",
+   "path": "candidates/T057.png"
+  },
+  "T058": {
+   "label": "elephant",
+   "category": "animal",
+   "class": "elephant",
+   "origin": "A10_1",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Elephant",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A10_1.png",
+   "path": "candidates/T058.png"
+  },
+  "T059": {
+   "label": "elephant",
+   "category": "animal",
+   "class": "elephant",
+   "origin": "A10_2",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Elephant",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A10_2.png",
+   "path": "candidates/T059.png"
+  },
+  "T060": {
+   "label": "elephant",
+   "category": "animal",
+   "class": "elephant",
+   "origin": "A10_5",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Elephant",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A10_5.png",
+   "path": "candidates/T060.png"
+  },
+  "T061": {
+   "label": "elephant",
+   "category": "animal",
+   "class": "elephant",
+   "origin": "A10_7",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Elephant",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A10_7.png",
+   "path": "candidates/T061.png"
+  },
+  "T062": {
+   "label": "bear",
+   "category": "animal",
+   "class": "bear",
+   "origin": "A11_0",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Bear",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A11_0.png",
+   "path": "candidates/T062.png"
+  },
+  "T063": {
+   "label": "bear",
+   "category": "animal",
+   "class": "bear",
+   "origin": "A11_3",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Bear",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A11_3.png",
+   "path": "candidates/T063.png"
+  },
+  "T064": {
+   "label": "sheep",
+   "category": "animal",
+   "class": "sheep",
+   "origin": "A08_2",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Sheep",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A08_2.png",
+   "path": "candidates/T064.png"
+  },
+  "T065": {
+   "label": "sheep",
+   "category": "animal",
+   "class": "sheep",
+   "origin": "A12_1",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Sheep",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A12_1.png",
+   "path": "candidates/T065.png"
+  },
+  "T066": {
+   "label": "sheep",
+   "category": "animal",
+   "class": "sheep",
+   "origin": "A12_4",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Sheep",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A12_4.png",
+   "path": "candidates/T066.png"
+  },
+  "T067": {
+   "label": "bighorn sheep",
+   "category": "animal",
+   "class": "bighorn sheep",
+   "origin": "A12_6",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Bighorn sheep",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A12_6.png",
+   "path": "candidates/T067.png"
+  },
+  "T068": {
+   "label": "cattle",
+   "category": "animal",
+   "class": "cattle",
+   "origin": "A12_0",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Cattle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A12_0.png",
+   "path": "candidates/T068.png"
+  },
+  "T069": {
+   "label": "cattle",
+   "category": "animal",
+   "class": "cattle",
+   "origin": "A13_1",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Cattle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_1.png",
+   "path": "candidates/T069.png"
+  },
+  "T070": {
+   "label": "water buffalo",
+   "category": "animal",
+   "class": "water buffalo",
+   "origin": "A13_2",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Water buffalo",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_2.png",
+   "path": "candidates/T070.png"
+  },
+  "T071": {
+   "label": "cattle",
+   "category": "animal",
+   "class": "cattle",
+   "origin": "A13_3",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Cattle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_3.png",
+   "path": "candidates/T071.png"
+  },
+  "T072": {
+   "label": "cattle",
+   "category": "animal",
+   "class": "cattle",
+   "origin": "A13_4",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Cattle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_4.png",
+   "path": "candidates/T072.png"
+  },
+  "T073": {
+   "label": "cattle",
+   "category": "animal",
+   "class": "cattle",
+   "origin": "A13_5",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Cattle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_5.png",
+   "path": "candidates/T073.png"
+  },
+  "T074": {
+   "label": "bison",
+   "category": "animal",
+   "class": "bison",
+   "origin": "A13_6",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Bison",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_6.png",
+   "path": "candidates/T074.png"
+  },
+  "T075": {
+   "label": "cattle",
+   "category": "animal",
+   "class": "cattle",
+   "origin": "A13_7",
+   "version": 2,
+   "shape": "quadruped_heavy",
+   "species": "Cattle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "quadruped_heavy"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A13_7.png",
+   "path": "candidates/T075.png"
+  },
+  "T076": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "A14_0",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_0.png",
+   "path": "candidates/T076.png"
+  },
+  "T077": {
+   "label": "salamander",
+   "category": "animal",
+   "class": "salamander",
+   "origin": "A14_1",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Salamander",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_1.png",
+   "path": "candidates/T077.png"
+  },
+  "T078": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "A14_2",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_2.png",
+   "path": "candidates/T078.png"
+  },
+  "T079": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "A14_3",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_3.png",
+   "path": "candidates/T079.png"
+  },
+  "T080": {
+   "label": "salamander",
+   "category": "animal",
+   "class": "salamander",
+   "origin": "A14_4",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Salamander",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_4.png",
+   "path": "candidates/T080.png"
+  },
+  "T081": {
+   "label": "salamander",
+   "category": "animal",
+   "class": "salamander",
+   "origin": "A14_6",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Salamander",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_6.png",
+   "path": "candidates/T081.png"
+  },
+  "T082": {
+   "label": "lizard",
+   "category": "animal",
+   "class": "lizard",
+   "origin": "A14_7",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Lizard",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A14_7.png",
+   "path": "candidates/T082.png"
+  },
+  "T083": {
+   "label": "crocodile",
+   "category": "animal",
+   "class": "crocodile",
+   "origin": "A15_0",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Crocodile",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A15_0.png",
+   "path": "candidates/T083.png"
+  },
+  "T084": {
+   "label": "crocodile",
+   "category": "animal",
+   "class": "crocodile",
+   "origin": "A15_1",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Crocodile",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A15_1.png",
+   "path": "candidates/T084.png"
+  },
+  "T085": {
+   "label": "crocodile",
+   "category": "animal",
+   "class": "crocodile",
+   "origin": "A15_2",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Crocodile",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A15_2.png",
+   "path": "candidates/T085.png"
+  },
+  "T086": {
+   "label": "crocodile",
+   "category": "animal",
+   "class": "crocodile",
+   "origin": "A15_4",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Crocodile",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A15_4.png",
+   "path": "candidates/T086.png"
+  },
+  "T087": {
+   "label": "crocodile",
+   "category": "animal",
+   "class": "crocodile",
+   "origin": "A15_6",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Crocodile",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A15_6.png",
+   "path": "candidates/T087.png"
+  },
+  "T088": {
+   "label": "otter",
+   "category": "animal",
+   "class": "otter",
+   "origin": "A16_1",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Otter",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A16_1.png",
+   "path": "candidates/T088.png"
+  },
+  "T089": {
+   "label": "otter",
+   "category": "animal",
+   "class": "otter",
+   "origin": "A16_3",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Otter",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A16_3.png",
+   "path": "candidates/T089.png"
+  },
+  "T090": {
+   "label": "otter",
+   "category": "animal",
+   "class": "otter",
+   "origin": "A16_4",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Otter",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A16_4.png",
+   "path": "candidates/T090.png"
+  },
+  "T091": {
+   "label": "otter",
+   "category": "animal",
+   "class": "otter",
+   "origin": "A16_5",
+   "version": 2,
+   "shape": "low_elongated_legged",
+   "species": "Otter",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "low_elongated_legged"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A16_5.png",
+   "path": "candidates/T091.png"
+  },
+  "T092": {
+   "label": "snake",
+   "category": "animal",
+   "class": "snake",
+   "origin": "A17_0",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Snake",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_0.png",
+   "path": "candidates/T092.png"
+  },
+  "T093": {
+   "label": "snake",
+   "category": "animal",
+   "class": "snake",
+   "origin": "A17_1",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Snake",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_1.png",
+   "path": "candidates/T093.png"
+  },
+  "T094": {
+   "label": "snake",
+   "category": "animal",
+   "class": "snake",
+   "origin": "A17_2",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Snake",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_2.png",
+   "path": "candidates/T094.png"
+  },
+  "T095": {
+   "label": "eel",
+   "category": "animal",
+   "class": "eel",
+   "origin": "A17_3",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Eel",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_3.png",
+   "path": "candidates/T095.png"
+  },
+  "T096": {
+   "label": "snake",
+   "category": "animal",
+   "class": "snake",
+   "origin": "A17_4",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Snake",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_4.png",
+   "path": "candidates/T096.png"
+  },
+  "T097": {
+   "label": "snake",
+   "category": "animal",
+   "class": "snake",
+   "origin": "A17_5",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Snake",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_5.png",
+   "path": "candidates/T097.png"
+  },
+  "T098": {
+   "label": "snake",
+   "category": "animal",
+   "class": "snake",
+   "origin": "A17_7",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Snake",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A17_7.png",
+   "path": "candidates/T098.png"
+  },
+  "T099": {
+   "label": "millipede",
+   "category": "animal",
+   "class": "millipede",
+   "origin": "A39_0",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Millipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_0.png",
+   "path": "candidates/T099.png"
+  },
+  "T100": {
+   "label": "millipede",
+   "category": "animal",
+   "class": "millipede",
+   "origin": "A39_5",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Millipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_5.png",
+   "path": "candidates/T100.png"
+  },
+  "T101": {
+   "label": "millipede",
+   "category": "animal",
+   "class": "millipede",
+   "origin": "A39_10",
+   "version": 2,
+   "shape": "legless_elongated",
+   "species": "Millipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "legless_elongated"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_10.png",
+   "path": "candidates/T101.png"
+  },
+  "T102": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_0",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_0.png",
+   "path": "candidates/T102.png"
+  },
+  "T103": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_1",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_1.png",
+   "path": "candidates/T103.png"
+  },
+  "T104": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_2",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_2.png",
+   "path": "candidates/T104.png"
+  },
+  "T105": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_3",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_3.png",
+   "path": "candidates/T105.png"
+  },
+  "T106": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_4",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_4.png",
+   "path": "candidates/T106.png"
+  },
+  "T107": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_5",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_5.png",
+   "path": "candidates/T107.png"
+  },
+  "T108": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A19_7",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A19_7.png",
+   "path": "candidates/T108.png"
+  },
+  "T109": {
+   "label": "whale",
+   "category": "animal",
+   "class": "whale",
+   "origin": "A20_0",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Whale",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A20_0.png",
+   "path": "candidates/T109.png"
+  },
+  "T110": {
+   "label": "shark",
+   "category": "animal",
+   "class": "shark",
+   "origin": "A20_1",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Shark",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A20_1.png",
+   "path": "candidates/T110.png"
+  },
+  "T111": {
+   "label": "shark",
+   "category": "animal",
+   "class": "shark",
+   "origin": "A20_3",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Shark",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A20_3.png",
+   "path": "candidates/T111.png"
+  },
+  "T112": {
+   "label": "shark",
+   "category": "animal",
+   "class": "shark",
+   "origin": "A20_7",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Shark",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A20_7.png",
+   "path": "candidates/T112.png"
+  },
+  "T113": {
+   "label": "dolphin",
+   "category": "animal",
+   "class": "dolphin",
+   "origin": "A21_1",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Dolphin",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A21_1.png",
+   "path": "candidates/T113.png"
+  },
+  "T114": {
+   "label": "dolphin",
+   "category": "animal",
+   "class": "dolphin",
+   "origin": "A21_2",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Dolphin",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A21_2.png",
+   "path": "candidates/T114.png"
+  },
+  "T115": {
+   "label": "dolphin",
+   "category": "animal",
+   "class": "dolphin",
+   "origin": "A21_3",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Dolphin",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A21_3.png",
+   "path": "candidates/T115.png"
+  },
+  "T116": {
+   "label": "dolphin",
+   "category": "animal",
+   "class": "dolphin",
+   "origin": "A21_5",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Dolphin",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A21_5.png",
+   "path": "candidates/T116.png"
+  },
+  "T117": {
+   "label": "dolphin",
+   "category": "animal",
+   "class": "dolphin",
+   "origin": "A21_6",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Dolphin",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A21_6.png",
+   "path": "candidates/T117.png"
+  },
+  "T118": {
+   "label": "beluga whale",
+   "category": "animal",
+   "class": "beluga whale",
+   "origin": "A21_4",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Beluga whale",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A21_4.png",
+   "path": "candidates/T118.png"
+  },
+  "T119": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A22_0",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A22_0.png",
+   "path": "candidates/T119.png"
+  },
+  "T120": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A22_2",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A22_2.png",
+   "path": "candidates/T120.png"
+  },
+  "T121": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A22_3",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A22_3.png",
+   "path": "candidates/T121.png"
+  },
+  "T122": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A22_4",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A22_4.png",
+   "path": "candidates/T122.png"
+  },
+  "T123": {
+   "label": "fish",
+   "category": "animal",
+   "class": "fish",
+   "origin": "A22_5",
+   "version": 2,
+   "shape": "streamlined_fins",
+   "species": "Fish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "streamlined_fins"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A22_5.png",
+   "path": "candidates/T123.png"
+  },
+  "T124": {
+   "label": "bat",
+   "category": "animal",
+   "class": "bat",
+   "origin": "A25_0",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Bat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A25_0.png",
+   "path": "candidates/T124.png"
+  },
+  "T125": {
+   "label": "bat",
+   "category": "animal",
+   "class": "bat",
+   "origin": "A25_1",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Bat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A25_1.png",
+   "path": "candidates/T125.png"
+  },
+  "T126": {
+   "label": "bat",
+   "category": "animal",
+   "class": "bat",
+   "origin": "A25_2",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Bat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A25_2.png",
+   "path": "candidates/T126.png"
+  },
+  "T127": {
+   "label": "bat",
+   "category": "animal",
+   "class": "bat",
+   "origin": "A25_3",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Bat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A25_3.png",
+   "path": "candidates/T127.png"
+  },
+  "T128": {
+   "label": "bat",
+   "category": "animal",
+   "class": "bat",
+   "origin": "A25_4",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Bat",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A25_4.png",
+   "path": "candidates/T128.png"
+  },
+  "T129": {
+   "label": "owl",
+   "category": "animal",
+   "class": "owl",
+   "origin": "A26_3",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Owl",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A26_3.png",
+   "path": "candidates/T129.png"
+  },
+  "T130": {
+   "label": "owl",
+   "category": "animal",
+   "class": "owl",
+   "origin": "A26_6",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Owl",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A26_6.png",
+   "path": "candidates/T130.png"
+  },
+  "T131": {
+   "label": "duck",
+   "category": "animal",
+   "class": "duck",
+   "origin": "A29_4",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Duck",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_4.png",
+   "path": "candidates/T131.png"
+  },
+  "T132": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_0",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_0.png",
+   "path": "candidates/T132.png"
+  },
+  "T133": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_1",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_1.png",
+   "path": "candidates/T133.png"
+  },
+  "T134": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_2",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_2.png",
+   "path": "candidates/T134.png"
+  },
+  "T135": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_3",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_3.png",
+   "path": "candidates/T135.png"
+  },
+  "T136": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_4",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_4.png",
+   "path": "candidates/T136.png"
+  },
+  "T137": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_5",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_5.png",
+   "path": "candidates/T137.png"
+  },
+  "T138": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_6",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_6.png",
+   "path": "candidates/T138.png"
+  },
+  "T139": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_7",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_7.png",
+   "path": "candidates/T139.png"
+  },
+  "T140": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_9",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_9.png",
+   "path": "candidates/T140.png"
+  },
+  "T141": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_10",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_10.png",
+   "path": "candidates/T141.png"
+  },
+  "T142": {
+   "label": "butterfly",
+   "category": "animal",
+   "class": "butterfly",
+   "origin": "A23_11",
+   "version": 2,
+   "shape": "wings_spread",
+   "species": "Butterfly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "wings_spread"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A23_11.png",
+   "path": "candidates/T142.png"
+  },
+  "T143": {
+   "label": "owl",
+   "category": "animal",
+   "class": "owl",
+   "origin": "A26_0",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Owl",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A26_0.png",
+   "path": "candidates/T143.png"
+  },
+  "T144": {
+   "label": "owl",
+   "category": "animal",
+   "class": "owl",
+   "origin": "A26_1",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Owl",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A26_1.png",
+   "path": "candidates/T144.png"
+  },
+  "T145": {
+   "label": "owl",
+   "category": "animal",
+   "class": "owl",
+   "origin": "A26_2",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Owl",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A26_2.png",
+   "path": "candidates/T145.png"
+  },
+  "T146": {
+   "label": "owl",
+   "category": "animal",
+   "class": "owl",
+   "origin": "A26_4",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Owl",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A26_4.png",
+   "path": "candidates/T146.png"
+  },
+  "T147": {
+   "label": "parrot",
+   "category": "animal",
+   "class": "parrot",
+   "origin": "A27_0",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Parrot",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_0.png",
+   "path": "candidates/T147.png"
+  },
+  "T148": {
+   "label": "parrot",
+   "category": "animal",
+   "class": "parrot",
+   "origin": "A27_1",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Parrot",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_1.png",
+   "path": "candidates/T148.png"
+  },
+  "T149": {
+   "label": "roller",
+   "category": "animal",
+   "class": "roller",
+   "origin": "A27_2",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Roller",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_2.png",
+   "path": "candidates/T149.png"
+  },
+  "T150": {
+   "label": "parrot",
+   "category": "animal",
+   "class": "parrot",
+   "origin": "A27_3",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Parrot",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_3.png",
+   "path": "candidates/T150.png"
+  },
+  "T151": {
+   "label": "parrot",
+   "category": "animal",
+   "class": "parrot",
+   "origin": "A27_4",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Parrot",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_4.png",
+   "path": "candidates/T151.png"
+  },
+  "T152": {
+   "label": "parrot",
+   "category": "animal",
+   "class": "parrot",
+   "origin": "A27_5",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Parrot",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_5.png",
+   "path": "candidates/T152.png"
+  },
+  "T153": {
+   "label": "toucan",
+   "category": "animal",
+   "class": "toucan",
+   "origin": "A27_6",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Toucan",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_6.png",
+   "path": "candidates/T153.png"
+  },
+  "T154": {
+   "label": "parrot",
+   "category": "animal",
+   "class": "parrot",
+   "origin": "A27_7",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Parrot",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A27_7.png",
+   "path": "candidates/T154.png"
+  },
+  "T155": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_0",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_0.png",
+   "path": "candidates/T155.png"
+  },
+  "T156": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_1",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_1.png",
+   "path": "candidates/T156.png"
+  },
+  "T157": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_2",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_2.png",
+   "path": "candidates/T157.png"
+  },
+  "T158": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_3",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_3.png",
+   "path": "candidates/T158.png"
+  },
+  "T159": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_4",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_4.png",
+   "path": "candidates/T159.png"
+  },
+  "T160": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_6",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_6.png",
+   "path": "candidates/T160.png"
+  },
+  "T161": {
+   "label": "penguin",
+   "category": "animal",
+   "class": "penguin",
+   "origin": "A28_7",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Penguin",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A28_7.png",
+   "path": "candidates/T161.png"
+  },
+  "T162": {
+   "label": "loon",
+   "category": "animal",
+   "class": "loon",
+   "origin": "A29_0",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Loon",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_0.png",
+   "path": "candidates/T162.png"
+  },
+  "T163": {
+   "label": "swan",
+   "category": "animal",
+   "class": "swan",
+   "origin": "A29_1",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Swan",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_1.png",
+   "path": "candidates/T163.png"
+  },
+  "T164": {
+   "label": "duck",
+   "category": "animal",
+   "class": "duck",
+   "origin": "A29_2",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Duck",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_2.png",
+   "path": "candidates/T164.png"
+  },
+  "T165": {
+   "label": "duck",
+   "category": "animal",
+   "class": "duck",
+   "origin": "A29_3",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Duck",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_3.png",
+   "path": "candidates/T165.png"
+  },
+  "T166": {
+   "label": "duck",
+   "category": "animal",
+   "class": "duck",
+   "origin": "A29_5",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Duck",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_5.png",
+   "path": "candidates/T166.png"
+  },
+  "T167": {
+   "label": "duck",
+   "category": "animal",
+   "class": "duck",
+   "origin": "A29_6",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Duck",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_6.png",
+   "path": "candidates/T167.png"
+  },
+  "T168": {
+   "label": "duck",
+   "category": "animal",
+   "class": "duck",
+   "origin": "A29_7",
+   "version": 2,
+   "shape": "bird_upright",
+   "species": "Duck",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "bird_upright"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A29_7.png",
+   "path": "candidates/T168.png"
+  },
+  "T169": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_0",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_0.png",
+   "path": "candidates/T169.png"
+  },
+  "T170": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_1",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_1.png",
+   "path": "candidates/T170.png"
+  },
+  "T171": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_2",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_2.png",
+   "path": "candidates/T171.png"
+  },
+  "T172": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_3",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_3.png",
+   "path": "candidates/T172.png"
+  },
+  "T173": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_4",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_4.png",
+   "path": "candidates/T173.png"
+  },
+  "T174": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_5",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_5.png",
+   "path": "candidates/T174.png"
+  },
+  "T175": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_6",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_6.png",
+   "path": "candidates/T175.png"
+  },
+  "T176": {
+   "label": "frog",
+   "category": "animal",
+   "class": "frog",
+   "origin": "A32_7",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Frog",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A32_7.png",
+   "path": "candidates/T176.png"
+  },
+  "T177": {
+   "label": "turtle",
+   "category": "animal",
+   "class": "turtle",
+   "origin": "A33_0",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Turtle",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_0.png",
+   "path": "candidates/T177.png"
+  },
+  "T178": {
+   "label": "turtle",
+   "category": "animal",
+   "class": "turtle",
+   "origin": "A33_1",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Turtle",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_1.png",
+   "path": "candidates/T178.png"
+  },
+  "T179": {
+   "label": "tortoise",
+   "category": "animal",
+   "class": "tortoise",
+   "origin": "A33_2",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Tortoise",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_2.png",
+   "path": "candidates/T179.png"
+  },
+  "T180": {
+   "label": "turtle",
+   "category": "animal",
+   "class": "turtle",
+   "origin": "A33_3",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Turtle",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_3.png",
+   "path": "candidates/T180.png"
+  },
+  "T181": {
+   "label": "turtle",
+   "category": "animal",
+   "class": "turtle",
+   "origin": "A33_4",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Turtle",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_4.png",
+   "path": "candidates/T181.png"
+  },
+  "T182": {
+   "label": "turtle",
+   "category": "animal",
+   "class": "turtle",
+   "origin": "A33_5",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Turtle",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_5.png",
+   "path": "candidates/T182.png"
+  },
+  "T183": {
+   "label": "tortoise",
+   "category": "animal",
+   "class": "tortoise",
+   "origin": "A33_6",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Tortoise",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_6.png",
+   "path": "candidates/T183.png"
+  },
+  "T184": {
+   "label": "turtle",
+   "category": "animal",
+   "class": "turtle",
+   "origin": "A33_7",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Turtle",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2/candidates/A33_7.png",
+   "path": "candidates/T184.png"
+  },
+  "T185": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_0",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_0.png",
+   "path": "candidates/T185.png"
+  },
+  "T186": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_4",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_4.png",
+   "path": "candidates/T186.png"
+  },
+  "T187": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_5",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_5.png",
+   "path": "candidates/T187.png"
+  },
+  "T188": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_6",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_6.png",
+   "path": "candidates/T188.png"
+  },
+  "T189": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_8",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_8.png",
+   "path": "candidates/T189.png"
+  },
+  "T190": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_9",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_9.png",
+   "path": "candidates/T190.png"
+  },
+  "T191": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_11",
+   "version": 2,
+   "shape": "round_shelled",
+   "species": "Ladybug",
+   "split": "test",
+   "representation": "photograph",
+   "shape_tags": [
+    "round_shelled"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_11.png",
+   "path": "candidates/T191.png"
+  },
+  "T192": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_0",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_0.png",
+   "path": "candidates/T192.png"
+  },
+  "T193": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_1",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_1.png",
+   "path": "candidates/T193.png"
+  },
+  "T194": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_2.png",
+   "path": "candidates/T194.png"
+  },
+  "T195": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_3",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_3.png",
+   "path": "candidates/T195.png"
+  },
+  "T196": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_4",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_4.png",
+   "path": "candidates/T196.png"
+  },
+  "T197": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_5",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_5.png",
+   "path": "candidates/T197.png"
+  },
+  "T198": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_6",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_6.png",
+   "path": "candidates/T198.png"
+  },
+  "T199": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_7.png",
+   "path": "candidates/T199.png"
+  },
+  "T200": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_8",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_8.png",
+   "path": "candidates/T200.png"
+  },
+  "T201": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_10",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_10.png",
+   "path": "candidates/T201.png"
+  },
+  "T202": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A34_11",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A34_11.png",
+   "path": "candidates/T202.png"
+  },
+  "T203": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A36_4",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_4.png",
+   "path": "candidates/T203.png"
+  },
+  "T204": {
+   "label": "spider",
+   "category": "animal",
+   "class": "spider",
+   "origin": "A36_8",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Spider",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_8.png",
+   "path": "candidates/T204.png"
+  },
+  "T205": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_0",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_0.png",
+   "path": "candidates/T205.png"
+  },
+  "T206": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_1",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_1.png",
+   "path": "candidates/T206.png"
+  },
+  "T207": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_3",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_3.png",
+   "path": "candidates/T207.png"
+  },
+  "T208": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_5",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_5.png",
+   "path": "candidates/T208.png"
+  },
+  "T209": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_6",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_6.png",
+   "path": "candidates/T209.png"
+  },
+  "T210": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_7.png",
+   "path": "candidates/T210.png"
+  },
+  "T211": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_8",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_8.png",
+   "path": "candidates/T211.png"
+  },
+  "T212": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A35_9",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A35_9.png",
+   "path": "candidates/T212.png"
+  },
+  "T213": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A41_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A41_2.png",
+   "path": "candidates/T213.png"
+  },
+  "T214": {
+   "label": "crab",
+   "category": "animal",
+   "class": "crab",
+   "origin": "A41_3",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crab",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A41_3.png",
+   "path": "candidates/T214.png"
+  },
+  "T215": {
+   "label": "mosquito",
+   "category": "animal",
+   "class": "mosquito",
+   "origin": "A36_1",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Mosquito",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_1.png",
+   "path": "candidates/T215.png"
+  },
+  "T216": {
+   "label": "grasshopper",
+   "category": "animal",
+   "class": "grasshopper",
+   "origin": "A36_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Grasshopper",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_2.png",
+   "path": "candidates/T216.png"
+  },
+  "T217": {
+   "label": "crane fly",
+   "category": "animal",
+   "class": "crane fly",
+   "origin": "A36_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crane fly",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_7.png",
+   "path": "candidates/T217.png"
+  },
+  "T218": {
+   "label": "lacewing",
+   "category": "animal",
+   "class": "lacewing",
+   "origin": "A36_10",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Lacewing",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_10.png",
+   "path": "candidates/T218.png"
+  },
+  "T219": {
+   "label": "insect",
+   "category": "animal",
+   "class": "insect",
+   "origin": "A36_11",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Insect",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A36_11.png",
+   "path": "candidates/T219.png"
+  },
+  "T220": {
+   "label": "weevil",
+   "category": "animal",
+   "class": "weevil",
+   "origin": "A37_0",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Weevil",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_0.png",
+   "path": "candidates/T220.png"
+  },
+  "T221": {
+   "label": "beetle",
+   "category": "animal",
+   "class": "beetle",
+   "origin": "A37_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_2.png",
+   "path": "candidates/T221.png"
+  },
+  "T222": {
+   "label": "beetle",
+   "category": "animal",
+   "class": "beetle",
+   "origin": "A37_3",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_3.png",
+   "path": "candidates/T222.png"
+  },
+  "T223": {
+   "label": "beetle",
+   "category": "animal",
+   "class": "beetle",
+   "origin": "A37_5",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_5.png",
+   "path": "candidates/T223.png"
+  },
+  "T224": {
+   "label": "stag beetle",
+   "category": "animal",
+   "class": "stag beetle",
+   "origin": "A37_6",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Stag beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_6.png",
+   "path": "candidates/T224.png"
+  },
+  "T225": {
+   "label": "beetle",
+   "category": "animal",
+   "class": "beetle",
+   "origin": "A37_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_7.png",
+   "path": "candidates/T225.png"
+  },
+  "T226": {
+   "label": "shield bug",
+   "category": "animal",
+   "class": "shield bug",
+   "origin": "A37_8",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Shield bug",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_8.png",
+   "path": "candidates/T226.png"
+  },
+  "T227": {
+   "label": "beetle",
+   "category": "animal",
+   "class": "beetle",
+   "origin": "A37_9",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_9.png",
+   "path": "candidates/T227.png"
+  },
+  "T228": {
+   "label": "beetle",
+   "category": "animal",
+   "class": "beetle",
+   "origin": "A37_11",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A37_11.png",
+   "path": "candidates/T228.png"
+  },
+  "T229": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_1",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_1.png",
+   "path": "candidates/T229.png"
+  },
+  "T230": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_2.png",
+   "path": "candidates/T230.png"
+  },
+  "T231": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_3",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_3.png",
+   "path": "candidates/T231.png"
+  },
+  "T232": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_4",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_4.png",
+   "path": "candidates/T232.png"
+  },
+  "T233": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_5",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_5.png",
+   "path": "candidates/T233.png"
+  },
+  "T234": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_6",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_6.png",
+   "path": "candidates/T234.png"
+  },
+  "T235": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_7.png",
+   "path": "candidates/T235.png"
+  },
+  "T236": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_8",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_8.png",
+   "path": "candidates/T236.png"
+  },
+  "T237": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_9",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_9.png",
+   "path": "candidates/T237.png"
+  },
+  "T238": {
+   "label": "scorpion",
+   "category": "animal",
+   "class": "scorpion",
+   "origin": "A38_10",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Scorpion",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A38_10.png",
+   "path": "candidates/T238.png"
+  },
+  "T239": {
+   "label": "centipede",
+   "category": "animal",
+   "class": "centipede",
+   "origin": "A39_1",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Centipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_1.png",
+   "path": "candidates/T239.png"
+  },
+  "T240": {
+   "label": "centipede",
+   "category": "animal",
+   "class": "centipede",
+   "origin": "A39_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Centipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_2.png",
+   "path": "candidates/T240.png"
+  },
+  "T241": {
+   "label": "centipede",
+   "category": "animal",
+   "class": "centipede",
+   "origin": "A39_4",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Centipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_4.png",
+   "path": "candidates/T241.png"
+  },
+  "T242": {
+   "label": "centipede",
+   "category": "animal",
+   "class": "centipede",
+   "origin": "A39_6",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Centipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_6.png",
+   "path": "candidates/T242.png"
+  },
+  "T243": {
+   "label": "millipede",
+   "category": "animal",
+   "class": "millipede",
+   "origin": "A39_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Millipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_7.png",
+   "path": "candidates/T243.png"
+  },
+  "T244": {
+   "label": "centipede",
+   "category": "animal",
+   "class": "centipede",
+   "origin": "A39_9",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Centipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_9.png",
+   "path": "candidates/T244.png"
+  },
+  "T245": {
+   "label": "millipede",
+   "category": "animal",
+   "class": "millipede",
+   "origin": "A39_11",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Millipede",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A39_11.png",
+   "path": "candidates/T245.png"
+  },
+  "T246": {
+   "label": "leaf beetle",
+   "category": "animal",
+   "class": "leaf beetle",
+   "origin": "A40_1",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Leaf beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_1.png",
+   "path": "candidates/T246.png"
+  },
+  "T247": {
+   "label": "leaf beetle",
+   "category": "animal",
+   "class": "leaf beetle",
+   "origin": "A40_2",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Leaf beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_2.png",
+   "path": "candidates/T247.png"
+  },
+  "T248": {
+   "label": "leaf beetle",
+   "category": "animal",
+   "class": "leaf beetle",
+   "origin": "A40_3",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Leaf beetle",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_3.png",
+   "path": "candidates/T248.png"
+  },
+  "T249": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_7",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Ladybug",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_7.png",
+   "path": "candidates/T249.png"
+  },
+  "T250": {
+   "label": "ladybug",
+   "category": "animal",
+   "class": "ladybug",
+   "origin": "A40_10",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Ladybug",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A40_10.png",
+   "path": "candidates/T250.png"
+  },
+  "T251": {
+   "label": "crayfish",
+   "category": "animal",
+   "class": "crayfish",
+   "origin": "A41_4",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crayfish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A41_4.png",
+   "path": "candidates/T251.png"
+  },
+  "T252": {
+   "label": "crayfish",
+   "category": "animal",
+   "class": "crayfish",
+   "origin": "A41_5",
+   "version": 2,
+   "shape": "many_legs",
+   "species": "Crayfish",
+   "split": "train",
+   "representation": "photograph",
+   "shape_tags": [
+    "many_legs"
+   ],
+   "source_and_license": "see candidates/<ID>.json",
+   "src": "outputs/subjects_v2b/candidates/A41_5.png",
+   "path": "candidates/T252.png"
+  }
+ },
+ "backgrounds": {
+  "D01": {
+   "material": "dtd:striped",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "striped_0105.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/striped/striped_0105.jpg (DTD: research use)",
+   "path": "candidates/D01.jpg"
+  },
+  "D02": {
+   "material": "dtd:sprinkled",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "sprinkled_0119.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/sprinkled/sprinkled_0119.jpg (DTD: research use)",
+   "path": "candidates/D02.jpg"
+  },
+  "D03": {
+   "material": "dtd:bubbly",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "bubbly_0060.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/bubbly/bubbly_0060.jpg (DTD: research use)",
+   "path": "candidates/D03.jpg"
+  },
+  "D04": {
+   "material": "dtd:fibrous",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "fibrous_0157.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/fibrous/fibrous_0157.jpg (DTD: research use)",
+   "path": "candidates/D04.jpg"
+  },
+  "D05": {
+   "material": "dtd:veined",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "veined_0106.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/veined/veined_0106.jpg (DTD: research use)",
+   "path": "candidates/D05.jpg"
+  },
+  "D06": {
+   "material": "dtd:blotchy",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "blotchy_0079.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/blotchy/blotchy_0079.jpg (DTD: research use)",
+   "path": "candidates/D06.jpg"
+  },
+  "D07": {
+   "material": "dtd:polka-dotted",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "polka-dotted_0223.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/polka-dotted/polka-dotted_0223.jpg (DTD: research use)",
+   "path": "candidates/D07.jpg"
+  },
+  "D08": {
+   "material": "dtd:porous",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "porous_0153.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/porous/porous_0153.jpg (DTD: research use)",
+   "path": "candidates/D08.jpg"
+  },
+  "D09": {
+   "material": "dtd:cracked",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "cracked_0106.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/cracked/cracked_0106.jpg (DTD: research use)",
+   "path": "candidates/D09.jpg"
+  },
+  "D10": {
+   "material": "dtd:lacelike",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "lacelike_0080.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/lacelike/lacelike_0080.jpg (DTD: research use)",
+   "path": "candidates/D10.jpg"
+  },
+  "D11": {
+   "material": "dtd:pleated",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "pleated_0156.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/pleated/pleated_0156.jpg (DTD: research use)",
+   "path": "candidates/D11.jpg"
+  },
+  "D12": {
+   "material": "dtd:smeared",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "smeared_0044.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/smeared/smeared_0044.jpg (DTD: research use)",
+   "path": "candidates/D12.jpg"
+  },
+  "D13": {
+   "material": "dtd:crosshatched",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "crosshatched_0083.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/crosshatched/crosshatched_0083.jpg (DTD: research use)",
+   "path": "candidates/D13.jpg"
+  },
+  "D14": {
+   "material": "dtd:flecked",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "flecked_0090.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/flecked/flecked_0090.jpg (DTD: research use)",
+   "path": "candidates/D14.jpg"
+  },
+  "D15": {
+   "material": "dtd:crystalline",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "crystalline_0204.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/crystalline/crystalline_0204.jpg (DTD: research use)",
+   "path": "candidates/D15.jpg"
+  },
+  "D16": {
+   "material": "dtd:meshed",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "meshed_0031.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/meshed/meshed_0031.jpg (DTD: research use)",
+   "path": "candidates/D16.jpg"
+  },
+  "D17": {
+   "material": "dtd:spiralled",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "spiralled_0065.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/spiralled/spiralled_0065.jpg (DTD: research use)",
+   "path": "candidates/D17.jpg"
+  },
+  "D18": {
+   "material": "dtd:stained",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "stained_0076.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/stained/stained_0076.jpg (DTD: research use)",
+   "path": "candidates/D18.jpg"
+  },
+  "D19": {
+   "material": "dtd:paisley",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "paisley_0010.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/paisley/paisley_0010.jpg (DTD: research use)",
+   "path": "candidates/D19.jpg"
+  },
+  "D20": {
+   "material": "dtd:perforated",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "perforated_0137.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/perforated/perforated_0137.jpg (DTD: research use)",
+   "path": "candidates/D20.jpg"
+  },
+  "D21": {
+   "material": "dtd:potholed",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "potholed_0167.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/potholed/potholed_0167.jpg (DTD: research use)",
+   "path": "candidates/D21.jpg"
+  },
+  "D22": {
+   "material": "dtd:frilly",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "frilly_0113.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/frilly/frilly_0113.jpg (DTD: research use)",
+   "path": "candidates/D22.jpg"
+  },
+  "D23": {
+   "material": "dtd:swirly",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "swirly_0144.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/swirly/swirly_0144.jpg (DTD: research use)",
+   "path": "candidates/D23.jpg"
+  },
+  "D24": {
+   "material": "dtd:marbled",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "marbled_0135.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/marbled/marbled_0135.jpg (DTD: research use)",
+   "path": "candidates/D24.jpg"
+  },
+  "D25": {
+   "material": "dtd:chequered",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "chequered_0195.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/chequered/chequered_0195.jpg (DTD: research use)",
+   "path": "candidates/D25.jpg"
+  },
+  "D26": {
+   "material": "dtd:pitted",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "pitted_0114.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/pitted/pitted_0114.jpg (DTD: research use)",
+   "path": "candidates/D26.jpg"
+  },
+  "D27": {
+   "material": "dtd:bumpy",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "bumpy_0184.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/bumpy/bumpy_0184.jpg (DTD: research use)",
+   "path": "candidates/D27.jpg"
+  },
+  "D28": {
+   "material": "dtd:gauzy",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "gauzy_0123.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/gauzy/gauzy_0123.jpg (DTD: research use)",
+   "path": "candidates/D28.jpg"
+  },
+  "D29": {
+   "material": "dtd:wrinkled",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "wrinkled_0017.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/wrinkled/wrinkled_0017.jpg (DTD: research use)",
+   "path": "candidates/D29.jpg"
+  },
+  "D30": {
+   "material": "dtd:blotchy",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "blotchy_0036.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/blotchy/blotchy_0036.jpg (DTD: research use)",
+   "path": "candidates/D30.jpg"
+  },
+  "D31": {
+   "material": "dtd:honeycombed",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "honeycombed_0122.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/honeycombed/honeycombed_0122.jpg (DTD: research use)",
+   "path": "candidates/D31.jpg"
+  },
+  "D32": {
+   "material": "dtd:sprinkled",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "sprinkled_0113.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/sprinkled/sprinkled_0113.jpg (DTD: research use)",
+   "path": "candidates/D32.jpg"
+  },
+  "D33": {
+   "material": "dtd:bubbly",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "bubbly_0172.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/bubbly/bubbly_0172.jpg (DTD: research use)",
+   "path": "candidates/D33.jpg"
+  },
+  "D34": {
+   "material": "dtd:woven",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "woven_0062.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/woven/woven_0062.jpg (DTD: research use)",
+   "path": "candidates/D34.jpg"
+  },
+  "D35": {
+   "material": "dtd:stratified",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "stratified_0077.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/stratified/stratified_0077.jpg (DTD: research use)",
+   "path": "candidates/D35.jpg"
+  },
+  "D36": {
+   "material": "dtd:smeared",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "smeared_0114.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/smeared/smeared_0114.jpg (DTD: research use)",
+   "path": "candidates/D36.jpg"
+  },
+  "D37": {
+   "material": "dtd:banded",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "banded_0085.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/banded/banded_0085.jpg (DTD: research use)",
+   "path": "candidates/D37.jpg"
+  },
+  "D38": {
+   "material": "dtd:porous",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "porous_0103.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/porous/porous_0103.jpg (DTD: research use)",
+   "path": "candidates/D38.jpg"
+  },
+  "D39": {
+   "material": "dtd:cracked",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "cracked_0068.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/cracked/cracked_0068.jpg (DTD: research use)",
+   "path": "candidates/D39.jpg"
+  },
+  "D40": {
+   "material": "dtd:knitted",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "knitted_0087.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/knitted/knitted_0087.jpg (DTD: research use)",
+   "path": "candidates/D40.jpg"
+  },
+  "D41": {
+   "material": "dtd:veined",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "veined_0174.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/veined/veined_0174.jpg (DTD: research use)",
+   "path": "candidates/D41.jpg"
+  },
+  "D42": {
+   "material": "dtd:stained",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "stained_0023.jpg",
+   "split": "test",
+   "source_and_license": "DTD r1.0.1/stained/stained_0023.jpg (DTD: research use)",
+   "path": "candidates/D42.jpg"
+  },
+  "D43": {
+   "material": "dtd:dotted",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "dotted_0107.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/dotted/dotted_0107.jpg (DTD: research use)",
+   "path": "candidates/D43.jpg"
+  },
+  "D44": {
+   "material": "dtd:flecked",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "flecked_0047.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/flecked/flecked_0047.jpg (DTD: research use)",
+   "path": "candidates/D44.jpg"
+  },
+  "D45": {
+   "material": "dtd:crystalline",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "crystalline_0203.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/crystalline/crystalline_0203.jpg (DTD: research use)",
+   "path": "candidates/D45.jpg"
+  },
+  "D46": {
+   "material": "dtd:matted",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "matted_0080.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/matted/matted_0080.jpg (DTD: research use)",
+   "path": "candidates/D46.jpg"
+  },
+  "D47": {
+   "material": "dtd:pleated",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "pleated_0152.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/pleated/pleated_0152.jpg (DTD: research use)",
+   "path": "candidates/D47.jpg"
+  },
+  "D48": {
+   "material": "dtd:marbled",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "marbled_0182.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/marbled/marbled_0182.jpg (DTD: research use)",
+   "path": "candidates/D48.jpg"
+  },
+  "D49": {
+   "material": "dtd:grid",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "grid_0036.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/grid/grid_0036.jpg (DTD: research use)",
+   "path": "candidates/D49.jpg"
+  },
+  "D50": {
+   "material": "dtd:perforated",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "perforated_0101.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/perforated/perforated_0101.jpg (DTD: research use)",
+   "path": "candidates/D50.jpg"
+  },
+  "D51": {
+   "material": "dtd:potholed",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "potholed_0106.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/potholed/potholed_0106.jpg (DTD: research use)",
+   "path": "candidates/D51.jpg"
+  },
+  "D52": {
+   "material": "dtd:interlaced",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "interlaced_0177.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/interlaced/interlaced_0177.jpg (DTD: research use)",
+   "path": "candidates/D52.jpg"
+  },
+  "D53": {
+   "material": "dtd:spiralled",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "spiralled_0009.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/spiralled/spiralled_0009.jpg (DTD: research use)",
+   "path": "candidates/D53.jpg"
+  },
+  "D54": {
+   "material": "dtd:blotchy",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "blotchy_0069.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/blotchy/blotchy_0069.jpg (DTD: research use)",
+   "path": "candidates/D54.jpg"
+  },
+  "D55": {
+   "material": "dtd:zigzagged",
+   "group": "regular_pattern_2d",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "zigzagged_0132.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/zigzagged/zigzagged_0132.jpg (DTD: research use)",
+   "path": "candidates/D55.jpg"
+  },
+  "D56": {
+   "material": "dtd:pitted",
+   "group": "granular",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "pitted_0005.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/pitted/pitted_0005.jpg (DTD: research use)",
+   "path": "candidates/D56.jpg"
+  },
+  "D57": {
+   "material": "dtd:bumpy",
+   "group": "relief_shading",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "bumpy_0124.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/bumpy/bumpy_0124.jpg (DTD: research use)",
+   "path": "candidates/D57.jpg"
+  },
+  "D58": {
+   "material": "dtd:braided",
+   "group": "fibrous_overlapping",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "braided_0140.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/braided/braided_0140.jpg (DTD: research use)",
+   "path": "candidates/D58.jpg"
+  },
+  "D59": {
+   "material": "dtd:grooved",
+   "group": "directional_flow",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "grooved_0045.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/grooved/grooved_0045.jpg (DTD: research use)",
+   "path": "candidates/D59.jpg"
+  },
+  "D60": {
+   "material": "dtd:smeared",
+   "group": "low_detail_blotchy",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "file": "smeared_0146.jpg",
+   "split": "train",
+   "source_and_license": "DTD r1.0.1/smeared/smeared_0146.jpg (DTD: research use)",
+   "path": "candidates/D60.jpg"
+  },
+  "D61": {
+   "material": "nature:bark",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/barkvn50/BarkVN-50/BarkVN-50_mendeley/Hevea brasiliensis/IMG_2095.JPG",
+   "crop": [
+    0,
+    50,
+    303,
+    353
+   ],
+   "split": "train",
+   "source_and_license": "BarkVN-50 (Mendeley), CC BY 4.0: barkvn50/BarkVN-50/BarkVN-50_mendeley/Hevea brasiliensis/IMG_2095.JPG",
+   "path": "candidates/D61.jpg"
+  },
+  "D62": {
+   "material": "nature:foliage",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/foliage/foliage_final_091_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/foliage/foliage_final_091_new.jpg",
+   "path": "candidates/D62.jpg"
+  },
+  "D63": {
+   "material": "nature:wood",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/wood/wood_moderate_027_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/wood/wood_moderate_027_new.jpg",
+   "path": "candidates/D63.jpg"
+  },
+  "D64": {
+   "material": "nature:grass",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/train/grass/384_sample057_02_i09l.jpg",
+   "crop": [
+    0,
+    0,
+    256,
+    256
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (grass; research use): gtos/gtos-mobile/train/grass/384_sample057_02_i09l.jpg",
+   "path": "candidates/D64.jpg"
+  },
+  "D65": {
+   "material": "nature:moss",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/test/moss/IMG_0199_frame42.jpg",
+   "crop": [
+    0,
+    99,
+    256,
+    355
+   ],
+   "split": "test",
+   "source_and_license": "GTOS-mobile (moss; research use): gtos/gtos-mobile/test/moss/IMG_0199_frame42.jpg",
+   "path": "candidates/D65.jpg"
+  },
+  "D66": {
+   "material": "nature:stone",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/stone/stone_moderate_040_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/stone/stone_moderate_040_new.jpg",
+   "path": "candidates/D66.jpg"
+  },
+  "D67": {
+   "material": "nature:water",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/water/water_object_014_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/water/water_object_014_new.jpg",
+   "path": "candidates/D67.jpg"
+  },
+  "D68": {
+   "material": "nature:sand",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/test/sand/IMG_0175_frame50.jpg",
+   "crop": [
+    0,
+    99,
+    256,
+    355
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (sand; research use): gtos/gtos-mobile/test/sand/IMG_0175_frame50.jpg",
+   "path": "candidates/D68.jpg"
+  },
+  "D69": {
+   "material": "nature:soil",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/test/soil/IMG_0208_frame29.jpg",
+   "crop": [
+    0,
+    99,
+    256,
+    355
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (soil; research use): gtos/gtos-mobile/test/soil/IMG_0208_frame29.jpg",
+   "path": "candidates/D69.jpg"
+  },
+  "D70": {
+   "material": "nature:gravel",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/train/pebble/384_sample109_03_i00h.jpg",
+   "crop": [
+    0,
+    0,
+    256,
+    256
+   ],
+   "split": "test",
+   "source_and_license": "GTOS-mobile (pebble; research use): gtos/gtos-mobile/train/pebble/384_sample109_03_i00h.jpg",
+   "path": "candidates/D70.jpg"
+  },
+  "D71": {
+   "material": "nature:bark",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/barkvn50/BarkVN-50/BarkVN-50_mendeley/Khaya senegalensis A.Juss/IMG_5329.JPG",
+   "crop": [
+    0,
+    50,
+    303,
+    353
+   ],
+   "split": "train",
+   "source_and_license": "BarkVN-50 (Mendeley), CC BY 4.0: barkvn50/BarkVN-50/BarkVN-50_mendeley/Khaya senegalensis A.Juss/IMG_5329.JPG",
+   "path": "candidates/D71.jpg"
+  },
+  "D72": {
+   "material": "nature:foliage",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/foliage/foliage_final_070_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/foliage/foliage_final_070_new.jpg",
+   "path": "candidates/D72.jpg"
+  },
+  "D73": {
+   "material": "nature:wood",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/wood/wood_moderate_015_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "test",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/wood/wood_moderate_015_new.jpg",
+   "path": "candidates/D73.jpg"
+  },
+  "D74": {
+   "material": "nature:grass",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/test/grass/IMG_0162_frame53.jpg",
+   "crop": [
+    0,
+    99,
+    256,
+    355
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (grass; research use): gtos/gtos-mobile/test/grass/IMG_0162_frame53.jpg",
+   "path": "candidates/D74.jpg"
+  },
+  "D75": {
+   "material": "nature:moss",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/train/moss/384_sample114_03_i00h.jpg",
+   "crop": [
+    0,
+    0,
+    256,
+    256
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (moss; research use): gtos/gtos-mobile/train/moss/384_sample114_03_i00h.jpg",
+   "path": "candidates/D75.jpg"
+  },
+  "D76": {
+   "material": "nature:stone",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/stone/stone_moderate_039_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/stone/stone_moderate_039_new.jpg",
+   "path": "candidates/D76.jpg"
+  },
+  "D77": {
+   "material": "nature:water",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/fmd/image/water/water_moderate_011_new.jpg",
+   "crop": [
+    64,
+    0,
+    448,
+    384
+   ],
+   "split": "train",
+   "source_and_license": "Flickr Material Database (Flickr CC images; research use): fmd/image/water/water_moderate_011_new.jpg",
+   "path": "candidates/D77.jpg"
+  },
+  "D78": {
+   "material": "nature:sand",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/train/sand/384_sample079_03_i00h.jpg",
+   "crop": [
+    0,
+    0,
+    256,
+    256
+   ],
+   "split": "test",
+   "source_and_license": "GTOS-mobile (sand; research use): gtos/gtos-mobile/train/sand/384_sample079_03_i00h.jpg",
+   "path": "candidates/D78.jpg"
+  },
+  "D79": {
+   "material": "nature:soil",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/train/soil/384_sample046_02_i00h.jpg",
+   "crop": [
+    0,
+    0,
+    256,
+    256
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (soil; research use): gtos/gtos-mobile/train/soil/384_sample046_02_i00h.jpg",
+   "path": "candidates/D79.jpg"
+  },
+  "D80": {
+   "material": "nature:gravel",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/test/pebble/IMG_0201_frame45.jpg",
+   "crop": [
+    99,
+    0,
+    355,
+    256
+   ],
+   "split": "train",
+   "source_and_license": "GTOS-mobile (pebble; research use): gtos/gtos-mobile/test/pebble/IMG_0201_frame45.jpg",
+   "path": "candidates/D80.jpg"
+  },
+  "D81": {
+   "material": "nature:leaf_litter",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/test/dry_leaf/IMG_0204_frame40.jpg",
+   "split": "train",
+   "path": "candidates/D81.jpg",
+   "crop": [
+    0,
+    99,
+    256,
+    355
+   ],
+   "source_and_license": "GTOS-mobile (research use): gtos/gtos-mobile/test/dry_leaf/IMG_0204_frame40.jpg"
+  },
+  "D82": {
+   "material": "nature:snow",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/snow/snow_00.jpg",
+   "split": "train",
+   "path": "candidates/D82.jpg",
+   "source_and_license": "Open Images V7 4235f2515b4775da (https://creativecommons.org/licenses/by/2.0/, Caroline Léna Becker), crop [0, 205, 478, 683]"
+  },
+  "D83": {
+   "material": "nature:seabed",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/seabed/seabed_10.jpg",
+   "split": "train",
+   "path": "candidates/D83.jpg",
+   "source_and_license": "Open Images V7 ce12e83ba174fae2 (https://creativecommons.org/licenses/by/2.0/, Chilli Head), crop [0, 231, 537, 768]"
+  },
+  "D84": {
+   "material": "nature:rock",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/rock/rock_10.jpg",
+   "split": "train",
+   "path": "candidates/D84.jpg",
+   "source_and_license": "Open Images V7 0eb6da3b3e26994a (https://creativecommons.org/licenses/by/2.0/, maarjaara), crop [487, 231, 1024, 768]"
+  },
+  "D85": {
+   "material": "nature:mud",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/mud/mud_15.jpg",
+   "split": "test",
+   "path": "candidates/D85.jpg",
+   "source_and_license": "Open Images V7 87eb97d0beee3382 (https://creativecommons.org/licenses/by/2.0/, Colleen Benelli), crop [0, 243, 537, 780]"
+  },
+  "D86": {
+   "material": "nature:leaf_litter",
+   "group": "nature_plant",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "bg_nature_raw/gtos/gtos-mobile/train/dry_leaf/384_sample073_02_i00h.jpg",
+   "split": "train",
+   "path": "candidates/D86.jpg",
+   "crop": [
+    0,
+    0,
+    256,
+    256
+   ],
+   "source_and_license": "GTOS-mobile (research use): gtos/gtos-mobile/train/dry_leaf/384_sample073_02_i00h.jpg"
+  },
+  "D87": {
+   "material": "nature:snow",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/snow/snow_09.jpg",
+   "split": "train",
+   "path": "candidates/D87.jpg",
+   "source_and_license": "Open Images V7 9e00e251125dcadd (https://creativecommons.org/licenses/by/2.0/, Robert Young), crop [545, 206, 1024, 685]"
+  },
+  "D88": {
+   "material": "nature:seabed",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/seabed/seabed_13.jpg",
+   "split": "test",
+   "path": "candidates/D88.jpg",
+   "source_and_license": "Open Images V7 987a581ed8133d47 (https://creativecommons.org/licenses/by/2.0/, Derek Keats), crop [156, 0, 867, 711]"
+  },
+  "D89": {
+   "material": "nature:rock",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/rock/rock_06.jpg",
+   "split": "train",
+   "path": "candidates/D89.jpg",
+   "source_and_license": "Open Images V7 8cfc07ec8f0c5ddf (https://creativecommons.org/licenses/by/2.0/, Randen Pederson), crop [451, 246, 1024, 819]"
+  },
+  "D90": {
+   "material": "nature:mud",
+   "group": "nature_ground",
+   "representation": "photograph",
+   "contains_animal_risk": false,
+   "src": "outputs/backgrounds_v2/nature/mud/mud_06.jpg",
+   "split": "train",
+   "path": "candidates/D90.jpg",
+   "source_and_license": "Open Images V7 f90c0fbc7fb22b10 (https://creativecommons.org/licenses/by/2.0/, Martin Bravenboer), crop [243, 231, 780, 768]"
+  }
+ },
+ "pairs": {
+  "D01T096": [
+   "T096",
+   "D01"
+  ],
+  "D01T068": [
+   "T068",
+   "D01"
+  ],
+  "D01T048": [
+   "T048",
+   "D01"
+  ],
+  "D01T173": [
+   "T173",
+   "D01"
+  ],
+  "D01S15": [
+   "S15",
+   "D01"
+  ],
+  "D02T222": [
+   "T222",
+   "D02"
+  ],
+  "D02T155": [
+   "T155",
+   "D02"
+  ],
+  "D02T088": [
+   "T088",
+   "D02"
+  ],
+  "D02T129": [
+   "T129",
+   "D02"
+  ],
+  "D02T118": [
+   "T118",
+   "D02"
+  ],
+  "D03T032": [
+   "T032",
+   "D03"
+  ],
+  "D03T185": [
+   "T185",
+   "D03"
+  ],
+  "D03T095": [
+   "T095",
+   "D03"
+  ],
+  "D03T151": [
+   "T151",
+   "D03"
+  ],
+  "D03T067": [
+   "T067",
+   "D03"
+  ],
+  "D04T133": [
+   "T133",
+   "D04"
+  ],
+  "D04T018": [
+   "T018",
+   "D04"
+  ],
+  "D04T056": [
+   "T056",
+   "D04"
+  ],
+  "D04T230": [
+   "T230",
+   "D04"
+  ],
+  "D04S18": [
+   "S18",
+   "D04"
+  ],
+  "D05T083": [
+   "T083",
+   "D05"
+  ],
+  "D05T108": [
+   "T108",
+   "D05"
+  ],
+  "D05T099": [
+   "T099",
+   "D05"
+  ],
+  "D05T183": [
+   "T183",
+   "D05"
+  ],
+  "D05T166": [
+   "T166",
+   "D05"
+  ],
+  "D06T112": [
+   "T112",
+   "D06"
+  ],
+  "D06S05": [
+   "S05",
+   "D06"
+  ],
+  "D06T070": [
+   "T070",
+   "D06"
+  ],
+  "D06T016": [
+   "T016",
+   "D06"
+  ],
+  "D06T125": [
+   "T125",
+   "D06"
+  ],
+  "D07T040": [
+   "T040",
+   "D07"
+  ],
+  "D07T197": [
+   "T197",
+   "D07"
+  ],
+  "D07T060": [
+   "T060",
+   "D07"
+  ],
+  "D07T178": [
+   "T178",
+   "D07"
+  ],
+  "D07S17": [
+   "S17",
+   "D07"
+  ],
+  "D08T098": [
+   "T098",
+   "D08"
+  ],
+  "D08T006": [
+   "T006",
+   "D08"
+  ],
+  "D08T211": [
+   "T211",
+   "D08"
+  ],
+  "D08T113": [
+   "T113",
+   "D08"
+  ],
+  "D08T163": [
+   "T163",
+   "D08"
+  ],
+  "D09T140": [
+   "T140",
+   "D09"
+  ],
+  "D09T080": [
+   "T080",
+   "D09"
+  ],
+  "D09T046": [
+   "T046",
+   "D09"
+  ],
+  "D09T162": [
+   "T162",
+   "D09"
+  ],
+  "D09T011": [
+   "T011",
+   "D09"
+  ],
+  "D10T101": [
+   "T101",
+   "D10"
+  ],
+  "D10T090": [
+   "T090",
+   "D10"
+  ],
+  "D10T045": [
+   "T045",
+   "D10"
+  ],
+  "D10T246": [
+   "T246",
+   "D10"
+  ],
+  "D10S16": [
+   "S16",
+   "D10"
+  ],
+  "D11T062": [
+   "T062",
+   "D11"
+  ],
+  "D11T128": [
+   "T128",
+   "D11"
+  ],
+  "D11T189": [
+   "T189",
+   "D11"
+  ],
+  "D11T109": [
+   "T109",
+   "D11"
+  ],
+  "D11T149": [
+   "T149",
+   "D11"
+  ],
+  "D12T086": [
+   "T086",
+   "D12"
+  ],
+  "D12T094": [
+   "T094",
+   "D12"
+  ],
+  "D12T131": [
+   "T131",
+   "D12"
+  ],
+  "D12T169": [
+   "T169",
+   "D12"
+  ],
+  "D12T251": [
+   "T251",
+   "D12"
+  ],
+  "D13T105": [
+   "T105",
+   "D13"
+  ],
+  "D13T044": [
+   "T044",
+   "D13"
+  ],
+  "D13T014": [
+   "T014",
+   "D13"
+  ],
+  "D13T064": [
+   "T064",
+   "D13"
+  ],
+  "D13S16": [
+   "S16",
+   "D13"
+  ],
+  "D14T100": [
+   "T100",
+   "D14"
+  ],
+  "D14T180": [
+   "T180",
+   "D14"
+  ],
+  "D14T115": [
+   "T115",
+   "D14"
+  ],
+  "D14T082": [
+   "T082",
+   "D14"
+  ],
+  "D14T074": [
+   "T074",
+   "D14"
+  ],
+  "D15T217": [
+   "T217",
+   "D15"
+  ],
+  "D15T153": [
+   "T153",
+   "D15"
+  ],
+  "D15T025": [
+   "T025",
+   "D15"
+  ],
+  "D15T057": [
+   "T057",
+   "D15"
+  ],
+  "D15T130": [
+   "T130",
+   "D15"
+  ],
+  "D16T049": [
+   "T049",
+   "D16"
+  ],
+  "D16T066": [
+   "T066",
+   "D16"
+  ],
+  "D16T029": [
+   "T029",
+   "D16"
+  ],
+  "D16T147": [
+   "T147",
+   "D16"
+  ],
+  "D16S18": [
+   "S18",
+   "D16"
+  ],
+  "D17T179": [
+   "T179",
+   "D17"
+  ],
+  "D17S08": [
+   "S08",
+   "D17"
+  ],
+  "D17T218": [
+   "T218",
+   "D17"
+  ],
+  "D17T081": [
+   "T081",
+   "D17"
+  ],
+  "D17T110": [
+   "T110",
+   "D17"
+  ],
+  "D18T092": [
+   "T092",
+   "D18"
+  ],
+  "D18T069": [
+   "T069",
+   "D18"
+  ],
+  "D18S14": [
+   "S14",
+   "D18"
+  ],
+  "D18T124": [
+   "T124",
+   "D18"
+  ],
+  "D18T190": [
+   "T190",
+   "D18"
+  ],
+  "D19T042": [
+   "T042",
+   "D19"
+  ],
+  "D19T079": [
+   "T079",
+   "D19"
+  ],
+  "D19T097": [
+   "T097",
+   "D19"
+  ],
+  "D19T241": [
+   "T241",
+   "D19"
+  ],
+  "D19S15": [
+   "S15",
+   "D19"
+  ],
+  "D20T036": [
+   "T036",
+   "D20"
+  ],
+  "D20T159": [
+   "T159",
+   "D20"
+  ],
+  "D20T063": [
+   "T063",
+   "D20"
+  ],
+  "D20T226": [
+   "T226",
+   "D20"
+  ],
+  "D20T093": [
+   "T093",
+   "D20"
+  ],
+  "D21T085": [
+   "T085",
+   "D21"
+  ],
+  "D21T117": [
+   "T117",
+   "D21"
+  ],
+  "D21S10": [
+   "S10",
+   "D21"
+  ],
+  "D21T158": [
+   "T158",
+   "D21"
+  ],
+  "D21T182": [
+   "T182",
+   "D21"
+  ],
+  "D22T037": [
+   "T037",
+   "D22"
+  ],
+  "D22T020": [
+   "T020",
+   "D22"
+  ],
+  "D22T174": [
+   "T174",
+   "D22"
+  ],
+  "D22T095": [
+   "T095",
+   "D22"
+  ],
+  "D22S17": [
+   "S17",
+   "D22"
+  ],
+  "D23T058": [
+   "T058",
+   "D23"
+  ],
+  "D23T143": [
+   "T143",
+   "D23"
+  ],
+  "D23T089": [
+   "T089",
+   "D23"
+  ],
+  "D23T055": [
+   "T055",
+   "D23"
+  ],
+  "D23T111": [
+   "T111",
+   "D23"
+  ],
+  "D24T219": [
+   "T219",
+   "D24"
+  ],
+  "D24T031": [
+   "T031",
+   "D24"
+  ],
+  "D24T126": [
+   "T126",
+   "D24"
+  ],
+  "D24T101": [
+   "T101",
+   "D24"
+  ],
+  "D24T191": [
+   "T191",
+   "D24"
+  ],
+  "D25T072": [
+   "T072",
+   "D25"
+  ],
+  "D25T132": [
+   "T132",
+   "D25"
+  ],
+  "D25T121": [
+   "T121",
+   "D25"
+  ],
+  "D25T021": [
+   "T021",
+   "D25"
+  ],
+  "D25S16": [
+   "S16",
+   "D25"
+  ],
+  "D26T077": [
+   "T077",
+   "D26"
+  ],
+  "D26T039": [
+   "T039",
+   "D26"
+  ],
+  "D26T224": [
+   "T224",
+   "D26"
+  ],
+  "D26T165": [
+   "T165",
+   "D26"
+  ],
+  "D26T065": [
+   "T065",
+   "D26"
+  ],
+  "D27T047": [
+   "T047",
+   "D27"
+  ],
+  "D27T116": [
+   "T116",
+   "D27"
+  ],
+  "D27T215": [
+   "T215",
+   "D27"
+  ],
+  "D27T148": [
+   "T148",
+   "D27"
+  ],
+  "D27T099": [
+   "T099",
+   "D27"
+  ],
+  "D28T177": [
+   "T177",
+   "D28"
+  ],
+  "D28T015": [
+   "T015",
+   "D28"
+  ],
+  "D28T127": [
+   "T127",
+   "D28"
+  ],
+  "D28T076": [
+   "T076",
+   "D28"
+  ],
+  "D28S17": [
+   "S17",
+   "D28"
+  ],
+  "D29T054": [
+   "T054",
+   "D29"
+  ],
+  "D29T216": [
+   "T216",
+   "D29"
+  ],
+  "D29T150": [
+   "T150",
+   "D29"
+  ],
+  "D29T139": [
+   "T139",
+   "D29"
+  ],
+  "D29T059": [
+   "T059",
+   "D29"
+  ],
+  "D30T091": [
+   "T091",
+   "D30"
+  ],
+  "D30T024": [
+   "T024",
+   "D30"
+  ],
+  "D30T119": [
+   "T119",
+   "D30"
+  ],
+  "D30T170": [
+   "T170",
+   "D30"
+  ],
+  "D30T100": [
+   "T100",
+   "D30"
+  ],
+  "D31T135": [
+   "T135",
+   "D31"
+  ],
+  "D31T157": [
+   "T157",
+   "D31"
+  ],
+  "D31T172": [
+   "T172",
+   "D31"
+  ],
+  "D31T041": [
+   "T041",
+   "D31"
+  ],
+  "D31S15": [
+   "S15",
+   "D31"
+  ],
+  "D32T114": [
+   "T114",
+   "D32"
+  ],
+  "D32T087": [
+   "T087",
+   "D32"
+  ],
+  "D32T094": [
+   "T094",
+   "D32"
+  ],
+  "D32T017": [
+   "T017",
+   "D32"
+  ],
+  "D32T071": [
+   "T071",
+   "D32"
+  ],
+  "D33T220": [
+   "T220",
+   "D33"
+  ],
+  "D33T188": [
+   "T188",
+   "D33"
+  ],
+  "D33T043": [
+   "T043",
+   "D33"
+  ],
+  "D33T005": [
+   "T005",
+   "D33"
+  ],
+  "D33T138": [
+   "T138",
+   "D33"
+  ],
+  "D34T164": [
+   "T164",
+   "D34"
+  ],
+  "D34T237": [
+   "T237",
+   "D34"
+  ],
+  "D34T092": [
+   "T092",
+   "D34"
+  ],
+  "D34T084": [
+   "T084",
+   "D34"
+  ],
+  "D34S18": [
+   "S18",
+   "D34"
+  ],
+  "D35T123": [
+   "T123",
+   "D35"
+  ],
+  "D35T061": [
+   "T061",
+   "D35"
+  ],
+  "D35T184": [
+   "T184",
+   "D35"
+  ],
+  "D35T145": [
+   "T145",
+   "D35"
+  ],
+  "D35T051": [
+   "T051",
+   "D35"
+  ],
+  "D36S06": [
+   "S06",
+   "D36"
+  ],
+  "D36T098": [
+   "T098",
+   "D36"
+  ],
+  "D36T075": [
+   "T075",
+   "D36"
+  ],
+  "D36T134": [
+   "T134",
+   "D36"
+  ],
+  "D36T030": [
+   "T030",
+   "D36"
+  ],
+  "D37T103": [
+   "T103",
+   "D37"
+  ],
+  "D37T206": [
+   "T206",
+   "D37"
+  ],
+  "D37T038": [
+   "T038",
+   "D37"
+  ],
+  "D37T097": [
+   "T097",
+   "D37"
+  ],
+  "D37S15": [
+   "S15",
+   "D37"
+  ],
+  "D38T160": [
+   "T160",
+   "D38"
+  ],
+  "D38T176": [
+   "T176",
+   "D38"
+  ],
+  "D38T078": [
+   "T078",
+   "D38"
+  ],
+  "D38T104": [
+   "T104",
+   "D38"
+  ],
+  "D38T244": [
+   "T244",
+   "D38"
+  ],
+  "D39T073": [
+   "T073",
+   "D39"
+  ],
+  "D39T019": [
+   "T019",
+   "D39"
+  ],
+  "D39T141": [
+   "T141",
+   "D39"
+  ],
+  "D39T120": [
+   "T120",
+   "D39"
+  ],
+  "D39T052": [
+   "T052",
+   "D39"
+  ],
+  "D40S09": [
+   "S09",
+   "D40"
+  ],
+  "D40T187": [
+   "T187",
+   "D40"
+  ],
+  "D40T009": [
+   "T009",
+   "D40"
+  ],
+  "D40T228": [
+   "T228",
+   "D40"
+  ],
+  "D40S16": [
+   "S16",
+   "D40"
+  ],
+  "D41T074": [
+   "T074",
+   "D41"
+  ],
+  "D41T144": [
+   "T144",
+   "D41"
+  ],
+  "D41T096": [
+   "T096",
+   "D41"
+  ],
+  "D41S07": [
+   "S07",
+   "D41"
+  ],
+  "D41T106": [
+   "T106",
+   "D41"
+  ],
+  "D42T034": [
+   "T034",
+   "D42"
+  ],
+  "D42T093": [
+   "T093",
+   "D42"
+  ],
+  "D42T067": [
+   "T067",
+   "D42"
+  ],
+  "D42T152": [
+   "T152",
+   "D42"
+  ],
+  "D42T181": [
+   "T181",
+   "D42"
+  ],
+  "D43T136": [
+   "T136",
+   "D43"
+  ],
+  "D43T053": [
+   "T053",
+   "D43"
+  ],
+  "D43T192": [
+   "T192",
+   "D43"
+  ],
+  "D43T081": [
+   "T081",
+   "D43"
+  ],
+  "D43S17": [
+   "S17",
+   "D43"
+  ],
+  "D44T171": [
+   "T171",
+   "D44"
+  ],
+  "D44T050": [
+   "T050",
+   "D44"
+  ],
+  "D44S11": [
+   "S11",
+   "D44"
+  ],
+  "D44S12": [
+   "S12",
+   "D44"
+  ],
+  "D44T033": [
+   "T033",
+   "D44"
+  ],
+  "D45T247": [
+   "T247",
+   "D45"
+  ],
+  "D45T077": [
+   "T077",
+   "D45"
+  ],
+  "D45T095": [
+   "T095",
+   "D45"
+  ],
+  "D45T070": [
+   "T070",
+   "D45"
+  ],
+  "D45T168": [
+   "T168",
+   "D45"
+  ],
+  "D46T142": [
+   "T142",
+   "D46"
+  ],
+  "D46T186": [
+   "T186",
+   "D46"
+  ],
+  "D46T035": [
+   "T035",
+   "D46"
+  ],
+  "D46T100": [
+   "T100",
+   "D46"
+  ],
+  "D46S18": [
+   "S18",
+   "D46"
+  ],
+  "D47T091": [
+   "T091",
+   "D47"
+  ],
+  "D47T057": [
+   "T057",
+   "D47"
+  ],
+  "D47T146": [
+   "T146",
+   "D47"
+  ],
+  "D47T062": [
+   "T062",
+   "D47"
+  ],
+  "D47T102": [
+   "T102",
+   "D47"
+  ],
+  "D48T252": [
+   "T252",
+   "D48"
+  ],
+  "D48T137": [
+   "T137",
+   "D48"
+  ],
+  "D48S13": [
+   "S13",
+   "D48"
+  ],
+  "D48T045": [
+   "T045",
+   "D48"
+  ],
+  "D48T099": [
+   "T099",
+   "D48"
+  ],
+  "D49T156": [
+   "T156",
+   "D49"
+  ],
+  "D49T066": [
+   "T066",
+   "D49"
+  ],
+  "D49T027": [
+   "T027",
+   "D49"
+  ],
+  "D49T175": [
+   "T175",
+   "D49"
+  ],
+  "D49S16": [
+   "S16",
+   "D49"
+  ],
+  "D50T090": [
+   "T090",
+   "D50"
+  ],
+  "D50T233": [
+   "T233",
+   "D50"
+  ],
+  "D50T101": [
+   "T101",
+   "D50"
+  ],
+  "D50T010": [
+   "T010",
+   "D50"
+  ],
+  "D50T122": [
+   "T122",
+   "D50"
+  ],
+  "D51T063": [
+   "T063",
+   "D51"
+  ],
+  "D51T200": [
+   "T200",
+   "D51"
+  ],
+  "D51T084": [
+   "T084",
+   "D51"
+  ],
+  "D51T179": [
+   "T179",
+   "D51"
+  ],
+  "D51T154": [
+   "T154",
+   "D51"
+  ],
+  "D52T124": [
+   "T124",
+   "D52"
+  ],
+  "D52T048": [
+   "T048",
+   "D52"
+  ],
+  "D52T248": [
+   "T248",
+   "D52"
+  ],
+  "D52T093": [
+   "T093",
+   "D52"
+  ],
+  "D52S15": [
+   "S15",
+   "D52"
+  ],
+  "D53T080": [
+   "T080",
+   "D53"
+  ],
+  "D53T044": [
+   "T044",
+   "D53"
+  ],
+  "D53T167": [
+   "T167",
+   "D53"
+  ],
+  "D53T107": [
+   "T107",
+   "D53"
+  ],
+  "D53T127": [
+   "T127",
+   "D53"
+  ],
+  "D54T001": [
+   "T001",
+   "D54"
+  ],
+  "D54T183": [
+   "T183",
+   "D54"
+  ],
+  "D54T061": [
+   "T061",
+   "D54"
+  ],
+  "D54T214": [
+   "T214",
+   "D54"
+  ],
+  "D54T161": [
+   "T161",
+   "D54"
+  ],
+  "D55T022": [
+   "T022",
+   "D55"
+  ],
+  "D55T118": [
+   "T118",
+   "D55"
+  ],
+  "D55T129": [
+   "T129",
+   "D55"
+  ],
+  "D55T089": [
+   "T089",
+   "D55"
+  ],
+  "D55S17": [
+   "S17",
+   "D55"
+  ],
+  "D56T180": [
+   "T180",
+   "D56"
+  ],
+  "D56T046": [
+   "T046",
+   "D56"
+  ],
+  "D56T092": [
+   "T092",
+   "D56"
+  ],
+  "D56T064": [
+   "T064",
+   "D56"
+  ],
+  "D56T085": [
+   "T085",
+   "D56"
+  ],
+  "D57T109": [
+   "T109",
+   "D57"
+  ],
+  "D57T185": [
+   "T185",
+   "D57"
+  ],
+  "D57T163": [
+   "T163",
+   "D57"
+  ],
+  "D57T227": [
+   "T227",
+   "D57"
+  ],
+  "D57T096": [
+   "T096",
+   "D57"
+  ],
+  "D58T131": [
+   "T131",
+   "D58"
+  ],
+  "D58T059": [
+   "T059",
+   "D58"
+  ],
+  "D58T028": [
+   "T028",
+   "D58"
+  ],
+  "D58T040": [
+   "T040",
+   "D58"
+  ],
+  "D58S18": [
+   "S18",
+   "D58"
+  ],
+  "D59T110": [
+   "T110",
+   "D59"
+  ],
+  "D59T162": [
+   "T162",
+   "D59"
+  ],
+  "D59T065": [
+   "T065",
+   "D59"
+  ],
+  "D59T042": [
+   "T042",
+   "D59"
+  ],
+  "D59T242": [
+   "T242",
+   "D59"
+  ],
+  "D60T130": [
+   "T130",
+   "D60"
+  ],
+  "D60T082": [
+   "T082",
+   "D60"
+  ],
+  "D60S04": [
+   "S04",
+   "D60"
+  ],
+  "D60T097": [
+   "T097",
+   "D60"
+  ],
+  "D60T177": [
+   "T177",
+   "D60"
+  ],
+  "D61T013": [
+   "T013",
+   "D61"
+  ],
+  "D61T128": [
+   "T128",
+   "D61"
+  ],
+  "D61T073": [
+   "T073",
+   "D61"
+  ],
+  "D61T083": [
+   "T083",
+   "D61"
+  ],
+  "D61S16": [
+   "S16",
+   "D61"
+  ],
+  "D62T153": [
+   "T153",
+   "D62"
+  ],
+  "D62T094": [
+   "T094",
+   "D62"
+  ],
+  "D62T112": [
+   "T112",
+   "D62"
+  ],
+  "D62T170": [
+   "T170",
+   "D62"
+  ],
+  "D62T037": [
+   "T037",
+   "D62"
+  ],
+  "D63T199": [
+   "T199",
+   "D63"
+  ],
+  "D63T088": [
+   "T088",
+   "D63"
+  ],
+  "D63T047": [
+   "T047",
+   "D63"
+  ],
+  "D63T149": [
+   "T149",
+   "D63"
+  ],
+  "D63T023": [
+   "T023",
+   "D63"
+  ],
+  "D64T115": [
+   "T115",
+   "D64"
+  ],
+  "D64T235": [
+   "T235",
+   "D64"
+  ],
+  "D64T060": [
+   "T060",
+   "D64"
+  ],
+  "D64T098": [
+   "T098",
+   "D64"
+  ],
+  "D64S15": [
+   "S15",
+   "D64"
+  ],
+  "D65T191": [
+   "T191",
+   "D65"
+  ],
+  "D65T126": [
+   "T126",
+   "D65"
+  ],
+  "D65T095": [
+   "T095",
+   "D65"
+  ],
+  "D65T007": [
+   "T007",
+   "D65"
+  ],
+  "D65T087": [
+   "T087",
+   "D65"
+  ],
+  "D66T111": [
+   "T111",
+   "D66"
+  ],
+  "D66T058": [
+   "T058",
+   "D66"
+  ],
+  "D66T184": [
+   "T184",
+   "D66"
+  ],
+  "D66T125": [
+   "T125",
+   "D66"
+  ],
+  "D66T152": [
+   "T152",
+   "D66"
+  ],
+  "D67T043": [
+   "T043",
+   "D67"
+  ],
+  "D67T213": [
+   "T213",
+   "D67"
+  ],
+  "D67T008": [
+   "T008",
+   "D67"
+  ],
+  "D67T157": [
+   "T157",
+   "D67"
+  ],
+  "D67S17": [
+   "S17",
+   "D67"
+  ],
+  "D68T075": [
+   "T075",
+   "D68"
+  ],
+  "D68T101": [
+   "T101",
+   "D68"
+  ],
+  "D68T181": [
+   "T181",
+   "D68"
+  ],
+  "D68T240": [
+   "T240",
+   "D68"
+  ],
+  "D68S06": [
+   "S06",
+   "D68"
+  ],
+  "D69T141": [
+   "T141",
+   "D69"
+  ],
+  "D69T038": [
+   "T038",
+   "D69"
+  ],
+  "D69T113": [
+   "T113",
+   "D69"
+  ],
+  "D69T151": [
+   "T151",
+   "D69"
+  ],
+  "D69T003": [
+   "T003",
+   "D69"
+  ],
+  "D70T078": [
+   "T078",
+   "D70"
+  ],
+  "D70T175": [
+   "T175",
+   "D70"
+  ],
+  "D70T100": [
+   "T100",
+   "D70"
+  ],
+  "D70T138": [
+   "T138",
+   "D70"
+  ],
+  "D70S18": [
+   "S18",
+   "D70"
+  ],
+  "D71T072": [
+   "T072",
+   "D71"
+  ],
+  "D71T221": [
+   "T221",
+   "D71"
+  ],
+  "D71T052": [
+   "T052",
+   "D71"
+  ],
+  "D71T117": [
+   "T117",
+   "D71"
+  ],
+  "D71T165": [
+   "T165",
+   "D71"
+  ],
+  "D72T041": [
+   "T041",
+   "D72"
+  ],
+  "D72T012": [
+   "T012",
+   "D72"
+  ],
+  "D72T139": [
+   "T139",
+   "D72"
+  ],
+  "D72T099": [
+   "T099",
+   "D72"
+  ],
+  "D72T114": [
+   "T114",
+   "D72"
+  ],
+  "D73T195": [
+   "T195",
+   "D73"
+  ],
+  "D73T069": [
+   "T069",
+   "D73"
+  ],
+  "D73T086": [
+   "T086",
+   "D73"
+  ],
+  "D73T186": [
+   "T186",
+   "D73"
+  ],
+  "D73S17": [
+   "S17",
+   "D73"
+  ],
+  "D74T097": [
+   "T097",
+   "D74"
+  ],
+  "D74T137": [
+   "T137",
+   "D74"
+  ],
+  "D74T051": [
+   "T051",
+   "D74"
+  ],
+  "D74S07": [
+   "S07",
+   "D74"
+  ],
+  "D74T229": [
+   "T229",
+   "D74"
+  ],
+  "D75T026": [
+   "T026",
+   "D75"
+  ],
+  "D75T146": [
+   "T146",
+   "D75"
+  ],
+  "D75T068": [
+   "T068",
+   "D75"
+  ],
+  "D75T116": [
+   "T116",
+   "D75"
+  ],
+  "D75T172": [
+   "T172",
+   "D75"
+  ],
+  "D76T178": [
+   "T178",
+   "D76"
+  ],
+  "D76T223": [
+   "T223",
+   "D76"
+  ],
+  "D76T103": [
+   "T103",
+   "D76"
+  ],
+  "D76T039": [
+   "T039",
+   "D76"
+  ],
+  "D76S16": [
+   "S16",
+   "D76"
+  ],
+  "D77T167": [
+   "T167",
+   "D77"
+  ],
+  "D77S01": [
+   "S01",
+   "D77"
+  ],
+  "D77S09": [
+   "S09",
+   "D77"
+  ],
+  "D77T079": [
+   "T079",
+   "D77"
+  ],
+  "D77T071": [
+   "T071",
+   "D77"
+  ],
+  "D78T092": [
+   "T092",
+   "D78"
+  ],
+  "D78T210": [
+   "T210",
+   "D78"
+  ],
+  "D78T135": [
+   "T135",
+   "D78"
+  ],
+  "D78T074": [
+   "T074",
+   "D78"
+  ],
+  "D78S13": [
+   "S13",
+   "D78"
+  ],
+  "D79T187": [
+   "T187",
+   "D79"
+  ],
+  "D79T076": [
+   "T076",
+   "D79"
+  ],
+  "D79T159": [
+   "T159",
+   "D79"
+  ],
+  "D79T049": [
+   "T049",
+   "D79"
+  ],
+  "D79S15": [
+   "S15",
+   "D79"
+  ],
+  "D80S02": [
+   "S02",
+   "D80"
+  ],
+  "D80T093": [
+   "T093",
+   "D80"
+  ],
+  "D80T107": [
+   "T107",
+   "D80"
+  ],
+  "D80T169": [
+   "T169",
+   "D80"
+  ],
+  "D80T239": [
+   "T239",
+   "D80"
+  ],
+  "D81T056": [
+   "T056",
+   "D81"
+  ],
+  "D81T096": [
+   "T096",
+   "D81"
+  ],
+  "D81T070": [
+   "T070",
+   "D81"
+  ],
+  "D81S03": [
+   "S03",
+   "D81"
+  ],
+  "D81T154": [
+   "T154",
+   "D81"
+  ],
+  "D82S05": [
+   "S05",
+   "D82"
+  ],
+  "D82T140": [
+   "T140",
+   "D82"
+  ],
+  "D82T209": [
+   "T209",
+   "D82"
+  ],
+  "D82T156": [
+   "T156",
+   "D82"
+  ],
+  "D82S18": [
+   "S18",
+   "D82"
+  ],
+  "D83T188": [
+   "T188",
+   "D83"
+  ],
+  "D83T133": [
+   "T133",
+   "D83"
+  ],
+  "D83T081": [
+   "T081",
+   "D83"
+  ],
+  "D83T053": [
+   "T053",
+   "D83"
+  ],
+  "D83T067": [
+   "T067",
+   "D83"
+  ],
+  "D84T098": [
+   "T098",
+   "D84"
+  ],
+  "D84S14": [
+   "S14",
+   "D84"
+  ],
+  "D84T004": [
+   "T004",
+   "D84"
+  ],
+  "D84T182": [
+   "T182",
+   "D84"
+  ],
+  "D84T063": [
+   "T063",
+   "D84"
+  ],
+  "D85T055": [
+   "T055",
+   "D85"
+  ],
+  "D85T120": [
+   "T120",
+   "D85"
+  ],
+  "D85T202": [
+   "T202",
+   "D85"
+  ],
+  "D85S08": [
+   "S08",
+   "D85"
+  ],
+  "D85S15": [
+   "S15",
+   "D85"
+  ],
+  "D86T077": [
+   "T077",
+   "D86"
+  ],
+  "D86T143": [
+   "T143",
+   "D86"
+  ],
+  "D86T094": [
+   "T094",
+   "D86"
+  ],
+  "D86T002": [
+   "T002",
+   "D86"
+  ],
+  "D86T232": [
+   "T232",
+   "D86"
+  ],
+  "D87T054": [
+   "T054",
+   "D87"
+  ],
+  "D87T164": [
+   "T164",
+   "D87"
+  ],
+  "D87T108": [
+   "T108",
+   "D87"
+  ],
+  "D87T021": [
+   "T021",
+   "D87"
+  ],
+  "D87T095": [
+   "T095",
+   "D87"
+  ],
+  "D88T089": [
+   "T089",
+   "D88"
+  ],
+  "D88T142": [
+   "T142",
+   "D88"
+  ],
+  "D88T062": [
+   "T062",
+   "D88"
+  ],
+  "D88T174": [
+   "T174",
+   "D88"
+  ],
+  "D88S17": [
+   "S17",
+   "D88"
+  ],
+  "D89T080": [
+   "T080",
+   "D89"
+  ],
+  "D89T189": [
+   "T189",
+   "D89"
+  ],
+  "D89T134": [
+   "T134",
+   "D89"
+  ],
+  "D89T064": [
+   "T064",
+   "D89"
+  ],
+  "D89T148": [
+   "T148",
+   "D89"
+  ],
+  "D90T225": [
+   "T225",
+   "D90"
+  ],
+  "D90T018": [
+   "T018",
+   "D90"
+  ],
+  "D90T123": [
+   "T123",
+   "D90"
+  ],
+  "D90T050": [
+   "T050",
+   "D90"
+  ],
+  "D90T099": [
+   "T099",
+   "D90"
+  ]
+ },
+ "batches": [
+  {
+   "run": "label_b1",
+   "folder": "pilot/labelset/b1",
+   "pairs": [
+    "D01T096",
+    "D01T068",
+    "D01T048",
+    "D01T173",
+    "D01S15",
+    "D02T222",
+    "D02T155",
+    "D02T088",
+    "D02T129",
+    "D02T118",
+    "D03T032",
+    "D03T185",
+    "D03T095",
+    "D03T151",
+    "D03T067",
+    "D04T133",
+    "D04T018",
+    "D04T056",
+    "D04T230",
+    "D04S18",
+    "D05T083",
+    "D05T108",
+    "D05T099",
+    "D05T183",
+    "D05T166",
+    "D06T112",
+    "D06S05",
+    "D06T070",
+    "D06T016",
+    "D06T125",
+    "D07T040",
+    "D07T197",
+    "D07T060",
+    "D07T178",
+    "D07S17",
+    "D08T098",
+    "D08T006",
+    "D08T211",
+    "D08T113",
+    "D08T163",
+    "D09T140",
+    "D09T080",
+    "D09T046",
+    "D09T162",
+    "D09T011",
+    "D10T101",
+    "D10T090",
+    "D10T045",
+    "D10T246",
+    "D10S16"
+   ]
+  },
+  {
+   "run": "label_b2",
+   "folder": "pilot/labelset/b2",
+   "pairs": [
+    "D11T062",
+    "D11T128",
+    "D11T189",
+    "D11T109",
+    "D11T149",
+    "D12T086",
+    "D12T094",
+    "D12T131",
+    "D12T169",
+    "D12T251",
+    "D13T105",
+    "D13T044",
+    "D13T014",
+    "D13T064",
+    "D13S16",
+    "D14T100",
+    "D14T180",
+    "D14T115",
+    "D14T082",
+    "D14T074",
+    "D15T217",
+    "D15T153",
+    "D15T025",
+    "D15T057",
+    "D15T130",
+    "D16T049",
+    "D16T066",
+    "D16T029",
+    "D16T147",
+    "D16S18",
+    "D17T179",
+    "D17S08",
+    "D17T218",
+    "D17T081",
+    "D17T110",
+    "D18T092",
+    "D18T069",
+    "D18S14",
+    "D18T124",
+    "D18T190",
+    "D19T042",
+    "D19T079",
+    "D19T097",
+    "D19T241",
+    "D19S15",
+    "D20T036",
+    "D20T159",
+    "D20T063",
+    "D20T226",
+    "D20T093"
+   ]
+  },
+  {
+   "run": "label_b3",
+   "folder": "pilot/labelset/b3",
+   "pairs": [
+    "D21T085",
+    "D21T117",
+    "D21S10",
+    "D21T158",
+    "D21T182",
+    "D22T037",
+    "D22T020",
+    "D22T174",
+    "D22T095",
+    "D22S17",
+    "D23T058",
+    "D23T143",
+    "D23T089",
+    "D23T055",
+    "D23T111",
+    "D24T219",
+    "D24T031",
+    "D24T126",
+    "D24T101",
+    "D24T191",
+    "D25T072",
+    "D25T132",
+    "D25T121",
+    "D25T021",
+    "D25S16",
+    "D26T077",
+    "D26T039",
+    "D26T224",
+    "D26T165",
+    "D26T065",
+    "D27T047",
+    "D27T116",
+    "D27T215",
+    "D27T148",
+    "D27T099",
+    "D28T177",
+    "D28T015",
+    "D28T127",
+    "D28T076",
+    "D28S17",
+    "D29T054",
+    "D29T216",
+    "D29T150",
+    "D29T139",
+    "D29T059",
+    "D30T091",
+    "D30T024",
+    "D30T119",
+    "D30T170",
+    "D30T100"
+   ]
+  },
+  {
+   "run": "label_b4",
+   "folder": "pilot/labelset/b4",
+   "pairs": [
+    "D31T135",
+    "D31T157",
+    "D31T172",
+    "D31T041",
+    "D31S15",
+    "D32T114",
+    "D32T087",
+    "D32T094",
+    "D32T017",
+    "D32T071",
+    "D33T220",
+    "D33T188",
+    "D33T043",
+    "D33T005",
+    "D33T138",
+    "D34T164",
+    "D34T237",
+    "D34T092",
+    "D34T084",
+    "D34S18",
+    "D35T123",
+    "D35T061",
+    "D35T184",
+    "D35T145",
+    "D35T051",
+    "D36S06",
+    "D36T098",
+    "D36T075",
+    "D36T134",
+    "D36T030",
+    "D37T103",
+    "D37T206",
+    "D37T038",
+    "D37T097",
+    "D37S15",
+    "D38T160",
+    "D38T176",
+    "D38T078",
+    "D38T104",
+    "D38T244",
+    "D39T073",
+    "D39T019",
+    "D39T141",
+    "D39T120",
+    "D39T052",
+    "D40S09",
+    "D40T187",
+    "D40T009",
+    "D40T228",
+    "D40S16"
+   ]
+  },
+  {
+   "run": "label_b5",
+   "folder": "pilot/labelset/b5",
+   "pairs": [
+    "D41T074",
+    "D41T144",
+    "D41T096",
+    "D41S07",
+    "D41T106",
+    "D42T034",
+    "D42T093",
+    "D42T067",
+    "D42T152",
+    "D42T181",
+    "D43T136",
+    "D43T053",
+    "D43T192",
+    "D43T081",
+    "D43S17",
+    "D44T171",
+    "D44T050",
+    "D44S11",
+    "D44S12",
+    "D44T033",
+    "D45T247",
+    "D45T077",
+    "D45T095",
+    "D45T070",
+    "D45T168",
+    "D46T142",
+    "D46T186",
+    "D46T035",
+    "D46T100",
+    "D46S18",
+    "D47T091",
+    "D47T057",
+    "D47T146",
+    "D47T062",
+    "D47T102",
+    "D48T252",
+    "D48T137",
+    "D48S13",
+    "D48T045",
+    "D48T099",
+    "D49T156",
+    "D49T066",
+    "D49T027",
+    "D49T175",
+    "D49S16",
+    "D50T090",
+    "D50T233",
+    "D50T101",
+    "D50T010",
+    "D50T122"
+   ]
+  },
+  {
+   "run": "label_b6",
+   "folder": "pilot/labelset/b6",
+   "pairs": [
+    "D51T063",
+    "D51T200",
+    "D51T084",
+    "D51T179",
+    "D51T154",
+    "D52T124",
+    "D52T048",
+    "D52T248",
+    "D52T093",
+    "D52S15",
+    "D53T080",
+    "D53T044",
+    "D53T167",
+    "D53T107",
+    "D53T127",
+    "D54T001",
+    "D54T183",
+    "D54T061",
+    "D54T214",
+    "D54T161",
+    "D55T022",
+    "D55T118",
+    "D55T129",
+    "D55T089",
+    "D55S17",
+    "D56T180",
+    "D56T046",
+    "D56T092",
+    "D56T064",
+    "D56T085",
+    "D57T109",
+    "D57T185",
+    "D57T163",
+    "D57T227",
+    "D57T096",
+    "D58T131",
+    "D58T059",
+    "D58T028",
+    "D58T040",
+    "D58S18",
+    "D59T110",
+    "D59T162",
+    "D59T065",
+    "D59T042",
+    "D59T242",
+    "D60T130",
+    "D60T082",
+    "D60S04",
+    "D60T097",
+    "D60T177"
+   ]
+  },
+  {
+   "run": "label_b7",
+   "folder": "pilot/labelset/b7",
+   "pairs": [
+    "D61T013",
+    "D61T128",
+    "D61T073",
+    "D61T083",
+    "D61S16",
+    "D62T153",
+    "D62T094",
+    "D62T112",
+    "D62T170",
+    "D62T037",
+    "D63T199",
+    "D63T088",
+    "D63T047",
+    "D63T149",
+    "D63T023",
+    "D64T115",
+    "D64T235",
+    "D64T060",
+    "D64T098",
+    "D64S15",
+    "D65T191",
+    "D65T126",
+    "D65T095",
+    "D65T007",
+    "D65T087",
+    "D66T111",
+    "D66T058",
+    "D66T184",
+    "D66T125",
+    "D66T152",
+    "D67T043",
+    "D67T213",
+    "D67T008",
+    "D67T157",
+    "D67S17",
+    "D68T075",
+    "D68T101",
+    "D68T181",
+    "D68T240",
+    "D68S06",
+    "D69T141",
+    "D69T038",
+    "D69T113",
+    "D69T151",
+    "D69T003",
+    "D70T078",
+    "D70T175",
+    "D70T100",
+    "D70T138",
+    "D70S18"
+   ]
+  },
+  {
+   "run": "label_b8",
+   "folder": "pilot/labelset/b8",
+   "pairs": [
+    "D71T072",
+    "D71T221",
+    "D71T052",
+    "D71T117",
+    "D71T165",
+    "D72T041",
+    "D72T012",
+    "D72T139",
+    "D72T099",
+    "D72T114",
+    "D73T195",
+    "D73T069",
+    "D73T086",
+    "D73T186",
+    "D73S17",
+    "D74T097",
+    "D74T137",
+    "D74T051",
+    "D74S07",
+    "D74T229",
+    "D75T026",
+    "D75T146",
+    "D75T068",
+    "D75T116",
+    "D75T172",
+    "D76T178",
+    "D76T223",
+    "D76T103",
+    "D76T039",
+    "D76S16",
+    "D77T167",
+    "D77S01",
+    "D77S09",
+    "D77T079",
+    "D77T071",
+    "D78T092",
+    "D78T210",
+    "D78T135",
+    "D78T074",
+    "D78S13",
+    "D79T187",
+    "D79T076",
+    "D79T159",
+    "D79T049",
+    "D79S15",
+    "D80S02",
+    "D80T093",
+    "D80T107",
+    "D80T169",
+    "D80T239"
+   ]
+  },
+  {
+   "run": "label_b9",
+   "folder": "pilot/labelset/b9",
+   "pairs": [
+    "D81T056",
+    "D81T096",
+    "D81T070",
+    "D81S03",
+    "D81T154",
+    "D82S05",
+    "D82T140",
+    "D82T209",
+    "D82T156",
+    "D82S18",
+    "D83T188",
+    "D83T133",
+    "D83T081",
+    "D83T053",
+    "D83T067",
+    "D84T098",
+    "D84S14",
+    "D84T004",
+    "D84T182",
+    "D84T063",
+    "D85T055",
+    "D85T120",
+    "D85T202",
+    "D85S08",
+    "D85S15",
+    "D86T077",
+    "D86T143",
+    "D86T094",
+    "D86T002",
+    "D86T232",
+    "D87T054",
+    "D87T164",
+    "D87T108",
+    "D87T021",
+    "D87T095",
+    "D88T089",
+    "D88T142",
+    "D88T062",
+    "D88T174",
+    "D88S17",
+    "D89T080",
+    "D89T189",
+    "D89T134",
+    "D89T064",
+    "D89T148",
+    "D90T225",
+    "D90T018",
+    "D90T123",
+    "D90T050",
+    "D90T099"
+   ]
+  }
+ ],
+ "grid_version": 2,
+ "subject_split_rule": "a pair is test when its background or its subject has split test"
+}

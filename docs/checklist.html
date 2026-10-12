@@ -1,0 +1,261 @@
+<title>CamouBlend Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; a status strip on top, then the phases of the thesis plan in order, each a checklist. */
+:root {
+  --bg: #f3f5f1;
+  --panel: #ffffff;
+  --ink: #1b221d;
+  --muted: #5f6b62;
+  --line: #d9dfd8;
+  --moss: #3f6b4a;        /* Model 1 / done */
+  --moss-soft: #e2ece3;
+  --earth: #a2622e;       /* Model 2 / in progress */
+  --earth-soft: #f5e8dc;
+  --wait: #6b6f9a;        /* waiting on someone */
+  --wait-soft: #e6e7f2;
+  --font-ui: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --font-data: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141815; --panel: #1c211d; --ink: #e7ece6; --muted: #9aa69c; --line: #2e3630;
+    --moss: #7fb08b; --moss-soft: #223226; --earth: #e0a06a; --earth-soft: #3a2a1d; --wait: #a9acd8; --wait-soft: #262838;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141815; --panel: #1c211d; --ink: #e7ece6; --muted: #9aa69c; --line: #2e3630;
+  --moss: #7fb08b; --moss-soft: #223226; --earth: #e0a06a; --earth-soft: #3a2a1d; --wait: #a9acd8; --wait-soft: #262838;
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-ui); }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; display: grid; gap: 22px; }
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: 1.08rem; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 62ch; }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+
+.strip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 14px; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: baseline; }
+.stat b { font-size: 1.6rem; font-weight: 600; display: block; line-height: 1.1; }
+.stat span { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.bar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; display: flex; }
+.bar i { display: block; height: 100%; }
+.bar .d { background: var(--moss); }
+.bar .p { background: var(--earth); }
+.now { display: grid; gap: 6px; }
+.now p { margin: 0; }
+.now .k { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; margin-right: 6px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: inherit; font-size: 0.88rem; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  border-radius: 99px; padding: 5px 13px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.filters button:focus-visible, .tick:focus-visible { outline: 2px solid var(--earth); outline-offset: 2px; }
+
+.phase { display: grid; gap: 10px; }
+.phase-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline;
+  border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.phase-head .meta { color: var(--muted); font-size: 0.85rem; }
+.phase-goal { color: var(--muted); margin: 0; font-size: 0.92rem; max-width: 68ch; }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.item { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 10px 12px; border-radius: 8px;
+  background: var(--panel); border: 1px solid var(--line); }
+.item.done { background: transparent; }
+.item.done .t { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.tick { width: 24px; height: 24px; border-radius: 6px; border: 2px solid var(--line); background: var(--panel); display: grid;
+  place-items: center; padding: 0; cursor: default; color: var(--bg); font-size: 14px; line-height: 1; margin-top: 1px; }
+.tick.can { cursor: pointer; }
+.done .tick { background: var(--moss); border-color: var(--moss); }
+.doing .tick { border-color: var(--earth); background: linear-gradient(90deg, var(--earth) 50%, var(--panel) 50%); }
+.waiting .tick { border-color: var(--wait); border-style: dashed; }
+.body { min-width: 0; display: grid; gap: 3px; }
+.top { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.t { font-weight: 500; }
+.chip { font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 4px; padding: 1px 6px; font-weight: 600; }
+.chip.user { background: var(--earth-soft); color: var(--earth); }
+.chip.claude { background: var(--moss-soft); color: var(--moss); }
+.chip.both { background: var(--wait-soft); color: var(--wait); }
+.state { font-size: 0.78rem; color: var(--earth); font-weight: 600; }
+.waiting .state { color: var(--wait); }
+.d { color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
+.note { font-size: 0.88rem; border-left: 2px solid var(--moss); padding-left: 8px; overflow-wrap: anywhere; }
+.when { font-size: 0.75rem; color: var(--muted); }
+code { font-family: var(--font-data); font-size: 0.86em; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.empty { background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; padding: 22px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: 0.85rem; align-items: center; }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.legend .tick { width: 16px; height: 16px; border-radius: 4px; }
+footer { color: var(--muted); font-size: 0.82rem; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width 0.4s ease; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>CamouBlend: hai agent tự train</h1>
+    <p class="sub">Checklist công việc tới hạn <b>05/11/2026</b>. Claude tick từng mục khi xong. Mục có nhãn <b>Anh</b> là việc của anh; anh tự bấm ô để tick.</p>
+  </header>
+
+  <section class="strip" aria-label="Tổng quan">
+    <div class="stats">
+      <div class="stat"><b class="num" id="pct">–</b><span>hoàn thành</span></div>
+      <div class="stat"><b class="num" id="cDone">–</b><span>xong</span></div>
+      <div class="stat"><b class="num" id="cDoing">–</b><span>đang làm</span></div>
+      <div class="stat"><b class="num" id="cTodo">–</b><span>chưa làm</span></div>
+      <div class="stat"><b class="num" id="days">–</b><span>ngày tới hạn</span></div>
+    </div>
+    <div class="bar" aria-hidden="true"><i class="d" id="barD" style="width:0"></i><i class="p" id="barP" style="width:0"></i></div>
+    <div class="now">
+      <p><span class="k">Đang làm</span><span id="nowText">Đang tải…</span></p>
+      <p><span class="k">Kế tiếp</span><span id="nextText">–</span></p>
+      <p class="when" id="updated"></p>
+    </div>
+  </section>
+
+  <div class="filters" role="group" aria-label="Lọc">
+    <button id="f-all" data-f="all" aria-pressed="true">Tất cả</button>
+    <button id="f-open" data-f="open" aria-pressed="false">Chưa xong</button>
+    <button id="f-user" data-f="user" aria-pressed="false">Việc của anh</button>
+    <button id="f-claude" data-f="claude" aria-pressed="false">Việc của Claude</button>
+  </div>
+  <div class="legend">
+    <span><i class="tick" style="background:var(--moss);border-color:var(--moss)"></i>xong</span>
+    <span><i class="tick" style="border-color:var(--earth);background:linear-gradient(90deg,var(--earth) 50%,var(--panel) 50%)"></i>đang làm</span>
+    <span><i class="tick" style="border-color:var(--wait);border-style:dashed"></i>đang chờ</span>
+    <span><i class="tick"></i>chưa làm</span>
+  </div>
+
+  <main id="list">
+    <div class="empty">Đang tải checklist. Trang đọc danh sách việc từ kho dữ liệu của trang; nếu trống, Claude chưa nạp mục nào.</div>
+  </main>
+
+  <footer>Trạng thái lưu trong kho dữ liệu của trang và cập nhật trực tiếp. Hạn chót và các mốc tuần theo <code>docs/AGENT_PLAN.html</code>.</footer>
+</div>
+
+<script>
+(() => {
+  const DEADLINE = new Date("2026-11-05T23:59:00+07:00");
+  const OWNER = { user: "Anh", claude: "Claude", both: "Anh + Claude" };
+  const STATE = { doing: "đang làm", waiting: "đang chờ" };
+  const S = { phases: [], items: [], meta: null, filter: "all", db: null, canWrite: false, busy: new Set() };
+  const $ = (id) => document.getElementById(id);
+  try { S.filter = localStorage.getItem("camo-checklist-filter") || "all"; } catch (e) {}
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // `code` spans: text between backticks renders as code, everything else escaped
+  const rich = (s) => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+  const fmt = (iso) => {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (isNaN(d)) return "";
+    return d.toLocaleString("vi-VN", { hour: "2-digit", minute: "2-digit", day: "2-digit", month: "2-digit", timeZone: "Asia/Ho_Chi_Minh" });
+  };
+
+  function visible(it) {
+    if (S.filter === "open") return it.status !== "done";
+    if (S.filter === "user") return it.owner === "user" || it.owner === "both";
+    if (S.filter === "claude") return it.owner === "claude" || it.owner === "both";
+    return true;
+  }
+
+  function render() {
+    const items = S.items;
+    const done = items.filter((i) => i.status === "done").length;
+    const doing = items.filter((i) => i.status === "doing" || i.status === "waiting").length;
+    const total = items.length;
+    $("pct").textContent = total ? Math.round((100 * done) / total) + "%" : "–";
+    $("cDone").textContent = total ? done : "–";
+    $("cDoing").textContent = total ? doing : "–";
+    $("cTodo").textContent = total ? total - done - doing : "–";
+    $("days").textContent = Math.max(0, Math.ceil((DEADLINE - new Date()) / 86400000));
+    $("barD").style.width = total ? (100 * done) / total + "%" : "0";
+    $("barP").style.width = total ? (100 * doing) / total + "%" : "0";
+    if (S.meta) {
+      $("nowText").innerHTML = rich(S.meta.now || "–");
+      $("nextText").innerHTML = rich(S.meta.next || "–");
+      $("updated").textContent = S.meta.updated_utc ? "Cập nhật lúc " + fmt(S.meta.updated_utc) : "";
+    }
+    for (const b of document.querySelectorAll(".filters button")) b.setAttribute("aria-pressed", String(b.dataset.f === S.filter));
+
+    const list = $("list");
+    if (!S.phases.length) {
+      list.innerHTML = S.db
+        ? '<div class="empty">Chưa có mục nào trong checklist. Claude sẽ nạp danh sách việc vào đây.</div>'
+        : '<div class="empty">Trang này cần kho dữ liệu của artifact để hiện checklist. Hãy mở trang trong claude.ai khi đã đăng nhập.</div>';
+      return;
+    }
+    const byPhase = {};
+    for (const it of items) (byPhase[it.phase] ||= []).push(it);
+    const html = [];
+    for (const ph of [...S.phases].sort((a, b) => a.order - b.order)) {
+      const all = (byPhase[ph.id] || []).sort((a, b) => a.order - b.order);
+      const shown = all.filter(visible);
+      if (!shown.length && S.filter !== "all") continue;
+      const pd = all.filter((i) => i.status === "done").length;
+      html.push(`<section class="phase" aria-labelledby="ph-${esc(ph.id)}">
+        <div class="phase-head"><h2 id="ph-${esc(ph.id)}">${esc(ph.title)}</h2>
+          <span class="meta num">${pd}/${all.length}${ph.due ? " · hạn " + esc(ph.due) : ""}</span></div>
+        ${ph.goal ? `<p class="phase-goal">${rich(ph.goal)}</p>` : ""}
+        <div class="bar" aria-hidden="true"><i class="d" style="width:${all.length ? (100 * pd) / all.length : 0}%"></i></div>
+        <ul class="items">${shown.map(itemHtml).join("")}</ul></section>`);
+    }
+    list.innerHTML = html.join("") || '<div class="empty">Không có mục nào khớp bộ lọc này.</div>';
+  }
+
+  function itemHtml(it) {
+    const can = S.canWrite && !S.busy.has(it.id);
+    const label = it.status === "done" ? "Bỏ tick: " : "Tick xong: ";
+    return `<li class="item ${esc(it.status)}">
+      <button class="tick${can ? " can" : ""}" data-id="${esc(it.id)}" ${can ? "" : "disabled"} aria-label="${label}${esc(it.title)}">${it.status === "done" ? "✓" : ""}</button>
+      <div class="body">
+        <div class="top"><span class="t">${rich(it.title)}</span><span class="chip ${esc(it.owner)}">${esc(OWNER[it.owner] || it.owner)}</span>${STATE[it.status] ? `<span class="state">${STATE[it.status]}</span>` : ""}</div>
+        ${it.detail ? `<div class="d">${rich(it.detail)}</div>` : ""}
+        ${it.note ? `<div class="note">${rich(it.note)}</div>` : ""}
+        ${it.updated ? `<div class="when">${it.status === "done" ? "Xong" : "Cập nhật"} ${fmt(it.updated)}</div>` : ""}
+      </div></li>`;
+  }
+
+  document.querySelector(".filters").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-f]");
+    if (!b) return;
+    S.filter = b.dataset.f;
+    try { localStorage.setItem("camo-checklist-filter", S.filter); } catch (err) {}
+    render();
+  });
+
+  $("list").addEventListener("click", async (e) => {
+    const b = e.target.closest(".tick.can");
+    if (!b || !S.db) return;
+    const it = S.items.find((i) => i.id === b.dataset.id);
+    if (!it || S.busy.has(it.id)) return;
+    S.busy.add(it.id);
+    render();
+    try {
+      await S.db.doc("items/" + it.id).update({ status: it.status === "done" ? "todo" : "done", updated: new Date().toISOString() });
+    } catch (err) {
+      if (err && err.code === "invalid_argument") S.canWrite = false; // this viewer cannot write shared data
+    } finally {
+      S.busy.delete(it.id);
+      render();
+    }
+  });
+
+  render();
+  (async () => {
+    const db = await window.claude?.use?.("db");
+    if (!db) { render(); return; }
+    S.db = db;
+    const user = await window.claude.use("user");
+    const can = user ? await user.can("data.write") : null;
+    S.canWrite = can !== false;
+    const rows = (snap) => snap.docs.filter((d) => d.exists).map((d) => ({ id: d.id, ...d.data() }));
+    db.collection("phases").onSnapshot((s) => { S.phases = rows(s); render(); }, () => render());
+    db.collection("items").onSnapshot((s) => { S.items = rows(s); render(); }, () => render());
+    db.doc("meta/status").onSnapshot((d) => { S.meta = d.exists ? d.data() : null; render(); }, () => render());
+  })();
+})();
+</script>

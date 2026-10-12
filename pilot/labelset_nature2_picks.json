@@ -1,0 +1,25 @@
+{
+ "note": "New natural types picked by eye (2026-10-12) from outputs/backgrounds_v2/sheet_<type>.png: full-frame surface, no animals/people/objects. Open Images 'Leaf' gave living foliage only (and a salamander), so leaf litter comes from GTOS-mobile dry_leaf (256 px, upscaled). Order matters: labelset.nature_split puts the 1st mud and the 2nd seabed image in test.",
+ "picks": {
+  "leaf_litter": [
+   "bg_nature_raw/gtos/gtos-mobile/test/dry_leaf/IMG_0204_frame40.jpg",
+   "bg_nature_raw/gtos/gtos-mobile/train/dry_leaf/384_sample073_02_i00h.jpg"
+  ],
+  "snow": [
+   "outputs/backgrounds_v2/nature/snow/snow_00.jpg",
+   "outputs/backgrounds_v2/nature/snow/snow_09.jpg"
+  ],
+  "seabed": [
+   "outputs/backgrounds_v2/nature/seabed/seabed_10.jpg",
+   "outputs/backgrounds_v2/nature/seabed/seabed_13.jpg"
+  ],
+  "rock": [
+   "outputs/backgrounds_v2/nature/rock/rock_10.jpg",
+   "outputs/backgrounds_v2/nature/rock/rock_06.jpg"
+  ],
+  "mud": [
+   "outputs/backgrounds_v2/nature/mud/mud_15.jpg",
+   "outputs/backgrounds_v2/nature/mud/mud_06.jpg"
+  ]
+ }
+}

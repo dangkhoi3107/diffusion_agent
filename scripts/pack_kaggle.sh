@@ -8,7 +8,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 STAGE="$ROOT/dist/camo-code"
 rm -rf "$STAGE" "$ROOT/dist/camo-code.zip"
 mkdir -p "$STAGE"
-cp -r "$ROOT/camo" "$ROOT/configs" "$ROOT/docs" "$ROOT/kaggle" "$ROOT/tests" "$ROOT/run.sh" "$ROOT/requirements.txt" "$ROOT/README.md" "$STAGE/"
+cp -r "$ROOT/camo" "$ROOT/configs" "$ROOT/docs" "$ROOT/kaggle" "$ROOT/pilot" "$ROOT/tools" "$ROOT/tests" "$ROOT/run.sh" "$ROOT/requirements.txt" "$ROOT/README.md" "$STAGE/"
 find "$STAGE" -name "__pycache__" -type d -prune -exec rm -rf {} +
 (cd "$ROOT/dist" && zip -qr camo-code.zip camo-code)
 echo "Built $ROOT/dist/camo-code.zip"

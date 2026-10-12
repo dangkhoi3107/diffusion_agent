@@ -1,0 +1,38 @@
+{
+ "version": "0.0.1",
+ "configurations": [
+  {
+   "name": "label",
+   "runtimeExecutable": "python3",
+   "runtimeArgs": [
+    "scripts/label_server.py",
+    "--port",
+    "8765"
+   ],
+   "port": 8765
+  },
+  {
+   "name": "demo-sim",
+   "runtimeExecutable": "python3",
+   "runtimeArgs": [
+    "-m",
+    "camo.demo",
+    "--simulate",
+    "--port",
+    "7861"
+   ],
+   "port": 7861
+  },
+  {
+   "name": "demo",
+   "runtimeExecutable": "python3",
+   "runtimeArgs": [
+    "-m",
+    "camo.demo",
+    "--port",
+    "7863"
+   ],
+   "port": 7863
+  }
+ ]
+}

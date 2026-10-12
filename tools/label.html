@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CamouBlend Quick Label</title>
+<style>
+:root {
+  --bg: #f5f5f2; --panel: #ffffff; --ink: #1c1c1a; --muted: #6b6b65; --line: #dcdcd5; --chip: #ececE7;
+  --accent: #2f6f5e; --accent-ink: #fff;
+  --c1: #c2410c; --c2: #2f6f5e; --c3: #a16207; --c4: #6b7280; --c5: #b91c1c; --c0: #7c3aed;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151514; --panel: #1f1f1d; --ink: #ecece6; --muted: #a3a39b; --line: #34342f; --chip: #2a2a27;
+    --accent: #6fbfa6; --accent-ink: #0c1a16;
+    --c1: #fb923c; --c2: #6fbfa6; --c3: #facc15; --c4: #9ca3af; --c5: #f87171; --c0: #c4b5fd;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 2; }
+header h1 { font-size: 15px; margin: 0 6px 0 0; }
+.btn { border: 1px solid var(--line); background: var(--chip); color: var(--ink); padding: 6px 11px; border-radius: 6px; cursor: pointer; font: inherit; }
+.btn.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+input[type=text], select { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; font: inherit; }
+.muted { color: var(--muted); }
+main { padding: 16px; max-width: 1300px; margin: 0 auto; }
+.empty { max-width: 620px; margin: 48px auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+.wrap { display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.main-img { width: 100%; max-height: 72vh; object-fit: contain; display: block; border-radius: 6px; background: var(--chip); }
+.refs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.refs img { width: 100%; border-radius: 6px; display: block; }
+.refs small { color: var(--muted); }
+.labels { display: grid; gap: 8px; margin-top: 10px; }
+.lab { display: flex; gap: 10px; align-items: center; text-align: left; border: 2px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 8px; padding: 9px 12px; cursor: pointer; font: inherit; }
+.lab kbd { min-width: 22px; text-align: center; border-radius: 4px; padding: 1px 6px; font-weight: 700; color: #fff; }
+.lab.sel { border-color: var(--ink); font-weight: 600; }
+.meta { font-size: 12px; color: var(--muted); margin-top: 8px; word-break: break-word; }
+.nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 8px; flex-wrap: wrap; }
+table { border-collapse: collapse; font-size: 13px; }
+th, td { border-bottom: 1px solid var(--line); padding: 5px 7px; text-align: center; }
+th:first-child, td:first-child { text-align: left; }
+.dot { display: inline-block; min-width: 22px; padding: 1px 4px; border-radius: 4px; color: #fff; font-weight: 700; font-size: 12px; cursor: pointer; }
+.blank { color: var(--muted); cursor: pointer; }
+.toast { position: fixed; bottom: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 8px 12px; border-radius: 6px; opacity: 0; transition: opacity .2s; }
+.toast.on { opacity: .92; }
+h3 { margin: 18px 0 8px; font-size: 14px; }
+.scroll { overflow-x: auto; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Quick Label</h1>
+  <label class="btn">Chọn thư mục outputs<input id="folder" type="file" webkitdirectory directory multiple hidden></label>
+  <span id="tabs"><button class="btn on" data-tab="L">Gán nhãn</button> <button class="btn" data-tab="S">Tổng hợp</button></span>
+  <select id="run"></select>
+  <label class="muted"><input type="checkbox" id="todo" checked> chỉ ảnh chưa gán</label>
+  <span>Người chấm <input id="rater" type="text" size="8" placeholder="khoi"></span>
+  <button class="btn" id="export">Xuất labels.jsonl</button>
+  <label class="btn">Nhập<input id="import" type="file" accept=".jsonl" hidden></label>
+  <span class="muted" id="status"></span>
+  <span class="muted" id="kstatus"></span>
+</header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+<script>
+// One key per image. Labels describe visibility, the property the pilot is trying to control.
+const LABELS = [
+  ["1", "too_visible", "Quá rõ: như dán lên nền", "--c1"],
+  ["2", "good", "Đạt: hòa nền mà vẫn nhận ra", "--c2"],
+  ["3", "subtle", "Hơi chìm: phải nhìn kỹ mới thấy", "--c3"],
+  ["4", "missing", "Mất hẳn: không thấy subject", "--c4"],
+  ["5", "broken", "Lỗi: méo / sai cấu trúc / nền hỏng", "--c5"],
+  ["0", "unsure", "Không chắc", "--c0"],
+];
+const BY = Object.fromEntries(LABELS.map((l) => [l[1], l]));
+const S = { files: new Map(), items: [], view: [], i: 0, tab: "L", rec: {}, log: [], server: false, pin: null, done: [] };
+// Label set runs (scripts/labelset.py) are shown blind: shuffled, without the config name, so each image is judged alone.
+const LABELSET = "@labelset", isSet = (x) => String(x.run).startsWith("label_b");
+const hash = (t) => { let h = 2166136261; for (const c of t) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; };
+const blindOrder = (items) => [...items.filter((x) => !isSet(x)), ...items.filter(isSet).sort((a, b) => hash(a.uid) - hash(b.uid))];
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+const toast = (t) => { const el = $("#toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 1200); };
+const rater = () => $("#rater").value.trim() || "rater";
+const url = (p) => { if (S.server) return p; const f = S.files.get(p); return f ? (f._u ||= URL.createObjectURL(f)) : ""; };
+
+S.log = store.get("quicklabel:log", []);
+for (const r of S.log) S.rec[r.rater + "|" + r.uid] = r;
+$("#rater").value = store.get("quicklabel:rater", "");
+const current = (uid) => S.rec[rater() + "|" + uid];
+
+$("#folder").addEventListener("change", async (e) => {
+  const list = [...e.target.files];
+  if (!list.length) return;
+  S.files.clear();
+  for (const f of list) S.files.set(f.webkitRelativePath, f);
+  const items = [];
+  for (const [path, f] of S.files) {
+    if (!path.endsWith("/trials_latest.json")) continue;
+    const root = path.slice(0, -"/trials_latest.json".length);
+    const run = root.split("/").pop();
+    for (const t of JSON.parse(await f.text())) {
+      if (t.status !== "ok") continue;
+      const out = `${root}/runs/${t.pair_id}/${t.config_id}/output.png`;
+      if (!S.files.has(out)) continue;
+      items.push({ ...t, run, root, uid: `${run}/${t.trial_id}`, out,
+        subj: `${root}/inputs_normalized/${t.subject_id}.png`, bg: `${root}/inputs_normalized/${t.background_id}.png` });
+    }
+  }
+  const cmp = (a, b) => String(a).localeCompare(String(b), "en", { numeric: true });
+  S.items = items.sort((a, b) => cmp(a.run, b.run) || cmp(a.pair_id, b.pair_id) || cmp(a.config_id, b.config_id));
+  const runs = [...new Set(items.map((x) => x.run))];
+  $("#run").innerHTML = `<option value="">Tất cả (${runs.length} lần chạy)</option>` + runs.map((r) => `<option>${esc(r)}</option>`).join("");
+  toast(`Đã tải ${items.length} ảnh từ ${runs.join(", ")}`);
+  refilter(); render();
+});
+$("#run").onchange = $("#todo").onchange = () => { refilter(); render(); };
+$("#rater").onchange = () => { store.set("quicklabel:rater", $("#rater").value.trim()); refilter(); render(); };
+$("#tabs").onclick = (e) => {
+  const t = e.target.dataset.tab; if (!t) return;
+  S.tab = t; [...$("#tabs").children].forEach((b) => b.classList.toggle("on", b.dataset.tab === t)); render();
+};
+$("#export").onclick = () => {
+  const blob = new Blob([S.log.map((r) => JSON.stringify(r)).join("\n") + "\n"], { type: "application/jsonl" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `labels_${rater()}.jsonl`; a.click();
+};
+$("#import").onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const recs = (await f.text()).split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  const seen = new Set(S.log.map((r) => r.id));
+  for (const r of recs) if (!seen.has(r.id)) { S.log.push(r); S.rec[r.rater + "|" + r.uid] = r; }
+  store.set("quicklabel:log", S.log); toast(`Nhập ${recs.length} nhãn`); refilter(); render();
+};
+
+function fillRuns() {
+  const keep = $("#run").value, runs = [...new Set(S.items.map((x) => x.run))];
+  const set = runs.filter((r) => r.startsWith("label_b"));
+  $("#run").innerHTML = (set.length ? `<option value="${LABELSET}">Bộ 3000 ảnh (${set.length} đợt đã về)</option>` : "")
+    + `<option value="">Tất cả (${runs.length} lần chạy)</option>` + runs.map((r) => `<option>${esc(r)}</option>`).join("");
+  const switchNow = set.length > 0 && !S.hadSet; S.hadSet = set.length > 0;  // first batch arrived: show it
+  $("#run").value = switchNow ? LABELSET : keep;
+  if ($("#run").selectedIndex < 0) $("#run").value = "";
+}
+const inRun = (x) => { const run = $("#run").value; return !run || (run === LABELSET ? isSet(x) : x.run === run); };
+function refilter() {
+  const todo = $("#todo").checked;
+  const keep = S.view[S.i]?.uid;
+  S.view = S.items.filter((x) => inRun(x) && (!todo || !current(x.uid) || x.uid === S.pin));
+  const j = S.view.findIndex((x) => x.uid === keep);
+  S.i = j >= 0 ? j : Math.min(S.i, Math.max(0, S.view.length - 1));
+}
+function setLabel(label) {
+  const x = S.view[S.i]; if (!x) return;
+  const note = $("#note") ? $("#note").value.trim() : "";
+  const r = { id: `l_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`, created_utc: new Date().toISOString(),
+              rater: rater(), uid: x.uid, run: x.run, trial_id: x.trial_id, pair_id: x.pair_id, config_id: x.config_id,
+              category: x.category, subject_label: x.subject_label, overrides: x.overrides, label, note: note || null,
+              schema: "quick_label_v1" };
+  S.log.push(r); S.rec[r.rater + "|" + r.uid] = r; store.set("quicklabel:log", S.log);
+  S.done.push(x.uid); S.pin = null;
+  toast(`Đã lưu: ${BY[label][2].split(":")[0]}`);
+  if (S.server) fetch("api/label", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(r) })
+    .then((res) => { if (!res.ok) throw new Error(res.status); }).catch(() => toast("CHƯA LƯU ĐƯỢC: server tắt?"));
+  if ($("#todo").checked) { const uid = x.uid; refilter(); if (S.view[S.i]?.uid === uid) S.i++; }
+  else S.i = Math.min(S.view.length - 1, S.i + 1);
+  render();
+}
+
+function renderL() {
+  if (!S.view.length) return `<div class="empty"><h3>Không còn ảnh nào${$("#todo").checked ? " chưa gán nhãn" : ""}</h3><p class="muted">Bỏ tick "chỉ ảnh chưa gán" để xem lại, hoặc qua tab Tổng hợp.</p></div>`;
+  const x = S.view[S.i], cur = current(x.uid);
+  const blind = isSet(x);
+  const changes = blind ? "ẩn khi gán (chấm từng ảnh độc lập)" : Object.entries(x.overrides || {}).map(([k, v]) => `${k.split(".").pop()}=${v}`).join(", ") || "default";
+  return `<div class="wrap">
+    <div class="card">
+      <div class="nav"><span>${$("#todo").checked ? `Còn <b>${S.view.length}</b> ảnh chưa gán` : `<b>${S.i + 1}</b> / ${S.view.length}`} <span class="muted">· ${esc(x.run)} · ${esc(x.pair_id)}${blind ? "" : " · " + esc(x.config_id)}</span></span>
+        <span><button class="btn" id="prev">← trước</button> <button class="btn" id="next">sau →</button></span></div>
+      <img class="main-img" src="${url(x.out)}" alt="output">
+      <div class="meta">${esc(x.subject_label)} · nền ${esc(x.background_id)}${x.bg_material ? ` (${esc(x.bg_material)}${x.bg_group ? ", " + esc(x.bg_group) : ""})` : ""} · thay đổi: ${esc(changes)}</div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="labels">${LABELS.map(([k, v, text, c]) => `<button class="lab ${cur?.label === v ? "sel" : ""}" data-l="${v}"><kbd style="background:${css(c)}">${k}</kbd>${text}</button>`).join("")}</div>
+        <p class="muted" style="margin:10px 0 4px">Ghi chú (tuỳ chọn, gõ trước khi bấm số)</p>
+        <input id="note" type="text" style="width:100%" value="${esc(cur?.note || "")}" placeholder="vd: mắt mèo quá xanh">
+      </div>
+      <div class="card" style="margin-top:12px">
+        <div class="refs"><div><img src="${url(x.subj)}" alt=""><small>subject</small></div><div><img src="${url(x.bg)}" alt=""><small>nền</small></div></div>
+      </div>
+      <p class="muted" style="font-size:12px">Phím: 1–5, 0 = gán và sang ảnh tiếp · Z = quay lại ảnh vừa gán để sửa · ← → chuyển ảnh${S.server ? " · tự lưu" : ""}</p>
+    </div></div>`;
+}
+function bindL() {
+  document.querySelectorAll(".lab").forEach((b) => (b.onclick = () => setLabel(b.dataset.l)));
+  $("#prev") && ($("#prev").onclick = () => { S.i = Math.max(0, S.i - 1); render(); });
+  $("#next") && ($("#next").onclick = () => { S.i = Math.min(S.view.length - 1, S.i + 1); render(); });
+}
+
+function renderS() {
+  const items = S.items.filter(inRun);
+  const runs = [...new Set(items.map((x) => x.run))];
+  let html = `<div class="card"><p class="muted">Bấm vào ô để mở ảnh đó. Chữ cái = nhãn của ${esc(rater())}.</p>
+    <p>${LABELS.map(([k, v, text, c]) => `<span class="dot" style="background:${css(c)}">${k}</span> ${text.split(":")[0]}`).join(" &nbsp; ")}</p>`;
+  for (const r of runs) {
+    const its = items.filter((x) => x.run === r);
+    const cfgs = [...new Set(its.map((x) => x.config_id))].sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+    const pairs = [...new Set(its.map((x) => x.pair_id))];
+    html += `<h3>${esc(r)}</h3><div class="scroll"><table><tr><th>Pair</th>${cfgs.map((c) => `<th>${c}</th>`).join("")}</tr>`;
+    for (const p of pairs) {
+      const first = its.find((x) => x.pair_id === p);
+      html += `<tr><td>${p} <span class="muted">${esc(first.subject_label.split(",")[0])}+${esc(first.background_id)}</span></td>` + cfgs.map((c) => {
+        const x = its.find((y) => y.pair_id === p && y.config_id === c);
+        if (!x) return "<td></td>";
+        const l = current(x.uid);
+        return `<td>${l ? `<span class="dot" data-uid="${esc(x.uid)}" style="background:${css(BY[l.label][3])}">${BY[l.label][0]}</span>` : `<span class="blank" data-uid="${esc(x.uid)}">·</span>`}</td>`;
+      }).join("") + "</tr>";
+    }
+    // per-config counts: which settings give "good" most often
+    html += `<tr><td><b>Đạt / đã gán</b></td>` + cfgs.map((c) => {
+      const ls = its.filter((x) => x.config_id === c).map((x) => current(x.uid)).filter(Boolean);
+      return `<td>${ls.filter((l) => l.label === "good").length}/${ls.length}</td>`;
+    }).join("") + `</tr></table></div>`;
+  }
+  return html + "</div>";
+}
+function bindS() {
+  document.querySelectorAll("[data-uid]").forEach((el) => (el.onclick = () => {
+    $("#todo").checked = false; refilter();
+    S.i = Math.max(0, S.view.findIndex((x) => x.uid === el.dataset.uid));
+    S.tab = "L"; [...$("#tabs").children].forEach((b) => b.classList.toggle("on", b.dataset.tab === "L")); render();
+  }));
+}
+
+function render() {
+  const done = S.items.filter((x) => current(x.uid)).length;
+  $("#status").innerHTML = S.items.length ? `đã gán <b>${done}</b>/${S.items.length}` : "";
+  if (!S.items.length) {
+    $("#app").innerHTML = `<div class="empty"><h3>Mở thư mục kết quả</h3><ol>
+      <li>Bấm <b>Chọn thư mục outputs</b> và chọn <code>diffusion/outputs</code> (chứa <code>pilot</code>, <code>pilot_v2</code>, <code>pilot_v3</code>…), hoặc một thư mục run.</li>
+      <li>Nhìn ảnh, bấm phím <b>1–5</b> (hoặc 0 nếu không chắc). Tự sang ảnh tiếp.</li>
+      <li>Xong thì bấm <b>Xuất labels.jsonl</b>, lưu vào <code>outputs/</code>.</li></ol>
+      <p class="muted">Ảnh chỉ đọc trên máy, không gửi đi đâu. Nhãn cũng được giữ trong trình duyệt này.</p></div>`;
+    return;
+  }
+  if (S.tab === "L") { $("#app").innerHTML = renderL(); bindL(); } else { $("#app").innerHTML = renderS(); bindS(); }
+}
+document.addEventListener("keydown", (e) => {
+  if (S.tab !== "L" || !S.view.length) return;
+  const typing = ["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName) && document.activeElement.id !== "note";
+  if (typing) return;
+  const hit = LABELS.find((l) => l[0] === e.key);
+  if (hit && document.activeElement.id !== "note") { e.preventDefault(); setLabel(hit[1]); return; }
+  if (hit && document.activeElement.id === "note" && e.altKey) { e.preventDefault(); setLabel(hit[1]); return; }
+  if (e.key === "Enter" && document.activeElement.id === "note") { document.activeElement.blur(); return; }
+  if (document.activeElement.id === "note") return;
+  if ((e.key === "z" || e.key === "Z" || e.key === "Backspace") && S.done.length) {
+    e.preventDefault(); S.pin = S.done.pop(); refilter();
+    S.i = Math.max(0, S.view.findIndex((x) => x.uid === S.pin)); render(); return;
+  }
+  if (e.key === "ArrowLeft") { S.i = Math.max(0, S.i - 1); render(); }
+  if (e.key === "ArrowRight") { S.i = Math.min(S.view.length - 1, S.i + 1); render(); }
+});
+// New Kaggle batches land in outputs/ while labelling: pick them up without a reload, keep the current image.
+async function poll() {
+  try {
+    const st = await fetch("api/status").then((r) => r.json());
+    const t = (iso) => iso ? new Date(iso).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) : "?";
+    $("#kstatus").textContent = !st.state ? "" : st.state === "rendering"
+      ? `Kaggle: đang render đợt ${st.batch}/${st.batches} (từ ${t(st.started_utc)}, ~2,5 giờ/đợt), ảnh tự hiện khi xong`
+      : st.state === "done" ? `Kaggle: đã về đủ ${st.batches} đợt`
+      : st.state === "paused" ? `Kaggle tạm dừng: ${st.message || ""}` : `Kaggle lỗi ở đợt ${st.batch}: báo Claude`;
+    const items = await fetch("api/items").then((r) => r.json());
+    if (items.length === S.items.length) return;
+    const fresh = items.length - S.items.length;
+    S.items = blindOrder(items); fillRuns(); refilter();
+    if (document.activeElement.id !== "note") render();
+    if (fresh > 0) toast(`Có thêm ${fresh} ảnh mới từ Kaggle`);
+  } catch {}
+}
+(async () => {
+  try {
+    const res = await fetch("api/items");
+    if (!res.ok) throw new Error();
+    S.server = true;
+    S.items = blindOrder(await res.json());
+    const saved = await fetch("api/labels").then((r) => r.json());
+    S.log = saved; S.rec = {};
+    for (const r of saved) S.rec[r.rater + "|" + r.uid] = r;
+    if (!$("#rater").value) $("#rater").value = "tac_gia";
+    for (const id of ["#export", "#import"]) $(id).closest("label, button").style.display = "none";
+    $("#folder").closest("label").style.display = "none";
+    fillRuns();
+    toast("Nhãn được lưu tự động vào outputs/labels.jsonl");
+    refilter();
+    poll(); setInterval(poll, 30000);
+  } catch {}
+  render();
+})();
+</script>
+</body>
+</html>

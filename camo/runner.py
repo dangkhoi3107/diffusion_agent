@@ -7,6 +7,7 @@ import json
 import os
 import shutil
 import threading
+import time
 import traceback
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -39,6 +40,8 @@ class PairResult:
     seed: int
     seconds: float
     metrics: Dict[str, Any]
+    steps_run: Optional[int] = None
+    timings: Dict[str, float] = field(default_factory=dict)  # measured stage seconds
 
     def record(self) -> Dict[str, Any]:
         return {
@@ -48,6 +51,8 @@ class PairResult:
             "prompt": self.prompt,
             "seed": self.seed,
             "seconds": round(self.seconds, 2),
+            "steps_run": self.steps_run,
+            "timings": {k: round(v, 3) for k, v in self.timings.items()},
             "softedge_source": self.prepared.softedge_source,
             "metrics": self.metrics,
         }
@@ -143,7 +148,10 @@ def run_pair(
 ) -> PairResult:
     session.check_stop()
     name = subject_name or cfg.prompt.subject_name or subject_name_from_path(subject_path)
+    timings: Dict[str, float] = {}
+    started = time.perf_counter()
     prepared = session.preprocessor.prepare(cfg, subject_path, background_path, seed)
+    timings["preprocess"] = time.perf_counter() - started
 
     def on_step(i: int, n: int) -> None:
         session.check_stop()
@@ -151,17 +159,24 @@ def run_pair(
             progress(i, n)
 
     gen = session.generator.generate(cfg, prepared, seed, name, on_step)
+    timings["render"] = gen.seconds
 
     metrics: Dict[str, Any] = {}
+    started = time.perf_counter()
     if cfg.metrics.enabled:
         metrics.update(compute_metrics(np.array(gen.image), prepared.background, prepared.canny_clean, prepared.mask.mask))
         scorer = session.clip(cfg)
         if scorer is not None:
             metrics.update(scorer.score(gen.image, to_pil(prepared.background), to_pil(prepared.subject), name))
 
-    result = PairResult(gen.image, prepared, name, gen.prompt, gen.seed, gen.seconds, metrics)
+    timings["metrics"] = time.perf_counter() - started
+
+    result = PairResult(gen.image, prepared, name, gen.prompt, gen.seed, gen.seconds, metrics, gen.steps_run, timings)
     if out_dir:
+        started = time.perf_counter()
         save_pair(result, cfg, out_dir)
+        timings["save"] = time.perf_counter() - started
+        save_json(os.path.join(out_dir, "result.json"), result.record())  # rewrite with the save timing
     return result
 
 

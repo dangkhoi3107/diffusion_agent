@@ -4,3 +4,10 @@ outputs/
 dist/
 *.zip
 .venv/
+pilot/frozen_inputs/
+pilot/bgmap_inputs/
+# raw image data (fetched by scripts/fetch_*.py, packed to Kaggle by scripts/pack_kaggle.sh)
+bg_dtd/
+bg_nature_raw/
+pilot/labelset/*/candidates/
+.slide-build/

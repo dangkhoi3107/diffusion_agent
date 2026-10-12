@@ -1,0 +1,22 @@
+# Audit v3 (2026-10-03). Kết quả v1/v2 (input giống hệt, hash khớp):
+# - layout.scale 1.0 -> 0.65 đổi ảnh mạnh nhất (3-10/255): v1 quá rõ, v2 động vật gần như biến mất.
+# - bg_strength có tác dụng (4-21/255); blend.alpha_end, blend.end_frac gần như 0 (<0.3/255);
+#   mask.gamma, guidance_sub, control.end_frac, softedge chỉ 0.5-3/255.
+# v3: scale giữa (0.8) + hai config chẩn đoán xem blend có thật sự tạo ra subject không
+# (D0 alpha=0: chỉ còn nhánh nền -> phải KHÔNG có subject; D1 alpha=1: subject tối đa),
+# cộng các thay đổi lớn để tìm tham số điều khiển được độ rõ.
+base:
+  layout.scale: 0.8
+
+audit_pairs: [P02, P05, P11, P13]
+
+configs:
+  C00: {}
+  D0: {blend.profile: constant, blend.alpha_end: 0.0}   # chẩn đoán: không blend
+  D1: {blend.profile: constant, blend.alpha_end: 1.0}   # chẩn đoán: blend tối đa trong mask
+  C01: {sampling.bg_strength: 0.45}
+  C02: {sampling.bg_strength: 0.60}
+  C03: {control.layer_weights: uniform}                 # v1/v2 dùng preset A (tắt 4 block độ phân giải cao)
+  C04: {sampling.guidance_sub: 5.0}
+  C05: {sampling.couple_mode: both}
+  C06: {mask.floor: 0.3}                                # blend cả ngoài nét HED

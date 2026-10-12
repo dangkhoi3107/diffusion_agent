@@ -1,0 +1,1350 @@
+{
+ "note": "Subjects v2 picked by eye from outputs/subjects_v2/sheet_*.png (2026-10-12). Rejected: fragmented or occluded masks, head-only crops, costumes, riders/saddles, clutter, renders/cartoons. 'species' fixes Open Images class noise (red pandas under Bear, salamanders under Lizard, clownfish under Goldfish); flying birds moved to wings_spread. Gap fill (outputs/subjects_v2b, fetch_subjects.py --extra): Leeds butterflies, many_legs cut out with SAM from Open Images boxes. Placed by silhouette: legless-looking millipedes -> legless_elongated, domed ladybugs -> round_shelled, ladybugs with visible legs -> many_legs. Duplicate photos (one Open Images image under two classes) kept once.",
+ "picks": {
+  "quadruped_compact": [
+   {
+    "id": "A01_0",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_0.png"
+   },
+   {
+    "id": "A01_1",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_1.png"
+   },
+   {
+    "id": "A01_2",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_2.png"
+   },
+   {
+    "id": "A01_3",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_3.png"
+   },
+   {
+    "id": "A01_4",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_4.png"
+   },
+   {
+    "id": "A01_5",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_5.png"
+   },
+   {
+    "id": "A01_7",
+    "species": "Cat",
+    "src": "outputs/subjects_v2/candidates/A01_7.png"
+   },
+   {
+    "id": "A02_1",
+    "species": "Dog",
+    "src": "outputs/subjects_v2/candidates/A02_1.png"
+   },
+   {
+    "id": "A02_2",
+    "species": "Dog",
+    "src": "outputs/subjects_v2/candidates/A02_2.png"
+   },
+   {
+    "id": "A02_3",
+    "species": "Dog",
+    "src": "outputs/subjects_v2/candidates/A02_3.png"
+   },
+   {
+    "id": "A02_4",
+    "species": "Dog",
+    "src": "outputs/subjects_v2/candidates/A02_4.png"
+   },
+   {
+    "id": "A02_5",
+    "species": "Dog",
+    "src": "outputs/subjects_v2/candidates/A02_5.png"
+   },
+   {
+    "id": "A02_6",
+    "species": "Dog",
+    "src": "outputs/subjects_v2/candidates/A02_6.png"
+   },
+   {
+    "id": "A02_7",
+    "species": "African wild dog",
+    "src": "outputs/subjects_v2/candidates/A02_7.png"
+   },
+   {
+    "id": "A03_0",
+    "species": "Coyote",
+    "src": "outputs/subjects_v2/candidates/A03_0.png"
+   },
+   {
+    "id": "A03_1",
+    "species": "Jackal",
+    "src": "outputs/subjects_v2/candidates/A03_1.png"
+   },
+   {
+    "id": "A03_2",
+    "species": "Fox",
+    "src": "outputs/subjects_v2/candidates/A03_2.png"
+   },
+   {
+    "id": "A03_3",
+    "species": "Arctic fox",
+    "src": "outputs/subjects_v2/candidates/A03_3.png"
+   },
+   {
+    "id": "A03_4",
+    "species": "Jackal",
+    "src": "outputs/subjects_v2/candidates/A03_4.png"
+   },
+   {
+    "id": "A03_5",
+    "species": "Fox",
+    "src": "outputs/subjects_v2/candidates/A03_5.png"
+   },
+   {
+    "id": "A03_6",
+    "species": "Gray fox",
+    "src": "outputs/subjects_v2/candidates/A03_6.png"
+   },
+   {
+    "id": "A03_7",
+    "species": "Jackal",
+    "src": "outputs/subjects_v2/candidates/A03_7.png"
+   },
+   {
+    "id": "A04_1",
+    "species": "Rabbit",
+    "src": "outputs/subjects_v2/candidates/A04_1.png"
+   },
+   {
+    "id": "A04_2",
+    "species": "Rabbit",
+    "src": "outputs/subjects_v2/candidates/A04_2.png"
+   },
+   {
+    "id": "A04_3",
+    "species": "Rabbit",
+    "src": "outputs/subjects_v2/candidates/A04_3.png"
+   },
+   {
+    "id": "A04_5",
+    "species": "Rabbit",
+    "src": "outputs/subjects_v2/candidates/A04_5.png"
+   },
+   {
+    "id": "A04_6",
+    "species": "Rabbit",
+    "src": "outputs/subjects_v2/candidates/A04_6.png"
+   },
+   {
+    "id": "A04_7",
+    "species": "Rabbit",
+    "src": "outputs/subjects_v2/candidates/A04_7.png"
+   },
+   {
+    "id": "A05_0",
+    "species": "Squirrel",
+    "src": "outputs/subjects_v2/candidates/A05_0.png"
+   },
+   {
+    "id": "A05_1",
+    "species": "Chipmunk",
+    "src": "outputs/subjects_v2/candidates/A05_1.png"
+   },
+   {
+    "id": "A05_2",
+    "species": "Ground squirrel",
+    "src": "outputs/subjects_v2/candidates/A05_2.png"
+   },
+   {
+    "id": "A05_4",
+    "species": "Chipmunk",
+    "src": "outputs/subjects_v2/candidates/A05_4.png"
+   },
+   {
+    "id": "A05_5",
+    "species": "Ground squirrel",
+    "src": "outputs/subjects_v2/candidates/A05_5.png"
+   },
+   {
+    "id": "A05_6",
+    "species": "Squirrel",
+    "src": "outputs/subjects_v2/candidates/A05_6.png"
+   },
+   {
+    "id": "A11_4",
+    "species": "Red panda",
+    "src": "outputs/subjects_v2/candidates/A11_4.png"
+   },
+   {
+    "id": "A11_5",
+    "species": "Red panda",
+    "src": "outputs/subjects_v2/candidates/A11_5.png"
+   }
+  ],
+  "quadruped_tall": [
+   {
+    "id": "A06_1",
+    "species": "Horse",
+    "src": "outputs/subjects_v2/candidates/A06_1.png"
+   },
+   {
+    "id": "A06_2",
+    "species": "Horse",
+    "src": "outputs/subjects_v2/candidates/A06_2.png"
+   },
+   {
+    "id": "A06_3",
+    "species": "Horse",
+    "src": "outputs/subjects_v2/candidates/A06_3.png"
+   },
+   {
+    "id": "A06_4",
+    "species": "Horse",
+    "src": "outputs/subjects_v2/candidates/A06_4.png"
+   },
+   {
+    "id": "A06_6",
+    "species": "Horse",
+    "src": "outputs/subjects_v2/candidates/A06_6.png"
+   },
+   {
+    "id": "A08_0",
+    "species": "Goat",
+    "src": "outputs/subjects_v2/candidates/A08_0.png"
+   },
+   {
+    "id": "A08_1",
+    "species": "Goat",
+    "src": "outputs/subjects_v2/candidates/A08_1.png"
+   },
+   {
+    "id": "A08_3",
+    "species": "Mountain goat",
+    "src": "outputs/subjects_v2/candidates/A08_3.png"
+   },
+   {
+    "id": "A08_4",
+    "species": "Deer",
+    "src": "outputs/subjects_v2/candidates/A08_4.png"
+   },
+   {
+    "id": "A08_5",
+    "species": "Goat",
+    "src": "outputs/subjects_v2/candidates/A08_5.png"
+   },
+   {
+    "id": "A08_6",
+    "species": "Goat",
+    "src": "outputs/subjects_v2/candidates/A08_6.png"
+   },
+   {
+    "id": "A08_7",
+    "species": "Ibex",
+    "src": "outputs/subjects_v2/candidates/A08_7.png"
+   },
+   {
+    "id": "A09_0",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_0.png"
+   },
+   {
+    "id": "A09_1",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_1.png"
+   },
+   {
+    "id": "A09_2",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_2.png"
+   },
+   {
+    "id": "A09_3",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_3.png"
+   },
+   {
+    "id": "A09_4",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_4.png"
+   },
+   {
+    "id": "A09_5",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_5.png"
+   },
+   {
+    "id": "A09_6",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_6.png"
+   },
+   {
+    "id": "A09_7",
+    "species": "Giraffe",
+    "src": "outputs/subjects_v2/candidates/A09_7.png"
+   },
+   {
+    "id": "A12_2",
+    "species": "Alpaca",
+    "src": "outputs/subjects_v2/candidates/A12_2.png"
+   }
+  ],
+  "quadruped_heavy": [
+   {
+    "id": "A10_1",
+    "species": "Elephant",
+    "src": "outputs/subjects_v2/candidates/A10_1.png"
+   },
+   {
+    "id": "A10_2",
+    "species": "Elephant",
+    "src": "outputs/subjects_v2/candidates/A10_2.png"
+   },
+   {
+    "id": "A10_5",
+    "species": "Elephant",
+    "src": "outputs/subjects_v2/candidates/A10_5.png"
+   },
+   {
+    "id": "A10_7",
+    "species": "Elephant",
+    "src": "outputs/subjects_v2/candidates/A10_7.png"
+   },
+   {
+    "id": "A11_0",
+    "species": "Bear",
+    "src": "outputs/subjects_v2/candidates/A11_0.png"
+   },
+   {
+    "id": "A11_3",
+    "species": "Bear",
+    "src": "outputs/subjects_v2/candidates/A11_3.png"
+   },
+   {
+    "id": "A08_2",
+    "species": "Sheep",
+    "src": "outputs/subjects_v2/candidates/A08_2.png"
+   },
+   {
+    "id": "A12_1",
+    "species": "Sheep",
+    "src": "outputs/subjects_v2/candidates/A12_1.png"
+   },
+   {
+    "id": "A12_4",
+    "species": "Sheep",
+    "src": "outputs/subjects_v2/candidates/A12_4.png"
+   },
+   {
+    "id": "A12_6",
+    "species": "Bighorn sheep",
+    "src": "outputs/subjects_v2/candidates/A12_6.png"
+   },
+   {
+    "id": "A12_0",
+    "species": "Cattle",
+    "src": "outputs/subjects_v2/candidates/A12_0.png"
+   },
+   {
+    "id": "A13_1",
+    "species": "Cattle",
+    "src": "outputs/subjects_v2/candidates/A13_1.png"
+   },
+   {
+    "id": "A13_2",
+    "species": "Water buffalo",
+    "src": "outputs/subjects_v2/candidates/A13_2.png"
+   },
+   {
+    "id": "A13_3",
+    "species": "Cattle",
+    "src": "outputs/subjects_v2/candidates/A13_3.png"
+   },
+   {
+    "id": "A13_4",
+    "species": "Cattle",
+    "src": "outputs/subjects_v2/candidates/A13_4.png"
+   },
+   {
+    "id": "A13_5",
+    "species": "Cattle",
+    "src": "outputs/subjects_v2/candidates/A13_5.png"
+   },
+   {
+    "id": "A13_6",
+    "species": "Bison",
+    "src": "outputs/subjects_v2/candidates/A13_6.png"
+   },
+   {
+    "id": "A13_7",
+    "species": "Cattle",
+    "src": "outputs/subjects_v2/candidates/A13_7.png"
+   }
+  ],
+  "low_elongated_legged": [
+   {
+    "id": "A14_0",
+    "species": "Lizard",
+    "src": "outputs/subjects_v2/candidates/A14_0.png"
+   },
+   {
+    "id": "A14_1",
+    "species": "Salamander",
+    "src": "outputs/subjects_v2/candidates/A14_1.png"
+   },
+   {
+    "id": "A14_2",
+    "species": "Lizard",
+    "src": "outputs/subjects_v2/candidates/A14_2.png"
+   },
+   {
+    "id": "A14_3",
+    "species": "Lizard",
+    "src": "outputs/subjects_v2/candidates/A14_3.png"
+   },
+   {
+    "id": "A14_4",
+    "species": "Salamander",
+    "src": "outputs/subjects_v2/candidates/A14_4.png"
+   },
+   {
+    "id": "A14_6",
+    "species": "Salamander",
+    "src": "outputs/subjects_v2/candidates/A14_6.png"
+   },
+   {
+    "id": "A14_7",
+    "species": "Lizard",
+    "src": "outputs/subjects_v2/candidates/A14_7.png"
+   },
+   {
+    "id": "A15_0",
+    "species": "Crocodile",
+    "src": "outputs/subjects_v2/candidates/A15_0.png"
+   },
+   {
+    "id": "A15_1",
+    "species": "Crocodile",
+    "src": "outputs/subjects_v2/candidates/A15_1.png"
+   },
+   {
+    "id": "A15_2",
+    "species": "Crocodile",
+    "src": "outputs/subjects_v2/candidates/A15_2.png"
+   },
+   {
+    "id": "A15_4",
+    "species": "Crocodile",
+    "src": "outputs/subjects_v2/candidates/A15_4.png"
+   },
+   {
+    "id": "A15_6",
+    "species": "Crocodile",
+    "src": "outputs/subjects_v2/candidates/A15_6.png"
+   },
+   {
+    "id": "A16_1",
+    "species": "Otter",
+    "src": "outputs/subjects_v2/candidates/A16_1.png"
+   },
+   {
+    "id": "A16_3",
+    "species": "Otter",
+    "src": "outputs/subjects_v2/candidates/A16_3.png"
+   },
+   {
+    "id": "A16_4",
+    "species": "Otter",
+    "src": "outputs/subjects_v2/candidates/A16_4.png"
+   },
+   {
+    "id": "A16_5",
+    "species": "Otter",
+    "src": "outputs/subjects_v2/candidates/A16_5.png"
+   }
+  ],
+  "legless_elongated": [
+   {
+    "id": "A17_0",
+    "species": "Snake",
+    "src": "outputs/subjects_v2/candidates/A17_0.png"
+   },
+   {
+    "id": "A17_1",
+    "species": "Snake",
+    "src": "outputs/subjects_v2/candidates/A17_1.png"
+   },
+   {
+    "id": "A17_2",
+    "species": "Snake",
+    "src": "outputs/subjects_v2/candidates/A17_2.png"
+   },
+   {
+    "id": "A17_3",
+    "species": "Eel",
+    "src": "outputs/subjects_v2/candidates/A17_3.png"
+   },
+   {
+    "id": "A17_4",
+    "species": "Snake",
+    "src": "outputs/subjects_v2/candidates/A17_4.png"
+   },
+   {
+    "id": "A17_5",
+    "species": "Snake",
+    "src": "outputs/subjects_v2/candidates/A17_5.png"
+   },
+   {
+    "id": "A17_7",
+    "species": "Snake",
+    "src": "outputs/subjects_v2/candidates/A17_7.png"
+   },
+   {
+    "id": "A39_0",
+    "species": "Millipede",
+    "src": "outputs/subjects_v2b/candidates/A39_0.png"
+   },
+   {
+    "id": "A39_5",
+    "species": "Millipede",
+    "src": "outputs/subjects_v2b/candidates/A39_5.png"
+   },
+   {
+    "id": "A39_10",
+    "species": "Millipede",
+    "src": "outputs/subjects_v2b/candidates/A39_10.png"
+   }
+  ],
+  "streamlined_fins": [
+   {
+    "id": "A19_0",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_0.png"
+   },
+   {
+    "id": "A19_1",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_1.png"
+   },
+   {
+    "id": "A19_2",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_2.png"
+   },
+   {
+    "id": "A19_3",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_3.png"
+   },
+   {
+    "id": "A19_4",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_4.png"
+   },
+   {
+    "id": "A19_5",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_5.png"
+   },
+   {
+    "id": "A19_7",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A19_7.png"
+   },
+   {
+    "id": "A20_0",
+    "species": "Whale",
+    "src": "outputs/subjects_v2/candidates/A20_0.png"
+   },
+   {
+    "id": "A20_1",
+    "species": "Shark",
+    "src": "outputs/subjects_v2/candidates/A20_1.png"
+   },
+   {
+    "id": "A20_3",
+    "species": "Shark",
+    "src": "outputs/subjects_v2/candidates/A20_3.png"
+   },
+   {
+    "id": "A20_7",
+    "species": "Shark",
+    "src": "outputs/subjects_v2/candidates/A20_7.png"
+   },
+   {
+    "id": "A21_1",
+    "species": "Dolphin",
+    "src": "outputs/subjects_v2/candidates/A21_1.png"
+   },
+   {
+    "id": "A21_2",
+    "species": "Dolphin",
+    "src": "outputs/subjects_v2/candidates/A21_2.png"
+   },
+   {
+    "id": "A21_3",
+    "species": "Dolphin",
+    "src": "outputs/subjects_v2/candidates/A21_3.png"
+   },
+   {
+    "id": "A21_5",
+    "species": "Dolphin",
+    "src": "outputs/subjects_v2/candidates/A21_5.png"
+   },
+   {
+    "id": "A21_6",
+    "species": "Dolphin",
+    "src": "outputs/subjects_v2/candidates/A21_6.png"
+   },
+   {
+    "id": "A21_4",
+    "species": "Beluga whale",
+    "src": "outputs/subjects_v2/candidates/A21_4.png"
+   },
+   {
+    "id": "A22_0",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A22_0.png"
+   },
+   {
+    "id": "A22_2",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A22_2.png"
+   },
+   {
+    "id": "A22_3",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A22_3.png"
+   },
+   {
+    "id": "A22_4",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A22_4.png"
+   },
+   {
+    "id": "A22_5",
+    "species": "Fish",
+    "src": "outputs/subjects_v2/candidates/A22_5.png"
+   }
+  ],
+  "wings_spread": [
+   {
+    "id": "A25_0",
+    "species": "Bat",
+    "src": "outputs/subjects_v2/candidates/A25_0.png"
+   },
+   {
+    "id": "A25_1",
+    "species": "Bat",
+    "src": "outputs/subjects_v2/candidates/A25_1.png"
+   },
+   {
+    "id": "A25_2",
+    "species": "Bat",
+    "src": "outputs/subjects_v2/candidates/A25_2.png"
+   },
+   {
+    "id": "A25_3",
+    "species": "Bat",
+    "src": "outputs/subjects_v2/candidates/A25_3.png"
+   },
+   {
+    "id": "A25_4",
+    "species": "Bat",
+    "src": "outputs/subjects_v2/candidates/A25_4.png"
+   },
+   {
+    "id": "A26_3",
+    "species": "Owl",
+    "src": "outputs/subjects_v2/candidates/A26_3.png"
+   },
+   {
+    "id": "A26_6",
+    "species": "Owl",
+    "src": "outputs/subjects_v2/candidates/A26_6.png"
+   },
+   {
+    "id": "A29_4",
+    "species": "Duck",
+    "src": "outputs/subjects_v2/candidates/A29_4.png"
+   },
+   {
+    "id": "A23_0",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_0.png"
+   },
+   {
+    "id": "A23_1",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_1.png"
+   },
+   {
+    "id": "A23_2",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_2.png"
+   },
+   {
+    "id": "A23_3",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_3.png"
+   },
+   {
+    "id": "A23_4",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_4.png"
+   },
+   {
+    "id": "A23_5",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_5.png"
+   },
+   {
+    "id": "A23_6",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_6.png"
+   },
+   {
+    "id": "A23_7",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_7.png"
+   },
+   {
+    "id": "A23_9",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_9.png"
+   },
+   {
+    "id": "A23_10",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_10.png"
+   },
+   {
+    "id": "A23_11",
+    "species": "Butterfly",
+    "src": "outputs/subjects_v2b/candidates/A23_11.png"
+   }
+  ],
+  "bird_upright": [
+   {
+    "id": "A26_0",
+    "species": "Owl",
+    "src": "outputs/subjects_v2/candidates/A26_0.png"
+   },
+   {
+    "id": "A26_1",
+    "species": "Owl",
+    "src": "outputs/subjects_v2/candidates/A26_1.png"
+   },
+   {
+    "id": "A26_2",
+    "species": "Owl",
+    "src": "outputs/subjects_v2/candidates/A26_2.png"
+   },
+   {
+    "id": "A26_4",
+    "species": "Owl",
+    "src": "outputs/subjects_v2/candidates/A26_4.png"
+   },
+   {
+    "id": "A27_0",
+    "species": "Parrot",
+    "src": "outputs/subjects_v2/candidates/A27_0.png"
+   },
+   {
+    "id": "A27_1",
+    "species": "Parrot",
+    "src": "outputs/subjects_v2/candidates/A27_1.png"
+   },
+   {
+    "id": "A27_2",
+    "species": "Roller",
+    "src": "outputs/subjects_v2/candidates/A27_2.png"
+   },
+   {
+    "id": "A27_3",
+    "species": "Parrot",
+    "src": "outputs/subjects_v2/candidates/A27_3.png"
+   },
+   {
+    "id": "A27_4",
+    "species": "Parrot",
+    "src": "outputs/subjects_v2/candidates/A27_4.png"
+   },
+   {
+    "id": "A27_5",
+    "species": "Parrot",
+    "src": "outputs/subjects_v2/candidates/A27_5.png"
+   },
+   {
+    "id": "A27_6",
+    "species": "Toucan",
+    "src": "outputs/subjects_v2/candidates/A27_6.png"
+   },
+   {
+    "id": "A27_7",
+    "species": "Parrot",
+    "src": "outputs/subjects_v2/candidates/A27_7.png"
+   },
+   {
+    "id": "A28_0",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_0.png"
+   },
+   {
+    "id": "A28_1",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_1.png"
+   },
+   {
+    "id": "A28_2",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_2.png"
+   },
+   {
+    "id": "A28_3",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_3.png"
+   },
+   {
+    "id": "A28_4",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_4.png"
+   },
+   {
+    "id": "A28_6",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_6.png"
+   },
+   {
+    "id": "A28_7",
+    "species": "Penguin",
+    "src": "outputs/subjects_v2/candidates/A28_7.png"
+   },
+   {
+    "id": "A29_0",
+    "species": "Loon",
+    "src": "outputs/subjects_v2/candidates/A29_0.png"
+   },
+   {
+    "id": "A29_1",
+    "species": "Swan",
+    "src": "outputs/subjects_v2/candidates/A29_1.png"
+   },
+   {
+    "id": "A29_2",
+    "species": "Duck",
+    "src": "outputs/subjects_v2/candidates/A29_2.png"
+   },
+   {
+    "id": "A29_3",
+    "species": "Duck",
+    "src": "outputs/subjects_v2/candidates/A29_3.png"
+   },
+   {
+    "id": "A29_5",
+    "species": "Duck",
+    "src": "outputs/subjects_v2/candidates/A29_5.png"
+   },
+   {
+    "id": "A29_6",
+    "species": "Duck",
+    "src": "outputs/subjects_v2/candidates/A29_6.png"
+   },
+   {
+    "id": "A29_7",
+    "species": "Duck",
+    "src": "outputs/subjects_v2/candidates/A29_7.png"
+   }
+  ],
+  "round_shelled": [
+   {
+    "id": "A32_0",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_0.png"
+   },
+   {
+    "id": "A32_1",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_1.png"
+   },
+   {
+    "id": "A32_2",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_2.png"
+   },
+   {
+    "id": "A32_3",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_3.png"
+   },
+   {
+    "id": "A32_4",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_4.png"
+   },
+   {
+    "id": "A32_5",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_5.png"
+   },
+   {
+    "id": "A32_6",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_6.png"
+   },
+   {
+    "id": "A32_7",
+    "species": "Frog",
+    "src": "outputs/subjects_v2/candidates/A32_7.png"
+   },
+   {
+    "id": "A33_0",
+    "species": "Turtle",
+    "src": "outputs/subjects_v2/candidates/A33_0.png"
+   },
+   {
+    "id": "A33_1",
+    "species": "Turtle",
+    "src": "outputs/subjects_v2/candidates/A33_1.png"
+   },
+   {
+    "id": "A33_2",
+    "species": "Tortoise",
+    "src": "outputs/subjects_v2/candidates/A33_2.png"
+   },
+   {
+    "id": "A33_3",
+    "species": "Turtle",
+    "src": "outputs/subjects_v2/candidates/A33_3.png"
+   },
+   {
+    "id": "A33_4",
+    "species": "Turtle",
+    "src": "outputs/subjects_v2/candidates/A33_4.png"
+   },
+   {
+    "id": "A33_5",
+    "species": "Turtle",
+    "src": "outputs/subjects_v2/candidates/A33_5.png"
+   },
+   {
+    "id": "A33_6",
+    "species": "Tortoise",
+    "src": "outputs/subjects_v2/candidates/A33_6.png"
+   },
+   {
+    "id": "A33_7",
+    "species": "Turtle",
+    "src": "outputs/subjects_v2/candidates/A33_7.png"
+   },
+   {
+    "id": "A40_0",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_0.png"
+   },
+   {
+    "id": "A40_4",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_4.png"
+   },
+   {
+    "id": "A40_5",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_5.png"
+   },
+   {
+    "id": "A40_6",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_6.png"
+   },
+   {
+    "id": "A40_8",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_8.png"
+   },
+   {
+    "id": "A40_9",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_9.png"
+   },
+   {
+    "id": "A40_11",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_11.png"
+   }
+  ],
+  "many_legs": [
+   {
+    "id": "A34_0",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_0.png"
+   },
+   {
+    "id": "A34_1",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_1.png"
+   },
+   {
+    "id": "A34_2",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_2.png"
+   },
+   {
+    "id": "A34_3",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_3.png"
+   },
+   {
+    "id": "A34_4",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_4.png"
+   },
+   {
+    "id": "A34_5",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_5.png"
+   },
+   {
+    "id": "A34_6",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_6.png"
+   },
+   {
+    "id": "A34_7",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_7.png"
+   },
+   {
+    "id": "A34_8",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_8.png"
+   },
+   {
+    "id": "A34_10",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_10.png"
+   },
+   {
+    "id": "A34_11",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A34_11.png"
+   },
+   {
+    "id": "A36_4",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A36_4.png"
+   },
+   {
+    "id": "A36_8",
+    "species": "Spider",
+    "src": "outputs/subjects_v2b/candidates/A36_8.png"
+   },
+   {
+    "id": "A35_0",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_0.png"
+   },
+   {
+    "id": "A35_1",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_1.png"
+   },
+   {
+    "id": "A35_3",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_3.png"
+   },
+   {
+    "id": "A35_5",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_5.png"
+   },
+   {
+    "id": "A35_6",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_6.png"
+   },
+   {
+    "id": "A35_7",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_7.png"
+   },
+   {
+    "id": "A35_8",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_8.png"
+   },
+   {
+    "id": "A35_9",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A35_9.png"
+   },
+   {
+    "id": "A41_2",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A41_2.png"
+   },
+   {
+    "id": "A41_3",
+    "species": "Crab",
+    "src": "outputs/subjects_v2b/candidates/A41_3.png"
+   },
+   {
+    "id": "A36_1",
+    "species": "Mosquito",
+    "src": "outputs/subjects_v2b/candidates/A36_1.png"
+   },
+   {
+    "id": "A36_2",
+    "species": "Grasshopper",
+    "src": "outputs/subjects_v2b/candidates/A36_2.png"
+   },
+   {
+    "id": "A36_7",
+    "species": "Crane fly",
+    "src": "outputs/subjects_v2b/candidates/A36_7.png"
+   },
+   {
+    "id": "A36_10",
+    "species": "Lacewing",
+    "src": "outputs/subjects_v2b/candidates/A36_10.png"
+   },
+   {
+    "id": "A36_11",
+    "species": "Insect",
+    "src": "outputs/subjects_v2b/candidates/A36_11.png"
+   },
+   {
+    "id": "A37_0",
+    "species": "Weevil",
+    "src": "outputs/subjects_v2b/candidates/A37_0.png"
+   },
+   {
+    "id": "A37_2",
+    "species": "Beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_2.png"
+   },
+   {
+    "id": "A37_3",
+    "species": "Beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_3.png"
+   },
+   {
+    "id": "A37_5",
+    "species": "Beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_5.png"
+   },
+   {
+    "id": "A37_6",
+    "species": "Stag beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_6.png"
+   },
+   {
+    "id": "A37_7",
+    "species": "Beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_7.png"
+   },
+   {
+    "id": "A37_8",
+    "species": "Shield bug",
+    "src": "outputs/subjects_v2b/candidates/A37_8.png"
+   },
+   {
+    "id": "A37_9",
+    "species": "Beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_9.png"
+   },
+   {
+    "id": "A37_11",
+    "species": "Beetle",
+    "src": "outputs/subjects_v2b/candidates/A37_11.png"
+   },
+   {
+    "id": "A38_1",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_1.png"
+   },
+   {
+    "id": "A38_2",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_2.png"
+   },
+   {
+    "id": "A38_3",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_3.png"
+   },
+   {
+    "id": "A38_4",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_4.png"
+   },
+   {
+    "id": "A38_5",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_5.png"
+   },
+   {
+    "id": "A38_6",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_6.png"
+   },
+   {
+    "id": "A38_7",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_7.png"
+   },
+   {
+    "id": "A38_8",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_8.png"
+   },
+   {
+    "id": "A38_9",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_9.png"
+   },
+   {
+    "id": "A38_10",
+    "species": "Scorpion",
+    "src": "outputs/subjects_v2b/candidates/A38_10.png"
+   },
+   {
+    "id": "A39_1",
+    "species": "Centipede",
+    "src": "outputs/subjects_v2b/candidates/A39_1.png"
+   },
+   {
+    "id": "A39_2",
+    "species": "Centipede",
+    "src": "outputs/subjects_v2b/candidates/A39_2.png"
+   },
+   {
+    "id": "A39_4",
+    "species": "Centipede",
+    "src": "outputs/subjects_v2b/candidates/A39_4.png"
+   },
+   {
+    "id": "A39_6",
+    "species": "Centipede",
+    "src": "outputs/subjects_v2b/candidates/A39_6.png"
+   },
+   {
+    "id": "A39_7",
+    "species": "Millipede",
+    "src": "outputs/subjects_v2b/candidates/A39_7.png"
+   },
+   {
+    "id": "A39_9",
+    "species": "Centipede",
+    "src": "outputs/subjects_v2b/candidates/A39_9.png"
+   },
+   {
+    "id": "A39_11",
+    "species": "Millipede",
+    "src": "outputs/subjects_v2b/candidates/A39_11.png"
+   },
+   {
+    "id": "A40_1",
+    "species": "Leaf beetle",
+    "src": "outputs/subjects_v2b/candidates/A40_1.png"
+   },
+   {
+    "id": "A40_2",
+    "species": "Leaf beetle",
+    "src": "outputs/subjects_v2b/candidates/A40_2.png"
+   },
+   {
+    "id": "A40_3",
+    "species": "Leaf beetle",
+    "src": "outputs/subjects_v2b/candidates/A40_3.png"
+   },
+   {
+    "id": "A40_7",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_7.png"
+   },
+   {
+    "id": "A40_10",
+    "species": "Ladybug",
+    "src": "outputs/subjects_v2b/candidates/A40_10.png"
+   },
+   {
+    "id": "A41_4",
+    "species": "Crayfish",
+    "src": "outputs/subjects_v2b/candidates/A41_4.png"
+   },
+   {
+    "id": "A41_5",
+    "species": "Crayfish",
+    "src": "outputs/subjects_v2b/candidates/A41_5.png"
+   }
+  ]
+ },
+ "rejected": [
+  "A01_6",
+  "A02_0",
+  "A04_0",
+  "A04_4",
+  "A05_3",
+  "A05_7",
+  "A06_0",
+  "A06_5",
+  "A06_7",
+  "A10_0",
+  "A10_3",
+  "A10_4",
+  "A10_6",
+  "A11_1",
+  "A11_2",
+  "A11_6",
+  "A11_7",
+  "A12_3",
+  "A12_5",
+  "A12_7",
+  "A13_0",
+  "A14_5",
+  "A15_3",
+  "A15_5",
+  "A15_7",
+  "A16_0",
+  "A16_2",
+  "A16_6",
+  "A16_7",
+  "A17_6",
+  "A19_6",
+  "A20_2",
+  "A20_4",
+  "A20_5",
+  "A20_6",
+  "A21_0",
+  "A21_7",
+  "A22_1",
+  "A22_6",
+  "A23_8",
+  "A26_5",
+  "A26_7",
+  "A28_5",
+  "A34_9",
+  "A35_10",
+  "A35_11",
+  "A35_2",
+  "A35_4",
+  "A36_0",
+  "A36_3",
+  "A36_5",
+  "A36_6",
+  "A36_9",
+  "A37_1",
+  "A37_10",
+  "A37_4",
+  "A38_0",
+  "A38_11",
+  "A39_3",
+  "A39_8",
+  "A41_0",
+  "A41_1",
+  "A41_6"
+ ]
+}

@@ -1,0 +1,19 @@
+# Audit v2 (sau pilot v1, 2026-10-03). v1 cho thấy alpha_end (0.48/0.60) đổi ảnh < 1/255 và softedge ±0.2 ~2/255:
+# hai tham số này áp ở nửa sau, lúc hình đã thành. v2 thử các tham số tác động sớm hơn, bước lớn hơn,
+# và thu nhỏ subject (v1 phủ kín khung 512). Chạy vào thư mục output riêng, không trộn với v1.
+base:
+  layout.scale: 0.65          # v1 = 1.0 (subject kín khung)
+
+# Ưu tiên động vật: 3 cặp động vật + 1 chân dung
+audit_pairs: [P02, P05, P11, P13]   # mèo+hạt (quá rõ), thằn lằn+rơm, cá+gỗ (gần đạt), chân dung+đá
+
+configs:
+  C00: {}                                   # default (với layout.scale 0.65)
+  C01: {sampling.bg_strength: 0.40}         # nền ít bị vẽ lại
+  C02: {sampling.bg_strength: 0.65}
+  C03: {blend.end_frac: 0.30}               # subject chỉ trội trong 30% đầu -> chìm hơn
+  C04: {blend.end_frac: 0.80}
+  C05: {mask.gamma: 0.9}                    # mask hẹp/yếu hơn (v1 = 0.5)
+  C06: {sampling.guidance_sub: 1.5}         # prompt subject yếu hơn (v1 = 2.3)
+  C07: {control.end_frac: 0.60}             # tắt ControlNet sớm hơn (v1 = 0.84)
+  C08: {control.softedge_scale: 1.0}        # bước lớn hơn v1 (1.3/1.6)

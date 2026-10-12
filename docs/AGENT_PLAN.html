@@ -1,0 +1,638 @@
+<title>Kế hoạch agent CamouBlend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, sticky section nav, diagrams scroll sideways inside their own frame on phones.
+   Moss = Model 1 (nhìn ảnh), ochre = Model 2 (ra quyết định), slate = phần đã có sẵn. */
+:root {
+  --bg: #f4f5f1;
+  --surface: #ffffff;
+  --fg: #1b211b;
+  --muted: #5b655a;
+  --line: #d9ddd3;
+  --moss: #4c6a37;
+  --moss-soft: #e5ecdc;
+  --ochre: #a35f1a;
+  --ochre-soft: #f5e8d8;
+  --slate: #56636b;
+  --slate-soft: #e6eaec;
+  --good: #3f7a3a;
+  --warn: #a8701c;
+  --bad: #a3402f;
+  --font-body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131712; --surface: #1b2019; --fg: #e5e9e1; --muted: #9ba597; --line: #2f372d;
+    --moss: #9fc17f; --moss-soft: #243020; --ochre: #e3a45e; --ochre-soft: #352717;
+    --slate: #a9b6bd; --slate-soft: #242b2e; --good: #8cc785; --warn: #e2b05a; --bad: #e58b7a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131712; --surface: #1b2019; --fg: #e5e9e1; --muted: #9ba597; --line: #2f372d;
+  --moss: #9fc17f; --moss-soft: #243020; --ochre: #e3a45e; --ochre-soft: #352717;
+  --slate: #a9b6bd; --slate-soft: #242b2e; --good: #8cc785; --warn: #e2b05a; --bad: #e58b7a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body);
+  font-size: 16px; line-height: 1.65; padding-inline: 16px; padding-block: 0 64px;
+}
+.wrap { max-width: 880px; margin: 0 auto; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.25; margin: 0; }
+h1 { font-size: clamp(1.8rem, 4.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.5rem; font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+code { background: var(--slate-soft); padding: 0.1em 0.35em; border-radius: 4px; }
+a { color: inherit; }
+.eyebrow { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+header.top { padding-block: 48px 28px; display: grid; gap: 14px; }
+.lede { font-size: 1.08rem; color: var(--muted); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.chip { font-size: 0.82rem; border: 1px solid var(--line); background: var(--surface); padding: 4px 10px; border-radius: 999px; }
+.chip b { font-weight: 600; }
+
+nav.toc {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  border-bottom: 1px solid var(--line); margin-inline: -16px; padding-inline: 16px;
+}
+nav.toc ul { list-style: none; margin: 0 auto; padding: 10px 0; max-width: 880px; display: flex; gap: 18px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+nav.toc a { text-decoration: none; color: var(--muted); font-size: 0.88rem; font-weight: 500; }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--fg); }
+a:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; border-radius: 3px; }
+
+section { padding-block: 44px 8px; display: grid; gap: 18px; scroll-margin-top: 48px; }
+section > header { display: grid; gap: 6px; }
+.tag { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+.tag.m1 { background: var(--moss-soft); color: var(--moss); }
+.tag.m2 { background: var(--ochre-soft); color: var(--ochre); }
+.tag.ex { background: var(--slate-soft); color: var(--slate); }
+
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 720px; height: auto; }
+.figcap { font-size: 0.85rem; color: var(--muted); margin-top: 10px; }
+svg text { font-family: var(--font-body); fill: var(--fg); }
+svg .t-title { font-size: 13.5px; font-weight: 600; }
+svg .t-sub { font-size: 11.5px; fill: var(--muted); }
+svg .t-edge { font-size: 11px; fill: var(--muted); }
+svg .t-mono { font-family: var(--font-mono); font-size: 11px; }
+svg .b-in { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+svg .b-ex { fill: var(--slate-soft); stroke: var(--slate); stroke-width: 1.5; }
+svg .b-m1 { fill: var(--moss-soft); stroke: var(--moss); stroke-width: 1.8; }
+svg .b-m2 { fill: var(--ochre-soft); stroke: var(--ochre); stroke-width: 1.8; }
+svg .b-dash { fill: var(--surface); stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 4; }
+svg .e { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+svg .e-m1 { fill: none; stroke: var(--moss); stroke-width: 1.8; }
+svg .e-m2 { fill: none; stroke: var(--ochre); stroke-width: 1.8; }
+svg .e-dash { fill: none; stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 4; }
+svg .ah { fill: var(--muted); }
+svg .ah-m1 { fill: var(--moss); }
+svg .ah-m2 { fill: var(--ochre); }
+
+ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+ol.steps li::before { content: counter(s); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: var(--surface); margin-top: 2px; }
+ol.steps li > div { min-width: 0; }
+
+.spec { display: grid; grid-template-columns: minmax(130px, 200px) 1fr; border-top: 1px solid var(--line); }
+.spec > div { padding: 10px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.spec > div:nth-child(odd) { color: var(--muted); font-size: 0.9rem; padding-right: 16px; }
+@media (max-width: 560px) {
+  .spec { grid-template-columns: 1fr; }
+  .spec > div:nth-child(odd) { border-bottom: 0; padding-bottom: 0; }
+}
+
+.tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .no { color: var(--bad); font-weight: 600; }
+td .yes { color: var(--good); font-weight: 600; }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.panel ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.note { border-left: 3px solid var(--warn); padding: 8px 14px; background: var(--surface); border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+.note.m1 { border-color: var(--moss); }
+.note.m2 { border-color: var(--ochre); }
+
+.bars { display: grid; gap: 6px; }
+.bar { display: grid; grid-template-columns: 96px 1fr 44px; gap: 10px; align-items: center; font-size: 0.86rem; }
+.bar .track { height: 10px; background: var(--slate-soft); border-radius: 5px; overflow: hidden; }
+.bar .fill { height: 100%; background: var(--slate); border-radius: 5px; }
+.bar .n { font-variant-numeric: tabular-nums; text-align: right; color: var(--muted); }
+
+.timeline { display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 6px; }
+.week { position: relative; padding: 0 0 22px 22px; display: grid; gap: 6px; }
+.week::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--muted); }
+.week.now::before { background: var(--moss); border-color: var(--moss); }
+.week h3 .dates { font-family: var(--font-mono); font-weight: 400; font-size: 0.82rem; color: var(--muted); margin-left: 6px; }
+.week ul { margin: 0; padding-left: 1.1em; display: grid; gap: 3px; }
+.who { font-size: 0.72rem; font-weight: 600; padding: 1px 6px; border-radius: 4px; margin-right: 4px; background: var(--slate-soft); color: var(--slate); }
+.who.you { background: var(--ochre-soft); color: var(--ochre); }
+
+pre.files { margin: 0; font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.7; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+pre.files .c { color: var(--muted); }
+pre.files .new { color: var(--moss); }
+pre.files .mod { color: var(--ochre); }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <span class="eyebrow">CamouBlend · kế hoạch tự train agent</span>
+  <h1>Kế hoạch agent CamouBlend</h1>
+  <p class="lede">Bỏ hoàn toàn API bên ngoài. Hệ thống dùng 2 model tự train: <b>Model 1</b> nhìn ảnh (nhận diện con vật hoặc người, chấm mức ngụy trang), <b>Model 2</b> quyết định thử config nào tiếp theo. Phần sinh ảnh (diffusion) giữ nguyên.</p>
+  <div class="facts">
+    <span class="chip"><b>2</b> model tự train</span>
+    <span class="chip"><b>0</b> lời gọi API</span>
+    <span class="chip"><b>7.200</b> ảnh gán nhãn</span>
+    <span class="chip">Hạn <b>05/11/2026</b></span>
+    <span class="chip">Hiện có <b>385</b> nhãn cũ</span>
+    <a class="chip" href="https://claude.ai/artifact/QbD5iVTsnYXPZNGM6DFeQQ">Checklist tiến độ ↗</a>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Mục lục">
+  <ul>
+    <li><a href="#tong-quan">Tổng quan</a></li>
+    <li><a href="#model-1">Model 1</a></li>
+    <li><a href="#model-2">Model 2</a></li>
+    <li><a href="#du-lieu">Dữ liệu</a></li>
+    <li><a href="#danh-gia">Đánh giá</a></li>
+    <li><a href="#vi-sao">Vì sao chọn</a></li>
+    <li><a href="#lich">Lịch 4 tuần</a></li>
+    <li><a href="#rui-ro">Rủi ro</a></li>
+    <li><a href="#code">Code</a></li>
+  </ul>
+</nav>
+
+<!-- ============ TỔNG QUAN ============ -->
+<section id="tong-quan">
+  <header>
+    <span class="eyebrow">1 · Kiến trúc tổng thể</span>
+    <h2>Một vòng lặp, hai bộ não</h2>
+  </header>
+  <p>Người dùng đưa vào ảnh con vật (hoặc ảnh người) và ảnh nền. Hệ thống tự tìm config cho ra ảnh mà con vật lẫn vào nền nhưng vẫn nhận ra được ngay. Mỗi lượt thử tốn một lần render (khoảng 9 giây trên GPU Kaggle), nên agent phải tìm ra ảnh tốt trong tối đa 5 lượt.</p>
+
+  <div class="figure" role="img" aria-label="Sơ đồ kiến trúc: ảnh chủ thể đi qua Model 1 chế độ nhận diện để dựng prompt; Model 2 chọn config; renderer tạo ảnh; Model 1 chế độ chấm trả nhãn về Model 2; lặp đến khi có ảnh good hoặc hết 5 lượt.">
+    <svg viewBox="0 0 980 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-m1"/></marker>
+        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-m2"/></marker>
+      </defs>
+
+      <!-- edges -->
+      <path class="e" d="M170 72 H218" marker-end="url(#a)"/>
+      <path class="e-m1" d="M440 72 H498" marker-end="url(#a1)"/>
+      <text class="t-edge" x="444" y="24">loài / human</text>
+      <path class="e" d="M680 72 H850 V148" marker-end="url(#a)"/>
+      <text class="t-edge" x="700" y="62">prompt</text>
+      <path class="e" d="M170 316 H470 V188 H748" marker-end="url(#a)"/>
+      <text class="t-edge" x="480" y="180">ảnh nền</text>
+      <path class="e" d="M170 344 H498" marker-end="url(#a)"/>
+      <text class="t-edge" x="190" y="336">đặc trưng nền</text>
+      <path class="e" d="M95 364 V410 H720 V362 H748" marker-end="url(#a)"/>
+      <text class="t-edge" x="190" y="402">ảnh nền (để so cặp với ảnh render)</text>
+      <path class="e-m2" d="M680 300 H712 V212 H748" marker-end="url(#a2)"/>
+      <text class="t-edge" x="688" y="258">config</text>
+      <path class="e" d="M850 226 V298" marker-end="url(#a)"/>
+      <text class="t-edge" x="858" y="266">ảnh render</text>
+      <path class="e-m1" d="M750 346 H682" marker-end="url(#a1)"/>
+      <text class="t-edge" x="686" y="338">nhãn</text>
+      <path class="e-dash" d="M850 430 V392" marker-end="url(#a)"/>
+      <text class="t-edge" x="858" y="418">ghi đè</text>
+      <path class="e-m2" d="M590 370 V428" marker-end="url(#a2)"/>
+      <text class="t-edge" x="598" y="398">dừng: good / hết 5 lượt</text>
+
+      <!-- boxes -->
+      <rect class="b-in" x="20" y="40" width="150" height="64" rx="8"/>
+      <text class="t-title" x="36" y="66">Ảnh chủ thể</text>
+      <text class="t-sub" x="36" y="86">con vật hoặc người</text>
+
+      <rect class="b-in" x="20" y="300" width="150" height="64" rx="8"/>
+      <text class="t-title" x="36" y="326">Ảnh nền</text>
+      <text class="t-sub" x="36" y="346">DTD + thiên nhiên</text>
+
+      <rect class="b-m1" x="220" y="30" width="220" height="84" rx="8"/>
+      <text class="t-title" x="236" y="56">Model 1 · nhận diện</text>
+      <text class="t-sub" x="236" y="76">DINOv2 tắt LoRA + Head C</text>
+      <text class="t-sub" x="236" y="94">→ tên loài / human / unknown</text>
+
+      <rect class="b-ex" x="500" y="40" width="180" height="64" rx="8"/>
+      <text class="t-title" x="516" y="66">Dựng prompt</text>
+      <text class="t-sub" x="516" y="86">{animal} hoặc mặt người</text>
+
+      <rect class="b-ex" x="750" y="150" width="200" height="76" rx="8"/>
+      <text class="t-title" x="766" y="176">Renderer diffusion</text>
+      <text class="t-sub" x="766" y="196">có sẵn, không train lại</text>
+      <text class="t-sub" x="766" y="213">~9 giây / ảnh</text>
+
+      <rect class="b-m2" x="500" y="280" width="180" height="90" rx="8"/>
+      <text class="t-title" x="516" y="306">Model 2 · Proposer</text>
+      <text class="t-sub" x="516" y="326">mạng GRU nhỏ</text>
+      <text class="t-sub" x="516" y="344">chọn 1 trong 15 config</text>
+      <text class="t-sub" x="516" y="361">~35 nghìn tham số</text>
+
+      <rect class="b-m1" x="750" y="300" width="200" height="90" rx="8"/>
+      <text class="t-title" x="766" y="326">Model 1 · chấm ảnh</text>
+      <text class="t-sub" x="766" y="346">DINOv2 bật LoRA</text>
+      <text class="t-sub" x="766" y="363">Head A: lộ bao nhiêu</text>
+      <text class="t-sub" x="766" y="380">Head B: ảnh hỏng?</text>
+
+      <rect class="b-dash" x="750" y="432" width="200" height="48" rx="8"/>
+      <text class="t-title" x="766" y="454">Người gán nhãn</text>
+      <text class="t-sub" x="766" y="471">tùy chọn, thắng Model 1</text>
+
+      <rect class="b-in" x="500" y="430" width="180" height="50" rx="8"/>
+      <text class="t-title" x="516" y="452">Ảnh kết quả</text>
+      <text class="t-sub" x="516" y="470">ảnh good đầu tiên</text>
+    </svg>
+  </div>
+  <p class="figcap">Xanh rêu là Model 1 (một file trọng số, chạy hai chế độ). Cam đất là Model 2. Xám là phần đã có trong code. Đường nét đứt là người can thiệp khi cần.</p>
+
+  <ol class="steps">
+    <li><div><b>Nhận diện.</b> Model 1 (tắt LoRA) nhìn ảnh chủ thể gốc, trả về tên loài, "human" hoặc "unknown". Nếu unknown, agent hỏi lại người dùng thay vì đoán.</div></li>
+    <li><div><b>Dựng prompt.</b> Tên loài điền vào mẫu <code>a hidden {animal} silhouette…</code> trong <code>camo/config.py</code>. Nếu là human thì chuyển sang mẫu mặt người.</div></li>
+    <li><div><b>Chọn config.</b> Model 2 xem đặc trưng ảnh nền và các lượt đã thử, chọn một trong 15 config (5 mức <code>blend.alpha_end</code> từ 0 đến 0,2 × 3 mức <code>sampling.bg_strength</code> 0,40 / 0,48 / 0,55). Ở lượt đầu nó cũng tự chọn theo loại nền, không bắt buộc bắt đầu từ mặc định.</div></li>
+    <li><div><b>Render.</b> Pipeline diffusion hiện có sinh ảnh.</div></li>
+    <li><div><b>Chấm.</b> Model 1 (bật LoRA) so ảnh render với ảnh nền, trả xác suất cho missing / subtle / good / too_visible và broken. Nếu có người đang xem, nhãn của người thắng.</div></li>
+    <li><div><b>Lặp hoặc dừng.</b> Dừng khi có ảnh good hoặc hết 5 lượt (giống <code>Search.done()</code> trong <code>camo/agent.py</code>). Mọi bước ghi vào event log như hiện nay.</div></li>
+  </ol>
+</section>
+
+<!-- ============ MODEL 1 ============ -->
+<section id="model-1">
+  <header>
+    <span class="tag m1">Model 1</span>
+    <h2>DINOv2-small + LoRA, ba đầu ra</h2>
+  </header>
+  <p>Một backbone nhìn ảnh dùng chung cho ba câu hỏi. DINOv2 là mạng Vision Transformer của Meta (2023): chia ảnh thành các ô 14×14 pixel, tự học trên khoảng 142 triệu ảnh không nhãn bằng cách nhận ra hai mảnh cắt của cùng một ảnh. Vì vậy nó nắm rất chắc hình dạng, đường viền và texture, đúng thứ quyết định một ảnh ngụy trang tốt hay hỏng.</p>
+
+  <div class="figure" role="img" aria-label="Bên trong Model 1: ảnh render và ảnh nền đi qua cùng DINOv2 có LoRA, ghép đặc trưng rồi qua MLP ra Head A và Head B; ảnh chủ thể đi qua DINOv2 gốc ra Head C.">
+    <svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+      </defs>
+      <path class="e" d="M150 72 H198" marker-end="url(#b)"/>
+      <path class="e" d="M150 170 H198" marker-end="url(#b)"/>
+      <path class="e" d="M150 290 H198" marker-end="url(#b)"/>
+      <path class="e" d="M420 90 H468" marker-end="url(#b)"/>
+      <text class="t-edge" x="424" y="82">f_render</text>
+      <path class="e" d="M420 150 H468" marker-end="url(#b)"/>
+      <text class="t-edge" x="424" y="142">f_nền</text>
+      <path class="e" d="M650 120 H678" marker-end="url(#b)"/>
+      <path class="e" d="M780 120 H790 V72 H798" marker-end="url(#b)"/>
+      <path class="e" d="M780 120 H790 V168 H798" marker-end="url(#b)"/>
+      <path class="e" d="M420 290 H798" marker-end="url(#b)"/>
+      <text class="t-edge" x="440" y="282">f_chủ thể (768 chiều)</text>
+
+      <rect class="b-in" x="20" y="44" width="130" height="56" rx="8"/>
+      <text class="t-title" x="34" y="68">Ảnh render</text>
+      <text class="t-sub" x="34" y="86">224×224</text>
+      <rect class="b-in" x="20" y="142" width="130" height="56" rx="8"/>
+      <text class="t-title" x="34" y="166">Ảnh nền gốc</text>
+      <text class="t-sub" x="34" y="184">cùng phép lật/cắt</text>
+      <rect class="b-in" x="20" y="262" width="130" height="56" rx="8"/>
+      <text class="t-title" x="34" y="286">Ảnh chủ thể</text>
+      <text class="t-sub" x="34" y="304">ảnh gốc, rõ nét</text>
+
+      <rect class="b-m1" x="200" y="30" width="220" height="180" rx="8"/>
+      <text class="t-title" x="216" y="56">DINOv2-small (dùng chung)</text>
+      <text class="t-sub" x="216" y="78">12 block, 22M tham số: đóng băng</text>
+      <text class="t-sub" x="216" y="98">LoRA r=8 trên qkv 6 block cuối</text>
+      <text class="t-sub" x="216" y="116">≈ 74 nghìn tham số: được train</text>
+      <text class="t-sub" x="216" y="146">mỗi ảnh → CLS + trung bình</text>
+      <text class="t-sub" x="216" y="164">các ô = 768 chiều</text>
+      <text class="t-sub" x="216" y="194">hai ảnh đi qua cùng trọng số</text>
+
+      <rect class="b-ex" x="200" y="252" width="220" height="76" rx="8"/>
+      <text class="t-title" x="216" y="278">DINOv2-small gốc</text>
+      <text class="t-sub" x="216" y="298">cùng file, tắt LoRA</text>
+      <text class="t-sub" x="216" y="315">không bị ảnh hưởng khi finetune</text>
+
+      <rect class="b-in" x="470" y="74" width="180" height="92" rx="8"/>
+      <text class="t-title" x="484" y="98">Ghép cặp</text>
+      <text class="t-mono" x="484" y="120">[f_r, f_n, f_r − f_n]</text>
+      <text class="t-sub" x="484" y="142">2.304 chiều</text>
+      <text class="t-sub" x="484" y="158">"khác nền bao nhiêu"</text>
+
+      <rect class="b-in" x="680" y="96" width="100" height="48" rx="8"/>
+      <text class="t-title" x="692" y="118">MLP</text>
+      <text class="t-sub" x="692" y="135">2304→256</text>
+
+      <rect class="b-m1" x="800" y="44" width="110" height="56" rx="8"/>
+      <text class="t-title" x="812" y="66">Head A</text>
+      <text class="t-sub" x="812" y="84">visibility · CORAL</text>
+      <rect class="b-m1" x="800" y="140" width="110" height="56" rx="8"/>
+      <text class="t-title" x="812" y="162">Head B</text>
+      <text class="t-sub" x="812" y="180">broken · có/không</text>
+      <rect class="b-m1" x="800" y="262" width="110" height="56" rx="8"/>
+      <text class="t-title" x="812" y="284">Head C</text>
+      <text class="t-sub" x="812" y="302">loài + human</text>
+    </svg>
+  </div>
+
+  <div class="spec">
+    <div>Backbone</div><div><code>facebook/dinov2-small</code> (ViT-S/14), ảnh 224×224 → 16×16 ô. Đặc trưng 384 chiều mỗi token; mỗi ảnh lấy CLS + trung bình các ô = 768 chiều.</div>
+    <div>Tại sao nhìn cả ảnh nền</div><div>"Lẫn vào nền" là khái niệm so sánh. Phần <code>f_r − f_n</code> cho model biết ảnh render khác nền gốc ở đâu và bao nhiêu, thay vì phải đoán từ một ảnh.</div>
+    <div>Head A · visibility</div><div>Nhãn có thứ tự: missing &lt; subtle &lt; good &lt; too_visible. Dùng CORAL: 3 câu hỏi có/không ("vượt missing chưa?", "vượt subtle chưa?", "vượt good chưa?"). Đoán lệch một bậc bị phạt nhẹ hơn lệch ba bậc.</div>
+    <div>Head B · broken</div><div>Một xác suất. Ảnh broken không có mức visibility, nên bỏ qua loss của Head A với các ảnh này. Nhãn <code>unsure</code> bị loại khỏi tập train.</div>
+    <div>Head C · nhận diện</div><div>Lớp linear 768 → K+1 (các loài + human). Chạy trên ảnh chủ thể với LoRA tắt. Xác suất cao nhất dưới ngưỡng τ thì trả <b>unknown</b>; τ chọn trên tập validation sao cho 95% ảnh loài đã học vẫn qua.</div>
+    <div>Hàm loss</div><div><code>L = L_CORAL + λ · BCE_broken</code> (λ = 1, broken có trọng số dương vì hiếm). Head C train riêng bằng cross-entropy.</div>
+    <div>Train giai đoạn A</div><div>Backbone đóng băng, đặc trưng tính một lần rồi cache. Chỉ train MLP + head, chạy trên CPU máy local, không tốn quota GPU. <b>Đã chạy thử (12/10)</b> trên 375 nhãn cũ, 5-fold theo cặp: khớp đúng 61%, đạt/không đạt 68%. Bản linear probe 56% / 64%, CLIP 59% / 68%, bỏ ảnh nền 58% / 68%.</div>
+    <div>Train giai đoạn B</div><div>Khi có từ 1.500 nhãn: bật LoRA. AdamW, lr 1e-4 cho LoRA và 1e-3 cho head, khoảng 15 epoch. Augment chỉ lật ngang và cắt nhẹ, áp <b>giống nhau</b> cho ảnh render và ảnh nền; không đổi màu vì đổi màu làm thay đổi mức lộ.</div>
+    <div>Dữ liệu Head C</div><div>Bộ ảnh công khai, không cần bạn gán: Animals-90 (90 loài), Sea Animals và 600 mặt người LFW cho lớp human, tổng 100 lớp. Gộp tên lớp về từ dùng trong prompt (ví dụ goldfish → fish). <b>Đã train xong:</b> top-1 94,4%, top-5 99%, 18/18 subject cũ đúng loài.</div>
+    <div>Phần cứng</div><div>GPU T4 của Kaggle. Giai đoạn A chạy được cả trên CPU.</div>
+  </div>
+
+  <p class="note m1"><b>Vì sao bật/tắt LoRA:</b> finetune cho việc chấm ngụy trang làm đặc trưng "lệch" về bài toán đó. Tắt LoRA khi nhận diện để Head C dùng đúng bản gốc của Meta, vốn phân biệt loài rất tốt. Vẫn chỉ một file trọng số, nên vẫn là 2 model.</p>
+</section>
+
+<!-- ============ MODEL 2 ============ -->
+<section id="model-2">
+  <header>
+    <span class="tag m2">Model 2</span>
+    <h2>Proposer: mạng GRU nhỏ chọn config</h2>
+  </header>
+  <p>Bài toán chỉ có 15 lựa chọn mỗi lượt, giống trò "nóng hay lạnh". Model 2 là một mạng nơ-ron rất nhỏ: đọc lần lượt các lượt đã thử (GRU là loại mạng có trí nhớ ngắn), cộng với đặc trưng ảnh nền lấy từ Model 1, rồi chấm điểm 15 config. Config đã thử bị che, config điểm cao nhất được chọn.</p>
+
+  <div class="figure" role="img" aria-label="Bên trong Model 2: đặc trưng nền khởi tạo GRU; mỗi bước nhận config và nhãn của lượt trước; đầu ra là 15 điểm số, che config đã thử rồi chọn.">
+    <svg viewBox="0 0 920 230" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+        <marker id="c2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-m2"/></marker>
+      </defs>
+      <path class="e" d="M170 150 H218" marker-end="url(#c)"/>
+      <text class="t-edge" x="176" y="142">h₀</text>
+      <path class="e-m2" d="M330 150 H358" marker-end="url(#c2)"/>
+      <path class="e-m2" d="M470 150 H498" marker-end="url(#c2)"/>
+      <path class="e" d="M610 150 H648" marker-end="url(#c)"/>
+      <path class="e" d="M760 150 H788" marker-end="url(#c)"/>
+      <path class="e" d="M275 80 V122" marker-end="url(#c)"/>
+      <path class="e" d="M415 80 V122" marker-end="url(#c)"/>
+      <path class="e" d="M555 80 V122" marker-end="url(#c)"/>
+
+      <rect class="b-in" x="220" y="24" width="110" height="56" rx="8"/>
+      <text class="t-sub" x="232" y="48">lượt 0</text>
+      <text class="t-mono" x="232" y="66">chưa thử</text>
+      <rect class="b-in" x="360" y="24" width="110" height="56" rx="8"/>
+      <text class="t-sub" x="372" y="48">lượt 1</text>
+      <text class="t-mono" x="372" y="66">a020_b48·TV</text>
+      <rect class="b-in" x="500" y="24" width="110" height="56" rx="8"/>
+      <text class="t-sub" x="512" y="48">lượt 2</text>
+      <text class="t-mono" x="512" y="66">a004_b48·sub</text>
+
+      <rect class="b-m1" x="20" y="122" width="150" height="56" rx="8"/>
+      <text class="t-title" x="34" y="146">Đặc trưng nền</text>
+      <text class="t-sub" x="34" y="164">từ Model 1: 384 → 32</text>
+
+      <rect class="b-m2" x="220" y="122" width="110" height="56" rx="8"/>
+      <text class="t-title" x="232" y="155">GRU</text>
+      <rect class="b-m2" x="360" y="122" width="110" height="56" rx="8"/>
+      <text class="t-title" x="372" y="155">GRU</text>
+      <rect class="b-m2" x="500" y="122" width="110" height="56" rx="8"/>
+      <text class="t-title" x="512" y="155">GRU</text>
+
+      <rect class="b-in" x="650" y="122" width="110" height="56" rx="8"/>
+      <text class="t-title" x="662" y="146">15 điểm số</text>
+      <text class="t-sub" x="662" y="164">1 / config</text>
+      <rect class="b-in" x="790" y="122" width="120" height="56" rx="8"/>
+      <text class="t-title" x="802" y="146">Che đã thử</text>
+      <text class="t-mono" x="802" y="164">→ a008_b48</text>
+      <text class="t-edge" x="220" y="212">TV = too_visible, sub = subtle. Hidden 64 chiều, cùng trọng số ở mọi lượt. Tổng ~35 nghìn tham số.</text>
+    </svg>
+  </div>
+
+  <div class="spec">
+    <div>Đầu vào mỗi lượt</div><div>Config vừa thử (one-hot 15) + kết quả chấm (5 lớp: too_visible, good, subtle, missing, broken). Khi Model 1 chấm thì đưa vào <b>xác suất</b> thay vì nhãn cứng, để Model 2 biết Model 1 đang chắc hay không.</div>
+    <div>Đặc trưng nền</div><div>Vector DINOv2 của ảnh nền (384 chiều, LoRA tắt) nén còn 32 chiều, dùng làm trạng thái ban đầu h₀. Nén nhỏ để không học vẹt theo từng ảnh nền.</div>
+    <div>Đầu ra</div><div>15 điểm số → che config đã thử → softmax → chọn config cao nhất (khi train thì lấy mẫu theo xác suất để khám phá).</div>
+    <div>Sân tập (simulator)</div><div>Mỗi cặp ảnh được render và gán nhãn đủ 15 config (cộng C00), nên "thử config X" chỉ là tra bảng, không cần GPU. Đây là cách <code>scripts/replay_agents.py</code> đang làm.</div>
+    <div>Bước 1 · bắt chước</div><div>Behavior cloning: ở mỗi trạng thái, mục tiêu là phân bố đều trên các config good còn chưa thử của cặp đó. Model học được "loại nền này thường hợp với config nào".</div>
+    <div>Bước 2 · tự chơi</div><div>REINFORCE trên sân tập. Thưởng +1 khi gặp good, −0,1 mỗi lần render, −1 nếu hết 5 lượt không có good. Model học cách tìm nhanh nhất chứ không chỉ bắt chước.</div>
+    <div>Chống lệch khi chạy thật</div><div>Một nửa số lượt tự chơi dùng nhãn do Model 1 dự đoán (có sai số) thay cho nhãn người, để Model 2 quen với việc Model 1 đôi khi chấm sai.</div>
+    <div>Giao diện code</div><div>Một lớp <code>NetPolicy(Policy)</code> với hàm <code>propose(search)</code> giống <code>RulePolicy</code>, nên Controller, event log và demo dùng lại nguyên.</div>
+  </div>
+</section>
+
+<!-- ============ DỮ LIỆU ============ -->
+<section id="du-lieu">
+  <header>
+    <span class="eyebrow">4 · Dữ liệu và gán nhãn</span>
+    <h2>7.200 ảnh = 450 cặp × đủ 16 config</h2>
+  </header>
+  <p>Gán nhãn theo lưới đầy đủ thay vì ảnh lẻ. Cùng một bộ nhãn vừa dạy Model 1 chấm điểm, vừa tạo 450 sân tập hoàn chỉnh cho Model 2. Bộ dữ liệu dựng xong ngày 12/10 (<code>pilot/labelset/manifest.json</code>).</p>
+
+  <div class="cols">
+    <div class="panel">
+      <h3>Thành phần 450 cặp</h3>
+      <ul>
+        <li><b>Con vật chia theo hình dáng</b>, không theo loài: 252 ảnh trong 10 nhóm (bốn chân gọn, bốn chân cao, bốn chân nặng, thân dài có chân, thân dài không chân, có vây, cánh dang, chim đứng, thân tròn có mai, nhiều chân), cộng 14 ảnh v1 và 4 mặt người</li>
+        <li><b>90 ảnh nền, khoảng 56 loại:</b> 60 ảnh DTD trong 6 nhóm của bgmap và 30 ảnh thiên nhiên (vỏ cây, lá, gỗ, cỏ, rêu, đá, nước, cát, đất, sỏi, lá khô, tuyết/băng, đáy biển, đá tảng, bùn)</li>
+        <li>Mỗi nền ghép 5 con vật thuộc 5 nhóm hình dáng khác nhau; cứ 3 nền có 1 mặt người</li>
+        <li>450 cặp × 16 config (C00 + lưới 5 × 3) = 7.200 ảnh, chia 9 đợt</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Chi phí</h3>
+      <ul>
+        <li><b>Render:</b> 9 đợt × khoảng 2,4 giờ ≈ 21,6 giờ GPU Kaggle (quota 30 giờ/tuần). Bộ chạy tự động render và tải về từng đợt từ 12/10</li>
+        <li><b>Gán nhãn:</b> phím số trong trang label, khoảng 3–4 s/ảnh ≈ 6–8 giờ, mỗi đợt khoảng 45 phút</li>
+        <li>Config trông giống hệt ảnh mặc định được ẩn và tự kế thừa nhãn, nên số lần bấm thực tế ít hơn</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Chia tập</h3>
+      <ul>
+        <li><b>Test cố định:</b> 145 cặp, không bao giờ dùng để train. Một cặp là test khi nền hoặc con vật là test: nhóm hình dáng lạ (thân tròn có mai: ếch, rùa), loài lạ (thỏ, ngựa, chim cánh cụt), 2 nền mỗi nhóm DTD và 6 nền thiên nhiên</li>
+        <li><b>Train/val:</b> 305 cặp, chia 5 fold <b>theo cặp</b> để không lộ đề</li>
+        <li><b>Nền lạ:</b> thêm phép thử bỏ hẳn 1 nhóm nền khi train (leave-one-group-out)</li>
+        <li><b>Độ nhất quán của bạn:</b> gán lại 150 ảnh sau 1 tuần để đo trần độ chính xác</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Nhãn hiện có (385 trên các run cũ, người gán: tac_gia)</h3>
+    <div class="bars" aria-label="Phân bố nhãn hiện có">
+      <div class="bar"><span>good</span><span class="track"><span class="fill" style="width:100%; display:block"></span></span><span class="n">154</span></div>
+      <div class="bar"><span>missing</span><span class="track"><span class="fill" style="width:69.5%; display:block"></span></span><span class="n">107</span></div>
+      <div class="bar"><span>too_visible</span><span class="track"><span class="fill" style="width:61%; display:block"></span></span><span class="n">94</span></div>
+      <div class="bar"><span>subtle</span><span class="track"><span class="fill" style="width:9.7%; display:block"></span></span><span class="n">15</span></div>
+      <div class="bar"><span>unsure</span><span class="track"><span class="fill" style="width:6.5%; display:block"></span></span><span class="n">10</span></div>
+      <div class="bar"><span>broken</span><span class="track"><span class="fill" style="width:3.2%; display:block"></span></span><span class="n">5</span></div>
+    </div>
+    <p class="figcap">subtle và broken quá ít để train head riêng. Lưới v2 đặt alpha trong khoảng 0–0,2, đúng vùng chuyển từ mất hẳn sang quá rõ, nên kỳ vọng sinh nhiều ảnh subtle hơn lưới cũ (alpha 0,2–1,0 gần như không đổi ảnh).</p>
+  </div>
+</section>
+
+<!-- ============ ĐÁNH GIÁ ============ -->
+<section id="danh-gia">
+  <header>
+    <span class="eyebrow">5 · Đánh giá</span>
+    <h2>Đo gì, so với ai</h2>
+  </header>
+  <p>Mọi con số báo cáo đều đo trên 145 cặp test. Nhãn của bạn là đáp án chuẩn. Cột "Hiện tại" là số chạy thử trên nhãn cũ, chưa phải số báo cáo.</p>
+  <div class="tablebox">
+    <table>
+      <thead><tr><th>Thành phần</th><th>Chỉ số</th><th>Baseline</th><th>Mục tiêu</th><th>Hiện tại</th></tr></thead>
+      <tbody>
+        <tr><td>Model 1 · Head A</td><td>Khớp good / không good</td><td class="num">GPT vision 50% (n=30)</td><td class="num">≥ 75%</td><td class="num">68% (CV, n=375)</td></tr>
+        <tr><td>Model 1 · Head A</td><td>Khớp đúng 4 mức</td><td class="num">GPT vision 33% (n=30)</td><td class="num">≥ 55%</td><td class="num">61% (CV, n=375)</td></tr>
+        <tr><td>Model 1 · Head B</td><td>F1 cho broken</td><td>CLIP linear probe</td><td class="num">≥ 0,6</td><td class="num">0 (mới 5 nhãn)</td></tr>
+        <tr><td>Model 1 · Head C</td><td>Top-1 trên tập test công khai; tỉ lệ loài chưa học bị trả unknown</td><td>CLIP zero-shot</td><td class="num">≥ 90% · ≥ 80%</td><td class="num">94,4% · 65%</td></tr>
+        <tr><td>Model 2</td><td>Tỉ lệ tìm được good trong 5 lượt; số render trung bình đến good</td><td>FixedDefault, Random, Rule, GPT Proposer (log cũ)</td><td>Hơn Rule ở cả hai chỉ số</td><td>chưa làm</td></tr>
+        <tr><td>Cả hệ thống</td><td>Model 2 + Model 1 chạy không có người trên 145 cặp test; bạn chấm ảnh cuối cùng</td><td>Rule + người gán</td><td>Không kém hơn quá 10 điểm %</td><td>chưa làm</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cols">
+    <div class="panel">
+      <h3>Ablation cho báo cáo</h3>
+      <ul>
+        <li>Model 1 không có ảnh nền (chỉ ảnh render)</li>
+        <li>Giai đoạn A (đóng băng) so với giai đoạn B (LoRA)</li>
+        <li>DINOv2 so với CLIP ViT-B/32 làm backbone</li>
+        <li>Model 2 không có đặc trưng nền; Q-learning dạng bảng</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Trần độ chính xác</h3>
+      <p>Bạn gán lại 150 ảnh. Nếu bạn chỉ tự khớp với chính mình 85%, thì Model 1 đạt 75% là đã gần trần. Con số này giúp đọc kết quả đúng.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VÌ SAO ============ -->
+<section id="vi-sao">
+  <header>
+    <span class="eyebrow">6 · Các lựa chọn đã cân nhắc</span>
+    <h2>Vì sao chọn hai model này</h2>
+  </header>
+  <div class="tablebox">
+    <table>
+      <thead><tr><th>Cho Model 1</th><th>Kết luận</th><th>Lý do</th></tr></thead>
+      <tbody>
+        <tr><td><b>DINOv2-small + LoRA</b></td><td><span class="yes">Chọn</span></td><td>Giỏi texture và hình dạng; 22M tham số vừa với 7.200 ảnh; nhận loài tốt nên kiêm luôn Recognizer.</td></tr>
+        <tr><td>CNN train từ đầu</td><td><span class="no">Không</span></td><td>7.200 ảnh vẫn quá ít, sẽ học vẹt.</td></tr>
+        <tr><td>ResNet học trên ImageNet</td><td><span class="no">Không</span></td><td>Được dạy nhận vật thể rõ ràng, quen bỏ qua chi tiết mờ.</td></tr>
+        <tr><td>CLIP</td><td>Baseline</td><td>Giỏi "trong ảnh có gì" nhưng bỏ qua texture, mà broken và subtle phụ thuộc texture.</td></tr>
+        <tr><td>DINOv2-base / large</td><td>Ablation nếu dư thời gian</td><td>Mạnh hơn nhưng dễ học vẹt với 7.200 ảnh, chậm trên T4.</td></tr>
+        <tr><td>VLM nhỏ (Qwen2.5-VL-3B, LLaVA)</td><td><span class="no">Không</span></td><td>Chỉ cần 4 nhãn, không cần biết nói; nặng gấp ~150 lần; cách hoạt động giống GPT đã chỉ khớp 50%.</td></tr>
+        <tr><td>Model phát hiện ngụy trang (SINet)</td><td><span class="no">Không</span></td><td>Trả lời "vật ở đâu" bằng mask, không phải "lộ bao nhiêu"; cần vẽ mask để train.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tablebox">
+    <table>
+      <thead><tr><th>Cho Model 2</th><th>Kết luận</th><th>Lý do</th></tr></thead>
+      <tbody>
+        <tr><td><b>GRU policy nhỏ (BC + REINFORCE)</b></td><td><span class="yes">Chọn</span></td><td>Vừa cỡ bài toán 15 lựa chọn; dùng đặc trưng nền nên tổng quát sang nền mới; train vài phút trên sân tập có sẵn.</td></tr>
+        <tr><td>Finetune LLM nhỏ (Qwen2.5-0.5B)</td><td>Dự phòng</td><td>500M tham số để chọn 1 trong 15; có thể sinh JSON sai; chỉ bắt chước. Dùng nếu thầy cô bắt buộc phải là mô hình ngôn ngữ.</td></tr>
+        <tr><td>Luật cứng (RulePolicy)</td><td>Baseline</td><td>Không học, không phân biệt loại nền.</td></tr>
+        <tr><td>Q-learning dạng bảng</td><td>Ablation</td><td>Nhớ theo ô; nền mới không có ô để tra. Loại nền là yếu tố khó nhất (nền zigzag hỏng 6/6).</td></tr>
+        <tr><td>DQN / PPO mạng lớn</td><td><span class="no">Không</span></td><td>Cần rất nhiều tương tác; sân tập 450 cặp quá nhỏ cho mạng lớn.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ LỊCH ============ -->
+<section id="lich">
+  <header>
+    <span class="eyebrow">7 · Lịch làm việc</span>
+    <h2>4 tuần đến hạn 05/11</h2>
+  </header>
+  <div class="timeline">
+    <div class="week now">
+      <h3>Tuần 1 <span class="dates">12/10 – 18/10</span></h3>
+      <ul>
+        <li><span class="who">Claude</span>Xong: train Head C (top-1 94,4%); dựng bộ dữ liệu v2 (450 cặp, 90 nền, 10 nhóm hình dáng); bộ chạy tự động 9 đợt</li>
+        <li><span class="who">Claude</span>Xong: code Model 1 giai đoạn A, chạy thử trên nhãn cũ (61% / 68%)</li>
+        <li><span class="who">Claude</span>Đang làm: render 9 đợt trên Kaggle (đợt 1 từ 16:13 ngày 12/10, mỗi đợt khoảng 2,4 giờ); nối Head C vào bước dựng prompt</li>
+        <li><span class="who you">Bạn</span>Gán nhãn từng đợt khi về</li>
+      </ul>
+    </div>
+    <div class="week">
+      <h3>Tuần 2 <span class="dates">19/10 – 25/10</span></h3>
+      <ul>
+        <li><span class="who">Claude</span>Đợt 9 nếu tuần 1 hết quota; Model 1 giai đoạn A train lại theo nhãn mới; dựng sân tập và Model 2 bước bắt chước</li>
+        <li><span class="who you">Bạn</span>Gán xong 7.200 ảnh; gán lại 150 ảnh để đo độ nhất quán</li>
+      </ul>
+    </div>
+    <div class="week">
+      <h3>Tuần 3 <span class="dates">26/10 – 01/11</span></h3>
+      <ul>
+        <li><span class="who">Claude</span>Model 1 giai đoạn B (LoRA); Model 2 tự chơi, có nhãn từ Model 1</li>
+        <li><span class="who">Claude</span>Nối vòng lặp đầy đủ vào demo; chạy các ablation</li>
+      </ul>
+    </div>
+    <div class="week">
+      <h3>Tuần 4 <span class="dates">02/11 – 05/11</span></h3>
+      <ul>
+        <li><span class="who">Claude</span>Chạy cả hệ thống trên 145 cặp test; bảng kết quả và hình cho báo cáo</li>
+        <li><span class="who you">Bạn</span>Chấm ảnh cuối cùng của từng agent; duyệt báo cáo và slide</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RỦI RO ============ -->
+<section id="rui-ro">
+  <header>
+    <span class="eyebrow">8 · Rủi ro</span>
+    <h2>Điều có thể sai và cách xử lý</h2>
+  </header>
+  <div class="tablebox">
+    <table>
+      <thead><tr><th>Rủi ro</th><th>Cách xử lý</th></tr></thead>
+      <tbody>
+        <tr><td>Nhãn lệch lớp (subtle, broken ít)</td><td>Lưới 15 config tập trung vào vùng chuyển tiếp nên sinh nhiều subtle hơn; thêm trọng số lớp khi train (đã có trong code).</td></tr>
+        <tr><td>Chỉ một người gán nhãn, tiêu chuẩn chủ quan</td><td>Đo độ tự nhất quán (150 ảnh gán lại) và ghi rõ trong báo cáo.</td></tr>
+        <tr><td>Model 1 chấm sai làm Model 2 đi lạc</td><td>Model 2 tập với nhãn có sai số từ Model 1; người có thể ghi đè bất cứ lúc nào.</td></tr>
+        <tr><td>Nền mới khác hẳn tập train</td><td>Báo cáo riêng phép thử bỏ một nhóm nền; Head C và Head A trả "không chắc" khi xác suất thấp.</td></tr>
+        <tr><td>Hết quota GPU Kaggle</td><td>9 đợt cần khoảng 21,6/30 giờ. Hết quota thì bộ chạy dừng an toàn và chạy tiếp tuần sau. Giai đoạn A và Model 2 chạy trên CPU máy local.</td></tr>
+        <tr><td>Gán 7.200 ảnh mất nhiều buổi</td><td>Ảnh trùng mặc định tự ẩn; Model 1 train lại sau mỗi đợt nên có kết quả từ sớm.</td></tr>
+        <tr><td>Thầy cô muốn Proposer là mô hình ngôn ngữ</td><td>Phương án dự phòng Qwen2.5-0.5B + LoRA, dùng lại <code>LLMPolicy</code> và cùng sân tập.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ CODE ============ -->
+<section id="code">
+  <header>
+    <span class="eyebrow">9 · Thay đổi trong repo</span>
+    <h2>File đã viết và sẽ viết</h2>
+  </header>
+<pre class="files"><span class="new">✓ camo/backbone.py</span>          <span class="c"># DINOv2-small / CLIP, trích đặc trưng, cache theo file (thay cho scripts/cache_features.py)</span>
+<span class="new">✓ camo/observer.py</span>          <span class="c"># Head A (CORAL) + Head B; NetObserver.judge() thay GPT Observer</span>
+<span class="new">✓ scripts/train_recognizer.py</span> <span class="c"># Head C, chạy trên Kaggle CPU</span>
+<span class="new">✓ scripts/train_observer.py</span> <span class="c"># 5 fold theo cặp, bỏ từng nhóm nền, tập test, 4 biến thể</span>
+<span class="new">✓ scripts/labelset.py</span>       <span class="c"># dựng 450 cặp, render 9 đợt trên Kaggle, tải về</span>
+<span class="new">✓ scripts/grid_check.py</span>     <span class="c"># đo lưới config có thật sự đổi ảnh không</span>
+<span class="mod">+ camo/recognizer.py</span>        <span class="c"># Head C trong vòng lặp: map lớp → {animal} / prompt mặt người</span>
+<span class="mod">+ camo/proposer_net.py</span>      <span class="c"># NetPolicy(Policy): GRU + đặc trưng nền</span>
+<span class="mod">+ scripts/train_proposer.py</span> <span class="c"># sân tập từ labels.jsonl, BC rồi REINFORCE</span>
+<span class="mod">~ scripts/replay_agents.py</span>  <span class="c"># thêm --policy net, --observer model</span>
+<span class="mod">~ camo/demo.py</span>             <span class="c"># Observer "model" thay cho "llm"; nhận diện chủ thể khi tải ảnh</span>
+<span class="mod">~ requirements.txt</span>         <span class="c"># + peft (giai đoạn B)</span>
+<span class="c">  camo/llm.py</span>               <span class="c"># giữ lại chỉ để chạy baseline GPT, không nằm trong vòng lặp chính</span></pre>
+  <p class="figcap">✓ đã có. + file mới chưa viết. ~ file có sẵn sẽ sửa.</p>
+</section>
+
+<footer>
+  Cập nhật 12/10/2026, 18:15. Số liệu lấy từ <code>outputs/labels.jsonl</code>, <code>outputs/observer_eval.json</code>, <code>outputs/recognizer/report.json</code> và <code>outputs/observer/report.json</code>. Tiến độ từng việc: <a href="https://claude.ai/artifact/QbD5iVTsnYXPZNGM6DFeQQ">checklist</a>.
+</footer>
+</div>

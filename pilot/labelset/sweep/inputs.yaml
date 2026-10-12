@@ -1,0 +1,129 @@
+version: label_sweep
+note: 'Knob sweep 2026-10-12: grid v1 alpha 0.2-1.0 changed almost nothing; find the
+  range that does.'
+subjects:
+  S01:
+    label: cat
+    category: animal
+    origin: O01_0
+    representation: photograph
+    shape_tags:
+    - compact
+    - tail
+    source_and_license: Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json
+    path: candidates/S01.png
+  S05:
+    label: lizard
+    category: animal
+    origin: O02_0
+    representation: photograph
+    shape_tags: &id001
+    - elongated
+    - fine_parts
+    source_and_license: Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json
+    path: candidates/S05.png
+  S07:
+    label: lizard
+    category: animal
+    origin: O02_2
+    representation: photograph
+    shape_tags: *id001
+    source_and_license: Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json
+    path: candidates/S07.png
+  S10:
+    label: butterfly
+    category: animal
+    origin: O03_2
+    representation: photograph
+    shape_tags:
+    - symmetric
+    - wings
+    source_and_license: Leeds Butterfly Dataset, CC BY 4.0
+    path: candidates/S10.png
+  S12:
+    label: fish
+    category: animal
+    origin: O04_0
+    representation: photograph
+    shape_tags:
+    - elongated
+    - fins
+    source_and_license: Open Images V7, CC BY 2.0; see candidates/<ID>_<k>.json
+    path: candidates/S12.png
+  S16:
+    label: human face, portrait
+    category: human_portrait
+    origin: O05_3
+    representation: photograph
+    shape_tags: []
+    source_and_license: AISegment Matting Human; license unclear, pilot only
+    path: candidates/S16.png
+backgrounds:
+  D01:
+    material: dtd:striped
+    group: regular_pattern_2d
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/striped/striped_0105.jpg (DTD: research use)'
+    path: candidates/D01.jpg
+  D02:
+    material: dtd:sprinkled
+    group: granular
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/sprinkled/sprinkled_0119.jpg (DTD: research use)'
+    path: candidates/D02.jpg
+  D03:
+    material: dtd:bubbly
+    group: relief_shading
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/bubbly/bubbly_0060.jpg (DTD: research use)'
+    path: candidates/D03.jpg
+  D04:
+    material: dtd:fibrous
+    group: fibrous_overlapping
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/fibrous/fibrous_0157.jpg (DTD: research use)'
+    path: candidates/D04.jpg
+  D05:
+    material: dtd:veined
+    group: directional_flow
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/veined/veined_0106.jpg (DTD: research use)'
+    path: candidates/D05.jpg
+  D06:
+    material: dtd:blotchy
+    group: low_detail_blotchy
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/blotchy/blotchy_0079.jpg (DTD: research use)'
+    path: candidates/D06.jpg
+pairs:
+  D01S01:
+  - S01
+  - D01
+  D02S05:
+  - S05
+  - D02
+  D03S10:
+  - S10
+  - D03
+  D04S12:
+  - S12
+  - D04
+  D05S16:
+  - S16
+  - D05
+  D06S07:
+  - S07
+  - D06
+audit_pairs:
+- D01S01
+- D02S05
+- D03S10
+- D04S12
+- D05S16
+- D06S07

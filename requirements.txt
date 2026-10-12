@@ -8,3 +8,4 @@ huggingface_hub>=0.24.0
 gradio>=4.44.0
 PyYAML>=6.0
 packaging
+openai>=1.60  # only for the LLM Proposer/Observer (camo/llm.py)

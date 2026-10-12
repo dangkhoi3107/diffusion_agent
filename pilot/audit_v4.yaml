@@ -1,0 +1,19 @@
+# Audit v4 (2026-10-03). v3 cho thấy: D0 (blend tắt) -> subject biến mất; D1 (alpha 1) ~ C00.
+# Lịch mặc định (decay 1 -> 0.54) gần như blend tối đa; nhánh nền với bg_strength 0.52 tự phá texture (xem D0).
+# v4: alpha cố định từ thấp đến cao làm "cần gạt" độ rõ, ở hai mức bg_strength.
+base:
+  layout.scale: 0.8
+  blend.profile: constant
+
+audit_pairs: [P02, P05, P11, P13]
+
+configs:
+  C00: {blend.alpha_end: 1.0}                                  # = v3 D1 (tham chiếu)
+  A20: {blend.alpha_end: 0.20}
+  A35: {blend.alpha_end: 0.35}
+  A50: {blend.alpha_end: 0.50}
+  A70: {blend.alpha_end: 0.70}
+  L20: {blend.alpha_end: 0.20, sampling.bg_strength: 0.40}
+  L35: {blend.alpha_end: 0.35, sampling.bg_strength: 0.40}
+  L50: {blend.alpha_end: 0.50, sampling.bg_strength: 0.40}
+  L70: {blend.alpha_end: 0.70, sampling.bg_strength: 0.40}

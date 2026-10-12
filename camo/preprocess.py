@@ -62,7 +62,8 @@ class Preprocessor:
         return self._hed
 
     def _softedge_raw(self, subject_path: str, subject: np.ndarray, cfg: Config, canny: np.ndarray):
-        key = (os.path.abspath(subject_path), subject.shape)
+        stat = os.stat(subject_path)  # mtime/size: an overwritten input must not reuse a stale HED map
+        key = (os.path.abspath(subject_path), stat.st_mtime_ns, stat.st_size, subject.shape)
         if key in self._cache:
             self._cache.move_to_end(key)
             return self._cache[key], "hed"
