@@ -1,0 +1,25 @@
+# Knob sweep v3 (2026-10-13): grid v2 left the subject invisible on most label_b1 pairs (its strongest config is
+# about C00). Knobs that raise visibility, each on top of START (constant alpha 0.2, bg 0.48 ~ C00).
+# pilot_v3 labels: guidance_sub 5.0 -> 3/3 too_visible, layer_weights uniform -> 4/4 too_visible, bg 0.60 mixed.
+configs:
+  C00: {}
+  base: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48}
+  g35: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, sampling.guidance_sub: 3.5}
+  g50: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, sampling.guidance_sub: 5.0}
+  g70: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, sampling.guidance_sub: 7.0}
+  lwu: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, control.layer_weights: uniform}
+  lwu_g35: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, control.layer_weights: uniform, sampling.guidance_sub: 3.5}
+  b60: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.60}
+  g50_b55: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.55, sampling.guidance_sub: 5.0}
+  sc13: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, layout.scale: 1.3}
+  se30: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, control.softedge_scale: 3.0}
+  # mask = (edge^gamma - floor) / (ceiling - floor): a lower ceiling and gamma widen/strengthen the HED edge mask
+  mask: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, mask.ceiling: 0.6, mask.gamma: 0.3}
+  maskwide: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, mask.ceiling: 0.6, mask.gamma: 0.3, mask.blur: 31}
+  # seed sensitivity: the same configs with a second seed (every label-set render so far used seed 1234)
+  C00_s2: {sampling.seed: 98765}
+  base_s2: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, sampling.seed: 98765}
+  g50_s2: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, sampling.guidance_sub: 5.0, sampling.seed: 98765}
+  lwu_s2: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, control.layer_weights: uniform, sampling.seed: 98765}
+  # HED answers the image border itself (~15% of the mask mass sits in the 12-px frame): cut it
+  border16: {blend.profile: constant, blend.alpha_end: 0.2, sampling.bg_strength: 0.48, mask.border_px: 16}

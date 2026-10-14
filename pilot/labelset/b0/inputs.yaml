@@ -1,0 +1,235 @@
+version: label_b0v3
+note: 'Label set trial batch (10 pairs, 10 backgrounds): 10 pairs x grid.yaml (scripts/labelset.py,
+  seed 20261012).'
+subjects:
+  T002:
+    label: cat
+    category: animal
+    origin: A01_1
+    shape: quadruped_compact
+    species: Cat
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T002.png
+  T018:
+    label: arctic fox
+    category: animal
+    origin: A03_3
+    shape: quadruped_compact
+    species: Arctic fox
+    representation: photograph
+    shape_tags:
+    - quadruped_compact
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T018.png
+  T057:
+    label: alpaca
+    category: animal
+    origin: A12_2
+    shape: quadruped_tall
+    species: Alpaca
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T057.png
+  T064:
+    label: sheep
+    category: animal
+    origin: A08_2
+    shape: quadruped_heavy
+    species: Sheep
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T064.png
+  T072:
+    label: cattle
+    category: animal
+    origin: A13_4
+    shape: quadruped_heavy
+    species: Cattle
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T072.png
+  T099:
+    label: millipede
+    category: animal
+    origin: A39_0
+    shape: legless_elongated
+    species: Millipede
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T099.png
+  T101:
+    label: millipede
+    category: animal
+    origin: A39_10
+    shape: legless_elongated
+    species: Millipede
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T101.png
+  T102:
+    label: fish
+    category: animal
+    origin: A19_0
+    shape: streamlined_fins
+    species: Fish
+    representation: photograph
+    shape_tags:
+    - streamlined_fins
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T102.png
+  T175:
+    label: frog
+    category: animal
+    origin: A32_6
+    shape: round_shelled
+    species: Frog
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T175.png
+  T181:
+    label: turtle
+    category: animal
+    origin: A33_4
+    shape: round_shelled
+    species: Turtle
+    representation: photograph
+    shape_tags:
+    - round_shelled
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T181.png
+backgrounds:
+  D68:
+    material: nature:sand
+    group: nature_ground
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'GTOS-mobile (sand; research use): gtos/gtos-mobile/test/sand/IMG_0175_frame50.jpg'
+    path: candidates/D68.jpg
+  D72:
+    material: nature:foliage
+    group: nature_plant
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'Flickr Material Database (Flickr CC images; research use):
+      fmd/image/foliage/foliage_final_070_new.jpg'
+    path: candidates/D72.jpg
+  D25:
+    material: dtd:chequered
+    group: regular_pattern_2d
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/chequered/chequered_0053.jpg (DTD: research use)'
+    path: candidates/D25.jpg
+    picked: most homogeneous
+  D56:
+    material: dtd:pitted
+    group: granular
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/pitted/pitted_0089.jpg (DTD: research use)'
+    path: candidates/D56.jpg
+    picked: most homogeneous
+  D15:
+    material: dtd:crystalline
+    group: relief_shading
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/crystalline/crystalline_0171.jpg (DTD: research
+      use)'
+    path: candidates/D15.jpg
+    picked: most homogeneous
+  D04:
+    material: dtd:fibrous
+    group: fibrous_overlapping
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/fibrous/fibrous_0165.jpg (DTD: research use)'
+    path: candidates/D04.jpg
+    picked: most homogeneous
+  D47:
+    material: dtd:pleated
+    group: directional_flow
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/pleated/pleated_0067.jpg (DTD: research use)'
+    path: candidates/D47.jpg
+    picked: most homogeneous
+  D42:
+    material: dtd:stained
+    group: low_detail_blotchy
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/stained/stained_0119.jpg (DTD: research use)'
+    path: candidates/D42.jpg
+    picked: most homogeneous
+  D70:
+    material: nature:gravel
+    group: nature_ground
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'GTOS-mobile (pebble; research use): gtos/gtos-mobile/train/pebble/384_sample109_03_i00h.jpg'
+    path: candidates/D70.jpg
+  D86:
+    material: nature:leaf_litter
+    group: nature_plant
+    representation: photograph
+    contains_animal_risk: false
+    path: candidates/D86.jpg
+    source_and_license: 'GTOS-mobile (research use): gtos/gtos-mobile/train/dry_leaf/384_sample073_02_i00h.jpg'
+pairs:
+  D68T101:
+  - T101
+  - D68
+  D72T099:
+  - T099
+  - D72
+  D25T072:
+  - T072
+  - D25
+  D56T064:
+  - T064
+  - D56
+  D15T057:
+  - T057
+  - D15
+  D04T018:
+  - T018
+  - D04
+  D47T102:
+  - T102
+  - D47
+  D42T181:
+  - T181
+  - D42
+  D70T175:
+  - T175
+  - D70
+  D86T002:
+  - T002
+  - D86
+audit_pairs:
+- D68T101
+- D72T099
+- D25T072
+- D56T064
+- D15T057
+- D04T018
+- D47T102
+- D42T181
+- D70T175
+- D86T002

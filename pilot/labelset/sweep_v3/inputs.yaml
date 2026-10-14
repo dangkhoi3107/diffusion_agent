@@ -1,0 +1,181 @@
+version: sweep_v3
+note: Knob sweep on 8 pairs of b1 (scripts/labelset.py sweep).
+subjects:
+  S18:
+    label: human face, portrait
+    category: human_portrait
+    origin: O06_2
+    representation: photograph
+    shape_tags: []
+    source_and_license: AISegment Matting Human; license unclear, pilot only
+    path: candidates/S18.png
+    shape: human
+    species: Human
+  T046:
+    label: goat
+    category: animal
+    origin: A08_5
+    shape: quadruped_tall
+    species: Goat
+    representation: photograph
+    shape_tags:
+    - quadruped_tall
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T046.png
+  T068:
+    label: cattle
+    category: animal
+    origin: A12_0
+    shape: quadruped_heavy
+    species: Cattle
+    representation: photograph
+    shape_tags:
+    - quadruped_heavy
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T068.png
+  T090:
+    label: otter
+    category: animal
+    origin: A16_4
+    shape: low_elongated_legged
+    species: Otter
+    representation: photograph
+    shape_tags:
+    - low_elongated_legged
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T090.png
+  T099:
+    label: millipede
+    category: animal
+    origin: A39_0
+    shape: legless_elongated
+    species: Millipede
+    representation: photograph
+    shape_tags:
+    - legless_elongated
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T099.png
+  T125:
+    label: bat
+    category: animal
+    origin: A25_1
+    shape: wings_spread
+    species: Bat
+    representation: photograph
+    shape_tags:
+    - wings_spread
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T125.png
+  T151:
+    label: parrot
+    category: animal
+    origin: A27_4
+    shape: bird_upright
+    species: Parrot
+    representation: photograph
+    shape_tags:
+    - bird_upright
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T151.png
+  T222:
+    label: beetle
+    category: animal
+    origin: A37_3
+    shape: many_legs
+    species: Beetle
+    representation: photograph
+    shape_tags:
+    - many_legs
+    source_and_license: see candidates/<ID>.json
+    path: candidates/T222.png
+backgrounds:
+  D01:
+    material: dtd:striped
+    group: regular_pattern_2d
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/striped/striped_0105.jpg (DTD: research use)'
+    path: candidates/D01.jpg
+  D02:
+    material: dtd:sprinkled
+    group: granular
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/sprinkled/sprinkled_0119.jpg (DTD: research use)'
+    path: candidates/D02.jpg
+  D03:
+    material: dtd:bubbly
+    group: relief_shading
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/bubbly/bubbly_0060.jpg (DTD: research use)'
+    path: candidates/D03.jpg
+  D04:
+    material: dtd:fibrous
+    group: fibrous_overlapping
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/fibrous/fibrous_0157.jpg (DTD: research use)'
+    path: candidates/D04.jpg
+  D05:
+    material: dtd:veined
+    group: directional_flow
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/veined/veined_0106.jpg (DTD: research use)'
+    path: candidates/D05.jpg
+  D06:
+    material: dtd:blotchy
+    group: low_detail_blotchy
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/blotchy/blotchy_0079.jpg (DTD: research use)'
+    path: candidates/D06.jpg
+  D09:
+    material: dtd:cracked
+    group: relief_shading
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/cracked/cracked_0106.jpg (DTD: research use)'
+    path: candidates/D09.jpg
+  D10:
+    material: dtd:lacelike
+    group: fibrous_overlapping
+    representation: photograph
+    contains_animal_risk: false
+    source_and_license: 'DTD r1.0.1/lacelike/lacelike_0080.jpg (DTD: research use)'
+    path: candidates/D10.jpg
+pairs:
+  D01T068:
+  - T068
+  - D01
+  D06T125:
+  - T125
+  - D06
+  D10T090:
+  - T090
+  - D10
+  D02T222:
+  - T222
+  - D02
+  D05T099:
+  - T099
+  - D05
+  D09T046:
+  - T046
+  - D09
+  D04S18:
+  - S18
+  - D04
+  D03T151:
+  - T151
+  - D03
+audit_pairs:
+- D01T068
+- D06T125
+- D10T090
+- D02T222
+- D05T099
+- D09T046
+- D04S18
+- D03T151

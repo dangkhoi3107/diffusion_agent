@@ -53,7 +53,7 @@ def grid_labels(run: str, rater: str, inherit_below: float = 2.0) -> Tuple[Dict[
     from label_server import collect
 
     labels = load_labels(rater)
-    items = [i for i in collect(0.0, True) if i["run"] == run]
+    items = collect(0.0, True, runs={run})  # explicit run: works for retired runs too
     out: Dict[Tuple[str, str], Tuple[Optional[str], str]] = {}
     for i in items:
         own = labels.get(i["uid"])
@@ -61,7 +61,7 @@ def grid_labels(run: str, rater: str, inherit_below: float = 2.0) -> Tuple[Dict[
     for i in items:
         key = (i["pair_id"], i["config_id"])
         if out[key][0] is None and i["diff_vs_c00"] is not None and i["diff_vs_c00"] < inherit_below:
-            base = out.get((i["pair_id"], "C00"), (None, "none"))
+            base = out.get((i["pair_id"], i.get("base_id", "C00")), (None, "none"))  # C00 of the same seed
             if base[0]:
                 out[key] = (base[0], "inherited_from_C00")
     meta = {i["pair_id"]: {"subject": i["subject_label"], "background": i["background_id"]} for i in items}

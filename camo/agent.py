@@ -19,24 +19,53 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
 LABELS = ("too_visible", "good", "subtle", "missing", "broken", "unsure")
 
-# Action space v2 (2026-10-12, knob sweep outputs/label_sweep): the constant blend alpha only matters between 0 and
-# ~0.2 (the v1 grid 0.2-1.0 of grid_v5/label_b1 rendered near-identical images); inside the subject the change from
-# alpha 0 -> 0.04 -> 0.08 -> 0.12 -> 0.2 is roughly even. bg_strength 0.40 -> 0.55 raises visibility about as much;
-# 0.57+ broke textured backgrounds (pilot labels). The two knobs add up. Other knobs had little effect (end_frac,
-# softedge +-0.2) and are not searched. v1 (grid_v5) was alpha (0.2, 0.35, 0.5, 0.7, 1.0) x bg (0.45, 0.52).
-ACTION_SPACE: Dict[str, Tuple[float, ...]] = {
-    "blend.alpha_end": (0.0, 0.04, 0.08, 0.12, 0.2),
-    "sampling.bg_strength": (0.40, 0.48, 0.55),
+# Action space v5 (2026-10-13, user's choice). History, each grid failed on the user's labels:
+#   v1 (grid_v5)        alpha 0.2-1.0 x bg 0.45/0.52: renders near-identical
+#   v2 (label_b1/b2)    alpha 0-0.2 x bg 0.40-0.55 on random DTD picks: almost all "missing" (b1 10/50 pairs had a good)
+#   v3 (label_b0v3)     strength a008/a020/g50/g70/lwu x bg 0.44/0.52/0.60 on clean backgrounds: 4/10 pairs had a
+#                       good; per pair "missing" turns into "too_visible" between a008 and a020, g70/lwu were almost
+#                       always too visible, and bg_strength moves visibility about as much as one strength step.
+#   v4 (label_b0v3)     a004/a008/a012/a020/g50 x bg 0.44/0.52/0.60: still 4/10 (a004 and a012 added no good render)
+# v5 adds a second per-pair seed as an action: with it 8/10 trial pairs have a good render (seed 1: 4, seed 2: 6,
+# both: 2); the seed moves the image as much as the strongest knob. a004 is dropped (2/60 good, on pairs good elsewhere).
+STRENGTH: Dict[str, Dict[str, Any]] = {
+    "a008": {"blend.alpha_end": 0.08},
+    "a012": {"blend.alpha_end": 0.12},
+    "a020": {"blend.alpha_end": 0.2},
+    "g50": {"blend.alpha_end": 0.2, "sampling.guidance_sub": 5.0},
+}
+# seed action -> sampling.seed before camo.pilot.pair_seed shifts it per pair (None = the generator default, 1234)
+SEEDS: Dict[int, Optional[int]] = {1: None, 2: 98765}
+ACTION_SPACE: Dict[str, Tuple[Any, ...]] = {
+    "subject.strength": tuple(STRENGTH),
+    "sampling.bg_strength": (0.44, 0.52, 0.60),
+    "seed": tuple(SEEDS),
 }
 FIXED = {"blend.profile": "constant"}  # alpha_end is the constant blend weight
-START = {"blend.alpha_end": 0.2, "sampling.bg_strength": 0.48}  # closest to the thesis default C00 (sweep: ~a020_b50)
+START = {"subject.strength": "a020", "sampling.bg_strength": 0.52, "seed": 1}  # closest to the thesis default C00
 
-Config = Dict[str, float]
+Config = Dict[str, Any]  # action-space key -> value (strength level name or bg_strength)
 
 
 def grid_id(cfg: Config) -> str:
-    """Stable config id used by the replay grid (pilot/grid_v5.yaml), e.g. a050_b45."""
-    return f"a{round(cfg['blend.alpha_end'] * 100):03d}_b{round(cfg['sampling.bg_strength'] * 100):02d}"
+    """Stable config id of the label-set grid (pilot/labelset/grid.yaml), e.g. g50_b60, or g50_b60_s2 for seed 2."""
+    seed = cfg.get("seed", 1)
+    return f"{cfg['subject.strength']}_b{round(cfg['sampling.bg_strength'] * 100):02d}" + ("" if seed == 1 else f"_s{seed}")
+
+
+def default_id(config_id: str) -> str:
+    """The thesis-default render with the same seed as `config_id`: C00 for seed 1, C00_s2 for seed 2."""
+    m = re.search(r"_s\d+$", config_id)
+    return "C00" + (m.group(0) if m else "")
+
+
+def render_overrides(cfg: Config) -> Dict[str, Any]:
+    """The generator settings of one action-space config (what pilot / the render server apply)."""
+    out = {**FIXED, **STRENGTH[cfg["subject.strength"]], "sampling.bg_strength": cfg["sampling.bg_strength"]}
+    seed = SEEDS[cfg.get("seed", 1)]
+    if seed is not None:
+        out["sampling.seed"] = seed
+    return out
 
 
 def all_configs() -> List[Config]:
@@ -54,8 +83,11 @@ def validate(cfg: Dict[str, Any]) -> Config:
         raise ValueError(f"keys outside the action space: {sorted(unknown)}")
     out: Config = {}
     for k, allowed in ACTION_SPACE.items():
-        v = float(cfg.get(k, START[k]))
-        match = [a for a in allowed if abs(a - v) < 1e-9]
+        v = cfg.get(k, START[k])
+        if isinstance(allowed[0], str):
+            match = [a for a in allowed if a == str(v)]
+        else:
+            match = [a for a in allowed if abs(a - float(v)) < 1e-9]
         if not match:
             raise ValueError(f"{k}={v} not in {allowed}")
         out[k] = match[0]
@@ -141,15 +173,16 @@ class RandomPolicy(Policy):
 
 
 class RulePolicy(Policy):
-    """Coordinate rule from the pilot labels (heuristic, checked on dev only):
-    too_visible -> lower alpha; subtle/missing -> raise alpha; broken -> lower bg_strength; unsure -> lower alpha."""
+    """Coordinate rule from the pilot labels (heuristic, checked on dev only): too_visible -> weaker subject;
+    subtle/missing -> stronger subject; broken -> lower bg_strength; unsure -> weaker subject; when the rule's moves
+    are at an edge or already tried, switch the seed."""
     name = "rule"
     MOVES = {
-        "too_visible": [("blend.alpha_end", -1), ("sampling.bg_strength", -1)],
-        "subtle": [("blend.alpha_end", +1), ("sampling.bg_strength", +1)],
-        "missing": [("blend.alpha_end", +1), ("sampling.bg_strength", +1)],
-        "broken": [("sampling.bg_strength", -1), ("blend.alpha_end", -1)],
-        "unsure": [("blend.alpha_end", -1), ("blend.alpha_end", +1)],
+        "too_visible": [("subject.strength", -1), ("sampling.bg_strength", -1), ("seed", +1), ("seed", -1)],
+        "subtle": [("subject.strength", +1), ("sampling.bg_strength", +1), ("seed", +1), ("seed", -1)],
+        "missing": [("subject.strength", +1), ("sampling.bg_strength", +1), ("seed", +1), ("seed", -1)],
+        "broken": [("sampling.bg_strength", -1), ("subject.strength", -1), ("seed", +1), ("seed", -1)],
+        "unsure": [("subject.strength", -1), ("subject.strength", +1), ("seed", +1), ("seed", -1)],
     }
 
     def propose(self, search):
@@ -181,7 +214,8 @@ class LLMPolicy(Policy):
             "task": "Choose the next generator config so the subject blends into the background yet is recognised "
                     "at first glance. Labels: too_visible, good, subtle, missing, broken, unsure.",
             "action_space": {k: list(v) for k, v in ACTION_SPACE.items()},
-            "effects": {"blend.alpha_end": "higher = subject more visible",
+            "effects": {"subject.strength": "levels from faint to strong: " + ", ".join(
+                            f"{k} = {v}" for k, v in STRENGTH.items()),
                         "sampling.bg_strength": "higher = background repainted more, subject stronger; too high breaks texture"},
             "history": history,
             "renders_left": search.budget - len(history),
@@ -297,4 +331,4 @@ class Controller:
 
 def overrides(cfg: Config) -> List[str]:
     """--set style overrides for the generator."""
-    return [f"{k}={v}" for k, v in {**FIXED, **cfg}.items()]
+    return [f"{k}={v}" for k, v in render_overrides(cfg).items()]

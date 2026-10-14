@@ -93,6 +93,24 @@ def wait_dataset(user: str, expect: dict, minutes: float = 20) -> None:
     print("camo-code: new version is live", flush=True)
 
 
+def dataset_sources(user: str, step: str, frozen: str) -> list:
+    """Datasets the kernel mounts. AISegment (~68k files) is only read when inputs are fetched; a run on frozen inputs
+    (the label set) mounts the code alone: one dataset less to fail with ERRORED_MOUNTING_DATASET (13/10, twice)."""
+    fetches = step == "fetch-inputs" or not os.path.exists(os.path.join(ROOT, frozen, "inputs.yaml"))
+    return [f"{user}/camo-code"] + ([AISEGMENT] if fetches else [])
+
+
+def wait_kernel(kernel: str, poll: float = 60.0) -> str:
+    """Block while the kernel is queued or running; a status call that fails (offline) counts as still running."""
+    while True:
+        status = sh("kaggle", "kernels", "status", kernel, check=False, timeout=120).lower()
+        state = re.search(r"kernelworkerstatus\.(\w+)", status)
+        print(time.strftime("%H:%M"), state.group(0) if state else "status unknown (offline?)", flush=True)
+        if state and state.group(1) not in ("running", "queued"):
+            return state.group(1)
+        time.sleep(poll)
+
+
 def notebook(run: str, configs: str, pick: dict, step: str, frozen: str = "pilot/frozen_inputs", slim: bool = False,
              expect: dict | None = None) -> dict:
     with open(os.path.join(ROOT, "kaggle", "camo_pilot.ipynb"), encoding="utf-8") as f:
@@ -148,7 +166,9 @@ def main() -> int:
     ap.add_argument("--user", default="", help="Kaggle username (required with the new access_token)")
     ap.add_argument("--skip-upload", action="store_true", help="camo-code on Kaggle is already current")
     ap.add_argument("--no-wait", action="store_true", help="push and return; download later with --download-only")
-    ap.add_argument("--download-only", action="store_true")
+    ap.add_argument("--download-only", action="store_true", help="wait for the running kernel, then download")
+    ap.add_argument("--download-hours", type=float, default=12.0,
+                    help="keep retrying the download this long (the machine may be offline for hours)")
     ap.add_argument("--serve", action="store_true", help="start the GPU render server for camo.demo (no waiting)")
     ap.add_argument("--serve-url", help="save the RENDER_URL printed in the Kaggle log for camo.demo")
     ap.add_argument("--idle", type=float, default=40.0, help="--serve: minutes without requests before it stops")
@@ -215,7 +235,8 @@ def main() -> int:
         with open(os.path.join(kdir, "kernel-metadata.json"), "w", encoding="utf-8") as f:
             json.dump({"id": kernel, "title": "camo-pilot-run", "code_file": "camo_pilot_run.ipynb", "language": "python",
                        "kernel_type": "notebook", "is_private": True, "enable_gpu": True, "enable_internet": True,
-                       "dataset_sources": [f"{user}/camo-code", AISEGMENT], "competition_sources": [], "kernel_sources": []}, f, indent=1)
+                       "dataset_sources": dataset_sources(user, args.step, args.frozen), "competition_sources": [],
+                       "kernel_sources": []}, f, indent=1)
         for push in range(1, 6):
             sh("kaggle", "kernels", "push", "-p", kdir)
             print(f"Running: https://www.kaggle.com/code/{kernel}")
@@ -246,12 +267,17 @@ def main() -> int:
         else:
             sys.exit("Kaggle kept mounting an old camo-code version: re-run later")
 
+    if args.download_only:  # resumed runner or a re-download: the kernel may still be rendering
+        final = wait_kernel(kernel)
+        if final == "error" or final.startswith("cancel"):  # nothing to download: render again instead of waiting
+            sys.exit(f"Kernel ended with status {final}: no output to download; see https://www.kaggle.com/code/{kernel}")
     os.makedirs(out_dir, exist_ok=True)
-    for attempt in range(10):  # retry the download through short network outages
+    deadline = time.time() + args.download_hours * 3600
+    while True:  # retry through network outages (wifi switched off for hours): time-bounded, not count-bounded
         got = sh("kaggle", "kernels", "output", kernel, "-p", out_dir, "--file-pattern", rf"^{re.escape(args.run)}\.zip$",
                  check=False, timeout=1800)
         zpath = os.path.join(out_dir, f"{args.run}.zip")
-        if zipfile.is_zipfile(zpath) or "unrecognized arguments" in got:
+        if zipfile.is_zipfile(zpath) or "unrecognized arguments" in got or time.time() > deadline:
             break
         if os.path.exists(zpath):  # a dropped connection leaves a truncated (or empty) zip
             os.remove(zpath)

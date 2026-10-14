@@ -36,6 +36,10 @@ def build_soft_mask(softedge_rgb: np.ndarray, cfg: MaskConfig) -> SoftMaskStages
     floor = float(np.clip(cfg.floor, 0.0, 1.0))
     ceiling = float(np.clip(cfg.ceiling, 0.0, 1.0))
     mask = (remapped - floor) / (ceiling - floor) if ceiling > floor else remapped
+    b = int(getattr(cfg, "border_px", 0) or 0)
+    if b > 0:  # HED draws a frame along the image border: it is not part of the subject
+        mask = mask.copy()
+        mask[:b], mask[-b:], mask[:, :b], mask[:, -b:] = 0.0, 0.0, 0.0, 0.0
     return SoftMaskStages(
         gray=gray.astype(np.float32),
         smoothed=np.clip(smoothed, 0.0, 1.0).astype(np.float32),

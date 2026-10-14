@@ -1,0 +1,87 @@
+# Grid v4 seed axis trial (2026-10-13, user's choice after v4 reached 4/10): every v4 config again with a
+# second per-pair seed (sampling.seed 98765 shifted by the pair hash, as 1234 is for the first seed).
+# C00 is rendered again so merge-run can check the first seed reproduces. Downloaded as label_b0v3seed,
+# merged into label_b0v3.
+seed_per_pair: true
+configs:
+  C00: {}
+  C00_s2:
+    sampling.seed: 98765
+  a004_b44_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.44
+    sampling.seed: 98765
+  a004_b52_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.52
+    sampling.seed: 98765
+  a004_b60_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.6
+    sampling.seed: 98765
+  a008_b44_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.08
+    sampling.bg_strength: 0.44
+    sampling.seed: 98765
+  a008_b52_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.08
+    sampling.bg_strength: 0.52
+    sampling.seed: 98765
+  a008_b60_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.08
+    sampling.bg_strength: 0.6
+    sampling.seed: 98765
+  a012_b44_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.44
+    sampling.seed: 98765
+  a012_b52_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.52
+    sampling.seed: 98765
+  a012_b60_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.6
+    sampling.seed: 98765
+  a020_b44_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.bg_strength: 0.44
+    sampling.seed: 98765
+  a020_b52_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.bg_strength: 0.52
+    sampling.seed: 98765
+  a020_b60_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.bg_strength: 0.6
+    sampling.seed: 98765
+  g50_b44_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.guidance_sub: 5.0
+    sampling.bg_strength: 0.44
+    sampling.seed: 98765
+  g50_b52_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.guidance_sub: 5.0
+    sampling.bg_strength: 0.52
+    sampling.seed: 98765
+  g50_b60_s2:
+    blend.profile: constant
+    blend.alpha_end: 0.2
+    sampling.guidance_sub: 5.0
+    sampling.bg_strength: 0.6
+    sampling.seed: 98765

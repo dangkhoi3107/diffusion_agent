@@ -37,6 +37,7 @@ def test_metrics_counts_ordinal_and_broken():
     m = obs.metrics(["good", "missing", "broken", "too_visible"], ["good", "subtle", "broken", "good"])
     assert m["exact"] == 0.5 and m["good_vs_not"] == 0.75
     assert m["ordinal_mae"] == pytest.approx(2 / 3, abs=1e-3) and m["broken_f1"] == 1.0
+    assert m["good_precision"] == 0.5 and m["good_recall"] == 1.0  # one true good, two predicted
 
 
 def _png(path, value):
@@ -65,7 +66,8 @@ def make_outputs(tmp_path):
     (out / "labels.jsonl").write_text("\n".join(json.dumps(r) for r in labels) + "\n")
     manifest = tmp_path / "manifest.json"
     manifest.write_text(json.dumps({"subjects": {"T01": {"split": "train"}},
-                                    "backgrounds": {"D01": {"split": "train"}, "D02": {"split": "test"}}}))
+                                    "backgrounds": {"D01": {"split": "train"}, "D02": {"split": "test"}},
+                                    "batches": [{"run": "label_b1"}]}))
     return out, manifest
 
 

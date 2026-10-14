@@ -1,3 +1,5 @@
+> **Đã cũ, xem [HANDOFF_2026-10-13.md](HANDOFF_2026-10-13.md).** File này chỉ còn giá trị lịch sử.
+
 # Bàn giao CamouBlend agents: chiều 12/10/2026 (đóng băng lúc ~16:15)
 
 File này **thay thế** [HANDOFF_2026-10-12.md](HANDOFF_2026-10-12.md). Bản sáng vẫn đúng ở các phần hạ tầng (mục 2) và phát hiện nghiên cứu (mục 3).
@@ -264,3 +266,146 @@ nohup setsid python3 -u scripts/labelset.py run >> outputs/labelset_run.log 2>&1
 - `self-trained-agents-plan.md`: label set v2.
 - `kaggle-dataset-race.md`: bài học stale camo-code.
 - `user-working-style.md`: như cũ.
+
+---
+
+## 9. Cập nhật sáng 13/10 (~07:30)
+
+- **Đêm 12/10:**
+  - Máy bị **tắt** lúc 18:21 (shutdown, không phải ngủ) và bật lại lúc 21:33, nên runner chết.
+  - Kernel đợt 1 đẩy lúc 16:13 bị **treo**, Kaggle cắt nó khoảng 02:30 mà không có output.
+  - Quota GPU hầu như không bị trừ, có lẽ kernel chủ yếu nằm chờ. Theo trang Settings của Kaggle, quota tuần là **8/30 giờ** lúc 07:20 ngày 13/10.
+- **Runner v3** (khởi động lúc 01:01, chạy dưới `systemd-inhibit --what=idle:sleep` để máy không tự ngủ):
+  - `check_batch()`: mỗi đợt tải về phải đủ đúng các config của lưới cho mọi cặp, và ít nhất 95% trial ok. Nếu không, đợt đó bị cất sang `outputs/stale_<run>_<time>` rồi render lại.
+  - Khi lỗi: thử tải lại (`--download-only`) trước, sau đó render lại, tối đa `BATCH_RETRIES = 2` lần. Chỉ khi vẫn lỗi mới dừng với `state=error`.
+  - Kết quả: đợt 1 render lại lúc 02:34, xong 05:16, **800/800 ok**. `grid_check` cho median trong vùng con vật 7,4/255, 3% dưới 2/255. Đợt 2 đẩy lên lúc 05:21.
+- **Trang gán nhãn** (`label_server.py`):
+  - Bỏ qua các thư mục `stale_*` và `oldgrid_*` (lưới v1, không gán nhãn).
+  - Đợt 1 hiện **744 ảnh**; 56 ảnh gần trùng C00 tự ẩn.
+  - Server chạy bằng preview `label`. Nếu tắt, chạy lại bằng `python3 scripts/label_server.py --port 8765`.
+- **Dự kiến các đợt về** (khoảng 2,6–2,7 giờ mỗi đợt):
+
+  | Đợt | Giờ về |
+  |---|---|
+  | b2 | ~08:05 |
+  | b3 | ~10:45 |
+  | b4 | ~13:25 |
+  | b5 | ~16:05 |
+  | b6 | ~18:45 |
+  | b7 | ~21:25 |
+  | b8 | ~00:05 ngày 14/10 |
+  | b9 | ~02:45 ngày 14/10 |
+
+  Tổng 7.200 ảnh (dưới mức 10.000 người dùng đặt ra). Quota cần thêm khoảng 20 giờ, còn khoảng 22 giờ: vừa đủ.
+- **Edge (Claude in Chrome):** đã kết nối, Kaggle đăng nhập bằng `dangkhoilearning3107@gmail.com`.
+  - Xem quota ở https://www.kaggle.com/settings (mục "Kaggle GPU").
+  - Log của version mới nhất ở `…/camo-pilot-run/log`.
+  - Trang Kaggle tải chậm qua extension: dùng `find` hoặc chụp màn hình thay cho `get_page_text`.
+  - Kernel chạy trên **GPU T4 ×2**, nhưng pilot chỉ dùng 1 GPU. Chia đợt ra 2 GPU sẽ nhanh gấp đôi, nhưng chưa cần vì tốc độ gán nhãn mới là nút thắt.
+- **Trang checklist** https://claude.ai/artifact/QbD5iVTsnYXPZNGM6DFeQQ: ArtifactData báo "không tồn tại hoặc không có quyền", nên chưa tick được.
+- **Test:** python hệ thống 49 qua, 1 bỏ qua. Venv `~/.venvs/camo-ml`: `test_observer` và `test_labelset` 16/16 qua.
+- **Nếu máy tắt hoặc khởi động lại**, chạy lại runner (nó tự tiếp tục, không đẩy lại đợt đang render):
+
+  ```bash
+  nohup setsid systemd-inhibit --what=idle:sleep --who=camo-labelset --why="Kaggle label batches" --mode=block python3 -u scripts/labelset.py run >> outputs/labelset_run.log 2>&1 &
+  ```
+
+---
+
+## 10. Cập nhật 13/10 ~07:40: lưới v2 làm con vật mất hẳn → quét thử lưới v3
+
+- **Người dùng thấy ảnh đợt 1 gần như "mất hết con vật".**
+  - Kiểm tra trên cả 50 cặp: kể cả ở config rõ nhất `a020_b55`, chỉ khoảng 5–8 cặp còn thấy được con vật.
+  - Nguyên nhân: C00 ở đợt 1 trông giống bgmap_v1, nhưng khoảng 13/15 config của lưới v2 làm ảnh **mờ hơn C00** (alpha 0–0,12), và lưới không có config nào làm ảnh rõ hơn C00.
+  - bgmap_v1 chỉ render C00: 69 đạt / 62 mất hẳn / 46 quá rõ / 9 hơi chìm trên 188 ảnh.
+- **Quyết định của người dùng:**
+  - Quét thử các nút tăng độ rõ trước, rồi Claude đề xuất lưới v3 để người dùng duyệt.
+  - **Chưa gán nhãn đợt 1** (sẽ render lại theo v3).
+- **Trạng thái các đợt:**
+  - b3–b9 đang **HOLD**. b2 render nốt theo v2.
+  - Bản manifest trước khi hold được lưu ở scratchpad. Muốn bỏ hold thì xoá trường `hold`, hoặc dựng lại bằng `rebuild-subjects --release`.
+- **Đợt quét `sweep_v3`:**
+  - Inputs: `pilot/labelset/sweep_v3` (lệnh mới `labelset.py sweep --name … --batch 1 --pairs …`, 8 cặp: 6 cặp khó + D03T151, D04S18).
+  - Lưới quét: `pilot/labelset/sweep_v3_grid.yaml`, 12 config: C00, base, guidance_sub 3,5/5/7, layer_weights uniform (±g3,5), bg 0,60, g5+bg 0,55, scale 1,3, softedge 3,0, mask ceiling 1/gamma 0,3.
+  - Pilot v3 đã cho thấy guidance_sub 5 → 3/3 quá rõ, và uniform → 4/4 quá rõ.
+  - Một lệnh nền tự đẩy đợt quét khi runner dừng sau b2. Kết quả về `outputs/sweep_v3`, log ở `outputs/sweep_v3_run.log`.
+  - Bước sau: dựng lưới v3 khoảng 15 config, C00 ở giữa, trải từ mất hẳn tới quá rõ. Ví dụ: mức mạnh của subject {alpha 0,04 / 0,12 / 0,2 / g3,5 / g5} × bg {0,40 / 0,48 / 0,55}. Sửa `ACTION_SPACE` trong `camo/agent.py` (Rule đang giả định các trục có thứ tự), dựng lại `grid.yaml` + b1…b9, rồi render lại.
+- **Model 2 (Proposer) đã viết xong:**
+  - Mô hình ở `camo/proposer.py`: GRU, h0 lấy từ đặc trưng nền đã chiếu **PCA 16 chiều** (không whitening) + dropout. Train BC (DAgger) rồi REINFORCE (`rl_lr` nhỏ). Có `NetPolicy(Policy)` để dùng với Controller.
+  - Script train: `scripts/train_proposer.py`. Chạy CV gom nhóm theo nền, so với Rule / Random / Fixed / Oracle, rồi chấm test và lưu `outputs/proposer/`.
+  - Cần ít nhất 10 cặp train có đủ nhãn cả 15 config.
+  - Trên dữ liệu giả 768 chiều (tín hiệu hạng thấp): success 1,0 với 1,2–1,6 lượt render, Rule cần 3,0 lượt.
+  - Không có PCA thì mạng học vẹt nhiễu: success 0,44.
+  - Test: `tests/test_proposer.py`, 8 test (5 test cần torch, chạy bằng `~/.venvs/camo-ml/bin/python -m pytest`).
+- **Toàn bộ test:**
+  - python hệ thống: 53 qua, 5 bỏ qua (cần torch).
+  - venv: `test_observer` + `test_proposer` + `test_labelset` 24/24 qua.
+- **Seed (người dùng hỏi):** mọi ảnh của bộ nhãn tới giờ đều dùng `sampling.seed = 1234`, vì `pilot.pair_config` đặt `seed_mode = fixed`.
+  - Đã thêm khoá tuỳ chọn `seed_per_pair: true` ở đầu file lưới (`pilot.pair_seed`): mỗi cặp một seed ổn định (sha256 của pair id), giữ nguyên qua mọi config của cặp. Mặc định tắt. Test ở `tests/test_pilot.py`.
+  - **Bật nó trong lưới v3.**
+  - Đợt quét có thêm 4 config dùng seed thứ hai (`*_s2`, seed 98765) để đo xem nhãn đổi bao nhiêu khi đổi seed.
+
+---
+
+## 11. Cập nhật 13/10 ~08:15: nhãn đợt 1–2, nền DTD, mất mạng
+
+- **Người dùng đã gán 769 ảnh của b1 và 323 ảnh của b2** (lưới v2). Kết quả:
+  - C00 của b1: 25 mất hẳn / 15 quá rõ / 5 hơi chìm / **4 đạt** / 1 lỗi. Các config v2 gần như toàn bộ mất hẳn.
+  - Chỉ **10/50 cặp của b1 có ít nhất 1 config đạt**; b2 thì 0/49.
+  - Nền quyết định nhãn: cùng một nền cho cùng nhãn với cả 5 con vật.
+- **Nguyên nhân chính là nền DTD chọn ngẫu nhiên** (lệnh `build`): khoảng 15/60 ảnh không phải texture. Ví dụ D01 là ảnh con bọ xít, D12 có con mèo, D60 là tranh mặt người, cộng thêm túi xách, quả bí, rổ mây, cảnh có trời. bgmap_v1 dùng ảnh **đồng đều nhất** của mỗi loại, nên C00 có 37% đạt.
+  - Mask không phải nguyên nhân: cùng loại mask viền HED, độ phủ tương đương.
+- **Người dùng muốn "giữ output như cũ nhất có thể":** C00, mask và prompt giữ nguyên. Các nút mới (`mask.border_px`, `seed_per_pair`) mặc định tắt.
+- **Lệnh mới:**
+  - `labelset.py repick-dtd [--exclude …]`: mỗi nền DTD đổi thành ảnh đồng đều nhất cùng loại, không trùng ảnh bgmap. Bản chạy thử cho 58 ảnh đổi, đều là texture sạch. **Chưa áp dụng.**
+  - `labelset.py rebatch`: mỗi đợt có 50 nền khác nhau (người dùng đã chọn).
+  - `labelset.py sweep`: lấy một nhóm cặp con của một đợt để quét thử.
+  - Hai lệnh `repick-dtd` và `rebatch` chỉ chạy khi mọi đợt đang hold và chưa render.
+  - Vì b1 và b2 đã có ảnh, phải cất chúng sang tên `oldgrid_v2_label_bK` trước.
+- **Đợt quét `sweep_v3`:** 18 config × 8 cặp = 144 ảnh. Đẩy lên Kaggle lúc 08:07; log ở `outputs/sweep_v3_run.log`.
+  - Có thêm lưới an toàn `outputs/.sweep_v3_fallback.sh` (chạy bằng nohup): nếu lần tải đầu thất bại, nó tải lại bằng `--download-only`, chờ kernel xong và thử lại tới 12 giờ.
+- **Chịu được mất mạng** (`kaggle_run.py`):
+  - `wait_kernel()`: gọi status thất bại thì coi như kernel vẫn đang chạy.
+  - Tải về thử lại theo thời gian (`--download-hours`, mặc định 12).
+  - `--download-only` chờ kernel xong rồi mới tải.
+  - Test ở `tests/test_kaggle_run.py`.
+- **Việc tiếp theo:**
+  1. Xem ảnh quét bằng mắt và chọn các nút tăng độ rõ mà không đổi phong cách ảnh.
+  2. Dựng lưới v3 quanh C00; bật `seed_per_pair: true` trong `grid.yaml`; gửi người dùng duyệt.
+  3. Cất b1, b2; chạy `repick-dtd`, `rebuild-subjects`, `rebatch`.
+  4. Render thử vài cặp để chắc tỉ lệ đạt quay lại gần mức bgmap, rồi mới bỏ hold và chạy lại cả 9 đợt.
+
+---
+
+## 12. Cập nhật 13/10 ~09:45: lưới v3 + đợt thử
+
+- **Máy được tắt lúc 08:27, bật lại 09:14.** Ảnh quét `sweep_v3` được tải sau đó (144/144). Ảnh để xem: `outputs/sweep_v3_review/sweep_A.png`, `sweep_B.png`.
+- **Kết quả quét** (mức chênh trung vị trong vùng con vật so với C00):
+
+  | Thay đổi | Mức chênh | Ghi chú |
+  |---|---:|---|
+  | Chỉ đổi seed | 20 | ngang với nút mạnh nhất |
+  | lwu (layer_weights uniform) | 22 | con vật thành nét vẽ viền |
+  | lwu + guidance 3,5 | 29 | |
+  | guidance 5 + bg 0,55 | 14 | |
+  | guidance 7 | 10 | |
+  | bg 0,60 | 9 | |
+  | scale 1,3 / softedge 3 | ~8 | |
+  | guidance 3,5 / 5 | 4–7 | |
+  | mask, maskwide, border16 | ~4–5 | **không khác base** |
+
+- **Người dùng chọn lưới v3 "mức mạnh × bg, giữ phong cách"**, và chọn render thử 10 cặp trước.
+  - `camo/agent.py`: `ACTION_SPACE = {subject.strength: a008, a020, g50, g70, lwu; sampling.bg_strength: 0.44, 0.52, 0.60}`. `STRENGTH` ánh xạ từng mức sang các ghi đè khi render. Hàm `render_overrides()`. `START = a020_b52`. Các id có dạng `g50_b60`.
+  - Đã cập nhật Rule, LLM prompt, demo, proposer và toàn bộ test.
+  - `grid.yaml` có `seed_per_pair: true`.
+- **Bộ nhãn v3 (đã chạy thật):**
+  - `labelset.py new-grid`: các đợt được đổi tên thành `label_b<k>v3`.
+  - `label_b1` và `label_b2` (lưới v2, có nhãn) được đánh dấu bằng file `outputs/<run>/RETIRED`: không hiện trên trang gán nhãn nữa, nhưng nhãn vẫn được dùng để train.
+  - `repick-dtd`: thay 58 nền DTD bằng ảnh đồng đều nhất cùng loại.
+  - `rebatch --trial 10`: tạo **đợt thử `label_b0v3`** (10 cặp, 10 nền, 8 nhóm, không bị hold), và 9 đợt mỗi đợt 48–49 cặp với 48–49 nền khác nhau, đều đủ 8 nhóm. Các đợt này **hold**, chờ kết quả đợt thử.
+- **Bản sao lưu trước khi đổi** nằm trong scratchpad (`backup_v2_*`).
+- **Bước tiếp theo:**
+  1. Đợt thử về. Người dùng gán nhãn (khoảng 160 ảnh).
+  2. Đếm số cặp có ít nhất một ảnh "đạt". Mục tiêu: cao hơn rõ so với lưới v2 (b1: 10/50; b2: 0/49).
+  3. Nếu đạt: bỏ hold đợt 1–9 (xoá trường `hold` trong manifest) rồi chạy `labelset.py run`. Cần khoảng 24 giờ GPU; quota đã dùng khoảng 12/30 giờ.
+- **Test:** 64 qua, 5 bỏ qua (cần torch). Venv: observer + proposer + labelset + kaggle_run đều qua.

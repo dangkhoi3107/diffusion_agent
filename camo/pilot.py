@@ -279,6 +279,12 @@ def check_baseline(cfg: Config) -> None:
         print("[pilot] WARNING: legacy_unipc_corrector=true (legacy behavior, not the corrected baseline)")
 
 
+def pair_seed(pair_id: str, seed: int) -> int:
+    """Seed of one pair: stable (from the pair id), different between pairs, the same for every config of the pair
+    so configs stay comparable. An explicit sampling.seed override shifts it."""
+    return (int(seed) + int(hashlib.sha256(pair_id.encode("utf-8")).hexdigest()[:8], 16)) % 2**31
+
+
 def pair_config(base: Config, inv: Dict[str, Any], subject_id: str, overrides: Dict[str, Any]) -> Config:
     cfg = base.copy()
     cfg.prompt.subject_name = inv["items"][subject_id]["label"]
@@ -329,7 +335,8 @@ def preview(base: Config, data: Dict[str, Any], inv: Dict[str, Any], out: str, p
 # Trials (M1.7, M1.9)
 # ------------------------------------------------------------------
 def run_trials(base: Config, data: Dict[str, Any], inv: Dict[str, Any], out: str,
-               plan: List[Tuple[str, str]], stage: str, configs: Optional[Dict[str, Dict[str, Any]]] = None) -> Dict[str, Any]:
+               plan: List[Tuple[str, str]], stage: str, configs: Optional[Dict[str, Dict[str, Any]]] = None,
+               seed_per_pair: bool = False) -> Dict[str, Any]:
     from .config import get_value
     from .runner import Session, run_pair
 
@@ -371,6 +378,8 @@ def run_trials(base: Config, data: Dict[str, Any], inv: Dict[str, Any], out: str
             print(f"[{stage}] {pid}/{cid}: skipped after {timeouts} watchdog timeouts", flush=True)
             continue
         cfg = pair_config(base, inv, s, configs[cid])
+        if seed_per_pair:
+            cfg.sampling.seed = pair_seed(pid, cfg.sampling.seed)
         record.update({"seed": cfg.sampling.seed, "steps": cfg.sampling.steps, "prompt_version": prompt_version(cfg),
                        "negative_prompt": cfg.prompt.negative,
                        "params": {k: get_value(cfg, k) for k in dict.fromkeys([*C00_EXPECTED, "layout.scale", *configs[cid]])},
@@ -506,11 +515,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     data = load_inputs(args.inputs)
     shutil.copy2(args.inputs, os.path.join(out, "inputs.yaml"))
     save_config(base, os.path.join(out, "base_config.yaml"))
-    configs = AUDIT_CONFIGS
+    configs, seed_per_pair = AUDIT_CONFIGS, False
     if args.configs:
         with open(args.configs, encoding="utf-8") as f:
             spec = yaml.safe_load(f)
         configs = {str(k): dict(v or {}) for k, v in spec["configs"].items()}
+        seed_per_pair = bool(spec.get("seed_per_pair"))  # one seed per pair (not 1234 for every image)
         if spec.get("base"):  # shared overrides (e.g. layout) applied before every config
             apply_overrides(base, [f"{k}={v}" for k, v in spec["base"].items()])
             save_config(base, os.path.join(out, "base_config.yaml"))
@@ -534,10 +544,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         if step == "preview":
             preview(base, data, inv, out, audit_pairs + default_pairs)
         elif step == "audit":
-            run_trials(base, data, inv, out, [(p, c) for p in audit_pairs for c in configs], "audit", configs)
+            run_trials(base, data, inv, out, [(p, c) for p in audit_pairs for c in configs], "audit", configs,
+                       seed_per_pair)
             contact_sheets(out, audit_pairs, configs)
         elif step == "default":
-            run_trials(base, data, inv, out, [(p, "C00") for p in default_pairs], "default", configs)
+            run_trials(base, data, inv, out, [(p, "C00") for p in default_pairs], "default", configs, seed_per_pair)
     rebuild_index(out)
     if args.zip:
         print(f"[pilot] zip: {shutil.make_archive(out, 'zip', root_dir=os.path.dirname(out), base_dir=os.path.basename(out))}")

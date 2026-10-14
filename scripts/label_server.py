@@ -4,7 +4,8 @@
     python3 scripts/label_server.py --all      # also show configs that look identical to C00
 
 Reads every outputs/<run>/trials_latest.json. Audit configs whose output differs from the same run's C00 by less
-than --min-diff (mean |delta| in 0-255 levels) are skipped: they are visually the same image as C00.
+than --min-diff (mean |delta| in 0-255 levels) are skipped: they are visually the same image as C00. A seed-2 config
+(id ending in _s2) is compared with C00_s2, the default render with the same seed.
 """
 from __future__ import annotations
 
@@ -21,6 +22,8 @@ import numpy as np
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+from camo.agent import default_id  # noqa: E402
 OUT = os.path.join(ROOT, "outputs")
 LABELS = os.path.join(OUT, "labels.jsonl")
 
@@ -31,12 +34,17 @@ def _pixels(path: str) -> np.ndarray:
         return np.asarray(img.convert("RGB").resize((128, 128)), dtype=np.float32)
 
 
+SET_ASIDE = ("stale_", "oldgrid_")  # renders kept for the record (old v1 grid), never to be labelled
+
+
 def collect(min_diff: float, show_all: bool, runs=None) -> list:
     items = []
     for run in sorted(os.listdir(OUT)):
         index = os.path.join(OUT, run, "trials_latest.json")
-        if not os.path.isfile(index) or (runs is not None and run not in runs):
+        if not os.path.isfile(index) or (runs is not None and run not in runs) or run.startswith(SET_ASIDE):
             continue
+        if runs is None and os.path.exists(os.path.join(OUT, run, "RETIRED")):  # an old grid: off the label page,
+            continue                                                            # its labels still feed training
         with open(index, encoding="utf-8") as f:
             trials = [t for t in json.load(f) if t.get("status") == "ok"]
         bg_meta = {}
@@ -50,15 +58,16 @@ def collect(min_diff: float, show_all: bool, runs=None) -> list:
             rel = f"{run}/runs/{t['pair_id']}/{t['config_id']}/output.png"
             if not os.path.isfile(os.path.join(OUT, rel)):
                 continue
-            base = os.path.join(OUT, run, "runs", t["pair_id"], "C00", "output.png")
+            base_id = default_id(t["config_id"])
+            base = os.path.join(OUT, run, "runs", t["pair_id"], base_id, "output.png")
             diff = None
-            if t["config_id"] != "C00" and os.path.isfile(base):
+            if t["config_id"] != base_id and os.path.isfile(base):
                 diff = float(np.abs(_pixels(os.path.join(OUT, rel)) - _pixels(base)).mean())
                 if diff < min_diff and not show_all:
                     continue
             items.append({**{k: t.get(k) for k in ("trial_id", "pair_id", "config_id", "subject_label", "category",
                                                      "subject_id", "background_id", "overrides")},
-                          "run": run, "uid": f"{run}/{t['trial_id']}", "diff_vs_c00": diff,
+                          "run": run, "uid": f"{run}/{t['trial_id']}", "diff_vs_c00": diff, "base_id": base_id,
                           "bg_material": (bg_meta.get(t.get("background_id")) or {}).get("material"),
                           "bg_group": (bg_meta.get(t.get("background_id")) or {}).get("group"),
                           "out": "files/" + rel, "subj": f"files/{run}/inputs_normalized/{t['subject_id']}.png",

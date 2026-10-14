@@ -17,19 +17,25 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 import label_server  # noqa: E402
 import replay_agents  # noqa: E402
-from camo.agent import all_configs, grid_id  # noqa: E402
+from camo.agent import ACTION_SPACE, all_configs, grid_id  # noqa: E402
 
 
-def make_grid(out, good_alpha=0.08, identical=("a020_b48",), unlabeled=()):
-    """One pair P01: C00 + the full action space. Pixel value encodes alpha so configs differ, except `identical`
-    which copies C00 (should inherit its label). Labels: alpha > good -> too_visible, < good -> missing."""
+LEVELS = ACTION_SPACE["subject.strength"]  # faint -> strong
+BGS = ACTION_SPACE["sampling.bg_strength"]
+
+
+def make_grid(out, good_level="a008", identical=("a020_b52",), unlabeled=()):
+    """One pair P01: C00 + the full action space. Pixel value encodes the config so configs differ, except
+    `identical` which copies C00 (should inherit its label). Labels: stronger than `good_level` -> too_visible,
+    weaker -> missing."""
     run = out / "grid_test"
     trials, labels = [], []
-    cids = ["C00"] + [grid_id(c) for c in all_configs()]
-    for cid in cids:
+    cfgs = {grid_id(c): c for c in all_configs()}
+    for cid in ["C00"] + list(cfgs):
         d = run / "runs" / "P01" / cid
         d.mkdir(parents=True)
-        value = 100 if cid in ("C00", *identical) else 20 + int(cid[1:4])
+        level = LEVELS.index(cfgs[cid]["subject.strength"]) if cid != "C00" else None
+        value = 100 if cid in ("C00", *identical) else 20 + 30 * level + 5 * BGS.index(cfgs[cid]["sampling.bg_strength"])
         Image.fromarray(np.full((32, 32, 3), value, np.uint8)).save(d / "output.png")
         trials.append({"trial_id": f"P01_{cid}", "pair_id": "P01", "config_id": cid, "status": "ok", "subject_label": "cat",
                        "category": "animal", "subject_id": "O01", "background_id": "B02", "overrides": {}})
@@ -38,8 +44,8 @@ def make_grid(out, good_alpha=0.08, identical=("a020_b48",), unlabeled=()):
         if cid == "C00":
             label = "too_visible"
         else:
-            a = int(cid[1:4]) / 100
-            label = "good" if abs(a - good_alpha) < 1e-9 else ("too_visible" if a > good_alpha else "missing")
+            good = LEVELS.index(good_level)
+            label = "good" if level == good else ("too_visible" if level > good else "missing")
         labels.append({"rater": "tac_gia", "uid": f"grid_test/P01_{cid}", "label": label})
     (run / "trials_latest.json").write_text(json.dumps(trials))
     (out / "labels.jsonl").write_text("\n".join(json.dumps(r) for r in labels) + "\n")
@@ -51,19 +57,19 @@ def test_replay_inherits_identical_and_finds_good(tmp_path, monkeypatch):
     monkeypatch.setattr(label_server, "OUT", str(tmp_path))
     monkeypatch.setattr(replay_agents, "OUT", str(tmp_path))
     table, meta = replay_agents.grid_labels("grid_test", "tac_gia")
-    assert table[("P01", "a020_b48")] == ("too_visible", "inherited_from_C00")
+    assert table[("P01", "a020_b52")] == ("too_visible", "inherited_from_C00")
     result = replay_agents.replay("P01", replay_agents.RulePolicy(), 5, table)
     assert result["status"] == "done" and result["selected"].startswith("a008")
-    assert [c for c, _ in result["path"]][:3] == ["a020_b48", "a012_b48", "a008_b48"]
+    assert [c for c, _ in result["path"]] == ["a020_b52", "a012_b52", "a008_b52"]  # START (= C00 look), then weaker
 
 
 def test_replay_stops_on_missing_label(tmp_path, monkeypatch):
-    make_grid(tmp_path, unlabeled=("a012_b48",))
+    make_grid(tmp_path, unlabeled=("a012_b52",))
     monkeypatch.setattr(label_server, "OUT", str(tmp_path))
     monkeypatch.setattr(replay_agents, "OUT", str(tmp_path))
     table, _ = replay_agents.grid_labels("grid_test", "tac_gia")
     result = replay_agents.replay("P01", replay_agents.RulePolicy(), 5, table)
-    assert result["status"].startswith("incomplete") and "a012_b48" in result["status"] and result["selected"] is None
+    assert result["status"].startswith("incomplete") and "a012_b52" in result["status"] and result["selected"] is None
 
 
 def test_main_writes_report_and_page(tmp_path, monkeypatch):
@@ -83,7 +89,7 @@ def test_label_server_hides_near_duplicates(tmp_path, monkeypatch):
     make_grid(tmp_path)
     monkeypatch.setattr(label_server, "OUT", str(tmp_path))
     shown = {i["config_id"] for i in label_server.collect(2.0, False)}
-    assert "C00" in shown and "a020_b48" not in shown and "a008_b40" in shown
+    assert "C00" in shown and "a020_b52" not in shown and "a008_b44" in shown
 
 
 def test_eval_observer_fake_writes_labels_and_report(tmp_path, monkeypatch):
@@ -101,3 +107,35 @@ def test_eval_observer_fake_writes_labels_and_report(tmp_path, monkeypatch):
     recs = [json.loads(line) for line in (tmp_path / "labels.jsonl").read_text().splitlines() if line.strip()]
     assert sum(r["rater"] == "observer_fake" for r in recs) == 4
     assert all(r["rater"] == "tac_gia" for r in recs[:-4])  # human labels untouched
+
+
+def test_label_server_skips_set_aside_runs(tmp_path, monkeypatch):
+    import shutil
+
+    make_grid(tmp_path)
+    for name in ("stale_grid_test", "oldgrid_grid_test"):
+        shutil.copytree(tmp_path / "grid_test", tmp_path / name)
+    monkeypatch.setattr(label_server, "OUT", str(tmp_path))
+    assert {i["run"] for i in label_server.collect(2.0, False)} == {"grid_test"}
+
+
+def test_label_server_hides_retired_runs_from_the_page_only(tmp_path, monkeypatch):
+    make_grid(tmp_path)
+    (tmp_path / "grid_test" / "RETIRED").write_text("old grid")
+    monkeypatch.setattr(label_server, "OUT", str(tmp_path))
+    assert label_server.collect(2.0, False) == []  # the label page
+    assert {i["run"] for i in label_server.collect(0.0, True, runs={"grid_test"})} == {"grid_test"}  # training
+
+
+def test_labelset_report_counts_boards_with_a_good_config(tmp_path, monkeypatch):
+    import labelset
+
+    make_grid(tmp_path)
+    monkeypatch.setattr(label_server, "OUT", str(tmp_path))
+    monkeypatch.setattr(replay_agents, "OUT", str(tmp_path))
+    res = labelset.report("grid_test")
+    assert (res["pairs"], res["labelled_pairs"], res["pairs_with_good"]) == (1, 1, 1)
+    assert res["per_config"]["a008_b44"] == {"good": 1} and res["per_config"]["a020_b52"] == {"too_visible": 1}
+    assert res["rule"] == {"complete": 1, "success": 1, "mean_renders": 3.0}
+    (tmp_path / "grid_test" / "RETIRED").write_text("old")
+    assert labelset.report("grid_test")["pairs"] == 1  # a retired run still reports

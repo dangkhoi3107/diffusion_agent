@@ -129,3 +129,163 @@ def test_nature_split_keeps_a_train_image_of_every_test_type(types):
     test_types = {j for (i, j), s in split.items() if s == "test"}
     assert sum(s == "test" for s in split.values()) == labelset.PER_NATURE * types // labelset.NATURE_TEST_EVERY
     assert all(any(split[(i, j)] == "train" for i in range(labelset.PER_NATURE)) for j in test_types)
+
+
+def _render_batch(out, run, pairs, configs, status="ok"):
+    for pair in pairs:
+        for cid in configs:
+            d = out / run / "runs" / pair / cid
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "trial.json").write_text(json.dumps({"status": status}))
+    (out / run / "trials_latest.json").write_text("[]")
+
+
+def test_check_batch_catches_a_stale_grid_and_failed_renders(tmp_path, monkeypatch):
+    monkeypatch.setattr(labelset, "OUT", str(tmp_path))
+    pairs, grid = ["D01S01", "D01S02"], ["C00", "a000_b40", "a004_b40"]
+    _render_batch(tmp_path, "good", pairs, grid)
+    _render_batch(tmp_path, "stale", pairs, ["C00", "a020_b45"])
+    _render_batch(tmp_path, "failed", pairs, grid, status="error")
+    assert labelset.check_batch("good", pairs, grid) == ""
+    assert "missing" in labelset.check_batch("stale", pairs, grid)
+    assert "renders ok" in labelset.check_batch("failed", pairs, grid)
+
+
+@pytest.fixture
+def one_batch(tmp_path, monkeypatch):
+    """Manifest with one batch; subprocess.run (the kaggle_run call) is replaced by `script` entries."""
+    lset, out = tmp_path / "labelset", tmp_path / "outputs"
+    lset.mkdir()
+    out.mkdir()
+    pairs, grid = ["D01S01", "D01S02"], ["C00", "a000_b40"]
+    (lset / "manifest.json").write_text(json.dumps({"configs": grid, "pairs": {}, "subjects": {}, "backgrounds": {},
+                                                    "batches": [{"run": "label_b1", "folder": "pilot/labelset/b1",
+                                                                 "pairs": pairs}]}))
+    monkeypatch.setattr(labelset, "SET", str(lset))
+    monkeypatch.setattr(labelset, "OUT", str(out))
+    monkeypatch.setattr(labelset, "STATUS", str(out / ".labelset_status.json"))
+    monkeypatch.setattr(labelset, "kernel_running", lambda: False)
+    monkeypatch.setattr(labelset.time, "sleep", lambda s: None)
+    calls, script = [], []
+
+    class Done:
+        def __init__(self, code):
+            self.returncode = code
+
+    def fake_run(cmd, cwd=None):
+        calls.append(cmd)
+        action = script.pop(0)
+        if action == "stale":
+            _render_batch(out, "label_b1", pairs, ["C00", "a020_b45"])
+        elif action == "good":
+            _render_batch(out, "label_b1", pairs, grid)
+        return Done(0 if action in ("stale", "good") else 1)
+
+    monkeypatch.setattr(labelset.subprocess, "run", fake_run)
+    return out, calls, script
+
+
+def test_run_sets_a_stale_batch_aside_and_renders_it_again(one_batch):
+    out, calls, script = one_batch
+    script += ["stale", "good"]
+    assert labelset.run(argparse_ns()) == 0
+    assert "--download-only" not in calls[1] and "--skip-upload" in calls[1]  # rendered again, not re-downloaded
+    assert [p.name for p in out.iterdir() if p.name.startswith("stale_label_b1_")]
+    assert labelset.check_batch("label_b1", ["D01S01", "D01S02"], ["C00", "a000_b40"]) == ""
+    assert json.loads((out / ".labelset_status.json").read_text())["state"] == "done"
+
+
+def test_run_retries_a_failed_batch_then_gives_up(one_batch):
+    out, calls, script = one_batch
+    script += ["fail"] * 5
+    assert labelset.run(argparse_ns()) == 1
+    # push, download again, push, download again, push: two extra renders at most
+    assert ["--download-only" in c for c in calls] == [False, True, False, True, False]
+    assert json.loads((out / ".labelset_status.json").read_text())["state"] == "error"
+
+
+def test_run_takes_a_finished_batch_on_the_second_download(one_batch):
+    out, calls, script = one_batch
+    script += ["fail", "good"]
+    assert labelset.run(argparse_ns()) == 0
+    assert "--download-only" in calls[1] and len(calls) == 2
+
+
+def argparse_ns():
+    import argparse
+
+    return argparse.Namespace(skip_upload=False)
+
+
+def test_new_grid_retires_rendered_runs_and_renames_batches(labelset_dir):
+    import yaml
+
+    out = os.path.join(labelset.OUT, "label_b1")
+    os.makedirs(out)
+    open(os.path.join(out, "trials_latest.json"), "w").write("[]")  # batch 1 was rendered on the old grid
+    res = labelset.new_grid()
+    man = json.loads((labelset_dir / "manifest.json").read_text())
+    assert res["retired"] == ["label_b1"] and os.path.exists(os.path.join(out, "RETIRED"))
+    assert [b["run"] for b in man["batches"]] == ["label_b1v3", "label_b2v3", "label_b3v3"]
+    assert all(b["hold"] for b in man["batches"]) and man["grid_version"] == labelset.GRID_VERSION
+    grid = yaml.safe_load((labelset_dir / "grid.yaml").read_text())
+    assert grid["seed_per_pair"] is True and list(grid["configs"]) == man["configs"] and len(grid["configs"]) == 26
+    assert grid["configs"]["g50_b60"]["sampling.guidance_sub"] == 5.0 and grid["configs"]["a008_b44"]["blend.alpha_end"] == 0.08
+    assert grid["configs"]["C00_s2"] == {"sampling.seed": 98765} and grid["configs"]["a008_b44_s2"]["sampling.seed"] == 98765
+
+
+def test_rebatch_with_a_trial_batch_keeps_every_pair_once(labelset_dir):
+    labelset.new_grid()
+    res = labelset.rebatch(1, trial=2)
+    man = json.loads((labelset_dir / "manifest.json").read_text())
+    runs = [b["run"] for b in man["batches"]]
+    assert runs == ["label_b0v3", "label_b1v3", "label_b2v3", "label_b3v3"]
+    trial = man["batches"][0]
+    assert len(trial["pairs"]) == 2 and not trial.get("hold") and all(b.get("hold") for b in man["batches"][1:])
+    every = [p for b in man["batches"] for p in b["pairs"]]
+    assert sorted(every) == sorted(man["pairs"]) and len(every) == len(set(every))
+    for b in man["batches"]:  # one pair per background in a batch
+        bgs = [man["pairs"][p][1] for p in b["pairs"]]
+        assert len(bgs) == len(set(bgs))
+    assert (labelset_dir / "b0" / "inputs.yaml").exists() and res["order"]
+
+
+def test_new_grid_keep_names_only_rewrites_the_grid(labelset_dir):
+    import yaml
+
+    before = [b["run"] for b in json.loads((labelset_dir / "manifest.json").read_text())["batches"]]
+    labelset.new_grid(rename=False)
+    man = json.loads((labelset_dir / "manifest.json").read_text())
+    assert [b["run"] for b in man["batches"]] == before and man["grid_version"] == labelset.GRID_VERSION
+    assert yaml.safe_load((labelset_dir / "grid.yaml").read_text())["seed_per_pair"] is True
+
+
+def _run_with(out, run, configs, value=100):
+    for cid in configs:
+        d = out / run / "runs" / "D01S01" / cid
+        d.mkdir(parents=True, exist_ok=True)
+        Image.new("RGB", (16, 16), (value, value, value)).save(d / "output.png")
+        (d / "trial.json").write_text(json.dumps({"trial_id": f"D01S01_{cid}", "config_id": cid, "status": "ok"}))
+
+
+def test_merge_run_moves_missing_configs_after_the_seed_check(tmp_path, monkeypatch):
+    out = tmp_path / "outputs"
+    monkeypatch.setattr(labelset, "OUT", str(out))
+    _run_with(out, "trial", ["C00", "a008_b44"])
+    _run_with(out, "addon", ["C00", "a004_b44", "a012_b44"])
+    res = labelset.merge_run("addon", "trial")
+    assert res["moved"] == 2 and res["check_diff"] == {"D01S01": 0.0}
+    latest = json.loads((out / "trial" / "trials_latest.json").read_text())
+    assert sorted(t["config_id"] for t in latest) == ["C00", "a004_b44", "a008_b44", "a012_b44"]
+    assert (out / "addon" / "RETIRED").exists()
+
+
+def test_merge_run_refuses_when_the_check_render_differs(tmp_path, monkeypatch):
+    out = tmp_path / "outputs"
+    monkeypatch.setattr(labelset, "OUT", str(out))
+    _run_with(out, "trial", ["C00"])
+    _run_with(out, "addon", ["C00"], value=10)
+    _run_with(out, "addon", ["a004_b44"])
+    with pytest.raises(SystemExit):
+        labelset.merge_run("addon", "trial")
+    assert not (out / "trial" / "runs" / "D01S01" / "a004_b44").exists()

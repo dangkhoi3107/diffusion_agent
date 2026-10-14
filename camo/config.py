@@ -96,6 +96,7 @@ class MaskConfig:
     invert: bool = False
     floor: float = 0.05
     ceiling: float = 0.90
+    border_px: int = 0  # > 0: no blend within this many pixels of the frame (HED answers the image edge itself)
 
 
 @dataclass

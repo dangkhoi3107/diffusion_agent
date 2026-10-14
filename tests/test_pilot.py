@@ -172,3 +172,44 @@ def test_empty_audit_pairs_means_default_only(tmp_path):
 
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-q"]))
+
+
+def test_seed_per_pair_is_shared_by_configs_and_differs_between_pairs(tmp_path, monkeypatch):
+    data = pilot.load_inputs(_inputs(tmp_path))
+    out = str(tmp_path / "out")
+    inv = pilot.normalize(data, out, 64)
+    seeds = {}
+
+    class FakeSession:
+        def __init__(self, cfg):
+            pass
+
+    def fake_run_pair(session, cfg, subject, background, seed, out_dir=None):
+        pid, cid = out_dir.split(os.sep)[-2:]
+        seeds[(pid, cid)] = (seed, cfg.sampling.seed)
+        os.makedirs(out_dir, exist_ok=True)
+        Image.new("RGB", (64, 64)).save(os.path.join(out_dir, "output.png"))
+        return SimpleNamespace(prompt="p", steps_run=1, timings={}, metrics={}, prepared=SimpleNamespace(softedge_source="hed"),
+                               seconds=0.1)
+
+    import camo.runner as runner
+
+    monkeypatch.setattr(runner, "Session", FakeSession)
+    monkeypatch.setattr(runner, "run_pair", fake_run_pair)
+    monkeypatch.setattr(pilot, "environment", lambda cfg: {"stub": True})
+    configs = {"C00": {}, "a": {"blend.alpha_end": 0.1}, "s2": {"sampling.seed": 98765}}
+    pairs = data["audit_pairs"][:3]
+    pilot.run_trials(Config(), data, inv, out, [(p, c) for p in pairs for c in configs], "audit", configs, True)
+    assert all(a == b for a, b in seeds.values())  # the seed the generator gets is the one recorded
+    for p in pairs:
+        assert seeds[(p, "C00")] == seeds[(p, "a")] == (pilot.pair_seed(p, 1234),) * 2
+        assert seeds[(p, "s2")][0] == pilot.pair_seed(p, 98765)
+    assert len({seeds[(p, "C00")][0] for p in pairs}) == len(pairs)
+    trial = json.load(open(os.path.join(out, "runs", pairs[0], "a", "trial.json"), encoding="utf-8"))
+    assert trial["seed"] == pilot.pair_seed(pairs[0], 1234)
+
+    seeds.clear()
+    out2 = str(tmp_path / "out2")
+    pilot.normalize(data, out2, 64)
+    pilot.run_trials(Config(), data, inv, out2, [(p, "C00") for p in pairs], "audit", configs)  # default: off
+    assert {v[0] for v in seeds.values()} == {1234}

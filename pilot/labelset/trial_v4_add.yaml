@@ -1,0 +1,29 @@
+# Grid v4 additions for the trial batch label_b0v3 (2026-10-13): the configs it lacks; C00 again to check
+# that the per-pair seeds reproduce the first render. Downloaded as label_b0v3add, merged into label_b0v3.
+seed_per_pair: true
+configs:
+  C00: {}
+  a004_b44:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.44
+  a004_b52:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.52
+  a004_b60:
+    blend.profile: constant
+    blend.alpha_end: 0.04
+    sampling.bg_strength: 0.6
+  a012_b44:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.44
+  a012_b52:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.52
+  a012_b60:
+    blend.profile: constant
+    blend.alpha_end: 0.12
+    sampling.bg_strength: 0.6

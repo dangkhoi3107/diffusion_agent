@@ -164,7 +164,13 @@ def metrics(truth: Sequence[str], pred: Sequence[str]) -> Dict[str, Any]:
     fp = sum(b == "broken" != a for a, b in zip(t, p))
     fn = sum(a == "broken" != b for a, b in zip(t, p))
     recall = {c: round(sum(a == b == c for a, b in zip(t, p)) / t.count(c), 3) for c in CLASSES if t.count(c)}
+    # "good" is rare (about 1 render in 10), so good_vs_not is high even for "never good": the agent's stop rule
+    # needs good precision (a false good ends the search on a bad image) and good recall
+    g_tp = sum(a == b == "good" for a, b in zip(t, p))
+    g_pred, g_true = p.count("good"), t.count("good")
     return {"n": n, "exact": round(sum(a == b for a, b in zip(t, p)) / n, 3),
+            "good_precision": round(g_tp / g_pred, 3) if g_pred else None,
+            "good_recall": round(g_tp / g_true, 3) if g_true else None,
             "good_vs_not": round(sum((a == "good") == (b == "good") for a, b in zip(t, p)) / n, 3),
             "ordinal_mae": round(float(np.mean([abs(a - b) for a, b in both])), 3) if both else None,
             "within_one": round(float(np.mean([abs(a - b) <= 1 for a, b in both])), 3) if both else None,

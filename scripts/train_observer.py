@@ -70,6 +70,16 @@ def latest_labels(rater: str) -> Dict[str, str]:
     return latest
 
 
+def labelset_runs() -> set:
+    """Runs of the current label set (manifest batches). Older label_b* runs (grid v2, before the backgrounds were
+    re-picked) reuse ids such as D01 for other pictures, so the manifest split must not be applied to them."""
+    if not os.path.exists(MANIFEST):
+        return set()
+    with open(MANIFEST, encoding="utf-8") as f:
+        m = json.load(f)
+    return {b["run"] for b in m.get("batches", [])}
+
+
 def manifest_split() -> Dict[str, str]:
     """subject or background id of the label set -> train | test."""
     if not os.path.exists(MANIFEST):
@@ -85,15 +95,16 @@ def rows(rater: str = "tac_gia", inherit_below: float = 2.0) -> List[dict]:
     runs = {u.split("/")[0] for u in labels} | {os.path.basename(p) for p in glob.glob(os.path.join(label_server.OUT, "label_b*"))}
     items = label_server.collect(0.0, True, runs=runs)
     split_of = manifest_split()
-    c00 = {(i["run"], i["pair_id"]): labels.get(i["uid"]) for i in items if i["config_id"] == "C00"}
+    current = labelset_runs()
+    by_config = {(i["run"], i["pair_id"], i["config_id"]): labels.get(i["uid"]) for i in items}
     out = []
     for i in items:
         label, source = labels.get(i["uid"]), "own"
         if label is None and i["diff_vs_c00"] is not None and i["diff_vs_c00"] < inherit_below:
-            label, source = c00.get((i["run"], i["pair_id"])), "inherited_from_C00"
+            label, source = by_config.get((i["run"], i["pair_id"], i.get("base_id", "C00"))), "inherited_from_C00"
         if label is None or label not in obs.CLASSES:  # unlabelled or unsure
             continue
-        if i["run"].startswith("label_b"):
+        if i["run"] in current:
             split = "test" if "test" in (split_of.get(i["subject_id"]), split_of.get(i["background_id"])) else "train"
         else:
             split = "train"
@@ -120,11 +131,12 @@ def same_picture(keys: List[str], X: np.ndarray, threshold: float = SAME_IMAGE) 
 def attach_groups(data: List[dict], canon: Dict[str, str]) -> Dict[str, int]:
     """pair group = canonical subject x canonical background; renders that share a test input leave training."""
     split_of = manifest_split()
+    current = labelset_runs()
     test_inputs = set()
     for r in data:
         r["subj_c"], r["bg_c"] = canon[r["subj"]], canon[r["bg"]]
         r["group"] = f"{r['subj_c']}|{r['bg_c']}"
-        if r["run"].startswith("label_b"):
+        if r["run"] in current:
             test_inputs |= {c for c, i in ((r["subj_c"], r["subject_id"]), (r["bg_c"], r["background_id"]))
                             if split_of.get(i) == "test"}
     leaked = Counter()
@@ -290,12 +302,14 @@ def main() -> int:
 
 
 def print_table(report: dict) -> None:
-    print(f"\n{'variant':<22}{'cv n':>6}{'exact':>8}{'good/not':>10}{'MAE':>7}{'macroR':>8}{'brokenF1':>10}{'test n':>8}{'test good/not':>15}")
+    print(f"\n{'variant':<22}{'part':<6}{'n':>6}{'exact':>8}{'MAE':>7}{'macroR':>8}{'goodP':>7}{'goodR':>7}{'brokenF1':>10}")
     for name, v in report["variants"].items():
-        cv, te = v["cv"], v.get("test", {})
-        print(f"{name:<22}{cv.get('n', 0):>6}{cv.get('exact', '-')!s:>8}{cv.get('good_vs_not', '-')!s:>10}"
-              f"{cv.get('ordinal_mae', '-')!s:>7}{cv.get('macro_recall', '-')!s:>8}{cv.get('broken_f1', '-')!s:>10}"
-              f"{te.get('n', 0):>8}{te.get('good_vs_not', '-')!s:>15}")
+        for part in ("cv", "test"):
+            m = v.get(part) or {}
+            if m.get("n"):
+                print(f"{name:<22}{part:<6}{m['n']:>6}{m.get('exact', '-')!s:>8}{m.get('ordinal_mae', '-')!s:>7}"
+                      f"{m.get('macro_recall', '-')!s:>8}{m.get('good_precision', '-')!s:>7}{m.get('good_recall', '-')!s:>7}"
+                      f"{m.get('broken_f1', '-')!s:>10}")
     for g in report["gpt_vision_reference"]:
         print(f"{'gpt ' + g['file'][13:-5]:<22}{g['n']:>6}{g['exact']!s:>8}{g['good_vs_not']!s:>10}")
     main_v = report["variants"].get(MAIN, {})

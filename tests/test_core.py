@@ -139,6 +139,20 @@ def test_soft_mask_pipeline():
     assert stages.mask[32, 32] > 0.9 and stages.mask[0, 0] == 0.0
 
 
+def test_soft_mask_border_px_clears_the_frame_only():
+    soft = np.full((64, 64, 3), 220, np.uint8)  # HED-like answer everywhere, frame included
+    cfg = Config().mask
+    full = build_soft_mask(soft, cfg).mask
+    cfg.border_px = 6
+    cut = build_soft_mask(soft, cfg).mask
+    assert full[2, 2] > 0.9 and cut[2, 2] == 0 and cut[:6].max() == 0 and cut[:, -6:].max() == 0
+    assert np.array_equal(cut[6:-6, 6:-6], full[6:-6, 6:-6])  # inside the frame nothing changes
+    assert Config().mask.border_px == 0  # off by default: C00 renders stay as before
+    c = Config()
+    apply_overrides(c, ["mask.border_px=16"])
+    assert c.mask.border_px == 16
+
+
 def test_schedules():
     n = 29
     assert blend_alpha(0, n, 0.05, 0.56, 0.54, "decay") == 1.0

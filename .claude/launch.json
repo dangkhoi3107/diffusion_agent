@@ -33,6 +33,26 @@
     "7863"
    ],
    "port": 7863
+  },
+  {
+   "name": "demo-labelset",
+   "runtimeExecutable": "/home/dangkhoi/.venvs/camo-ml/bin/python",
+   "runtimeArgs": [
+    "-m",
+    "camo.demo",
+    "--labelset",
+    "outputs/label_b2v3",
+    "--live-only",
+    "--live-subject-id",
+    "T159",
+    "--live-background-id",
+    "D71",
+    "--pair",
+    "label_b2v3:D05T183",
+    "--port",
+    "7864"
+   ],
+   "port": 7864
   }
  ]
 }
